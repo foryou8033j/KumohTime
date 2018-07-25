@@ -1,5 +1,8 @@
 package KumohTime.View.Home.SelectedLecture;
 
+import java.awt.Toolkit;
+import java.awt.datatransfer.Clipboard;
+import java.awt.datatransfer.StringSelection;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -31,8 +34,10 @@ public class SelectedLectureLayoutController implements Initializable{
     private JFXColorPicker colorPicker;
 
     @FXML
-    void handleCopy(ActionEvent event) {
-    	
+    public void handleCopy(ActionEvent event) {
+    	StringSelection stringSelection = new StringSelection(code.getText() + "\t" + professor.getText() + "\t\t"+ name.getText() + "\t\t" + time.getText());
+    	Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
+    	clipboard.setContents(stringSelection, null);
     }
 
     @FXML

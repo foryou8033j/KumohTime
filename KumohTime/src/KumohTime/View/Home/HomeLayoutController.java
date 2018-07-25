@@ -15,6 +15,7 @@ import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
 import KumohTime.MainApp;
 import KumohTime.Model.TimeTable.Lecture;
 import KumohTime.Model.TimeTable.LectureTime;
+import KumohTime.Util.Dialog.BugReportDialog;
 import KumohTime.View.Home.SelectedLecture.SelectedLectureLayoutController;
 import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.collections.FXCollections;
@@ -36,6 +37,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+import javafx.scene.text.TextAlignment;
 import javafx.util.Callback;
 
 public class HomeLayoutController implements Initializable {
@@ -176,6 +178,11 @@ public class HomeLayoutController implements Initializable {
 			return;
 		}
 	}
+	
+    @FXML
+    void handleBugReport(ActionEvent event) {
+    	new BugReportDialog(mainApp);
+    }
 
 	@FXML
 	void handleSaveData(ActionEvent event) {
@@ -414,24 +421,49 @@ public class HomeLayoutController implements Initializable {
 			double b = v.getColor().getBlue() * 255;
 			
 			for(LectureTime time:v.getLectureTime()) {
-				
+				boolean isDrawed = false;
 				for(Number timeOfDay:time.getTime()) {
 					VBox vb = new VBox();
 					vb.setAlignment(Pos.CENTER);
 					vb.setStyle("-fx-background-color:rgb(" + r+ "," + g + ", " + b+ ")");
 					Text name = new Text(v.getName().get());
+					name.setFont(Font.font("malgun gothic", 12));
+					
 					if(v.getName().get().length() > 6) {
-						String first = name.getText().substring(0, name.getText().length()/2);
-						String last = name.getText().substring(name.getText().length()/2, name.getText().length());
+						int parseIndex = name.getText().length()/2;
+						if(name.getText().contains(" ") && name.getText().indexOf(" ")>parseIndex/2)
+							parseIndex = name.getText().indexOf(' ');
+						else if(name.getText().contains("과") && name.getText().indexOf("과")>parseIndex/2)
+							parseIndex = name.getText().indexOf('과');
+						else if(name.getText().contains("와") && name.getText().indexOf("와")>parseIndex/2)
+								parseIndex = name.getText().indexOf('와');
+						else if(name.getText().contains("의") && name.getText().indexOf("의")>parseIndex/2)
+								parseIndex = name.getText().indexOf('의');
+						else if(name.getText().contains("및") && name.getText().indexOf("및")>parseIndex/2)
+							parseIndex = name.getText().indexOf('및');
+						
+						
+						String first = name.getText().substring(0, parseIndex+1);
+						String last = name.getText().substring(parseIndex+1, name.getText().length());
 						String txt = first+"\r\n"+last;
+						
+						name.setTextAlignment(TextAlignment.CENTER);
 						name.setText(txt);
+						
+						if(first.length() > 6 || last.length() > 6)
+							name.setFont(Font.font("malgun gothic", 10));
 					}
+					
 					Text professor = new Text(v.getProfessor().get());
+					professor.setFont(Font.font("malgun gothic", 12));
 					Text room = new Text(time.getRoom());
-					vb.getChildren().addAll(name, professor, room);
+					room.setFont(Font.font("malgun gothic", 12));
+					
+					if(!isDrawed) vb.getChildren().addAll(name, professor, room);
 					
 					timeTable.add(vb, time.dayOfWeek()+1, timeOfDay.intValue());
 					showedNode.add(vb);
+					isDrawed = true;
 				}
 			}
 		}

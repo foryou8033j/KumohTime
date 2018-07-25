@@ -99,22 +99,27 @@
                      <right>
                         <VBox alignment="CENTER" prefHeight="209.0" prefWidth="98.0" spacing="10.0" BorderPane.alignment="CENTER">
                            <children>
-                              <JFXButton buttonType="RAISED" onAction="#handleLoadData" text="데이터&#10;불러오기" textAlignment="CENTER">
+                              <JFXButton buttonType="RAISED" onAction="#handleBugReport" text="오류신고" textAlignment="CENTER">
                                  <font>
                                     <Font name="Malgun Gothic" size="12.0" />
                                  </font>
                               </JFXButton>
-                              <JFXButton buttonType="RAISED" onAction="#handleSaveData" text="데이터&#10;내보내기" textAlignment="CENTER">
+                              <JFXButton buttonType="RAISED" disable="true" onAction="#handleLoadData" text="데이터&#10;불러오기" textAlignment="CENTER">
                                  <font>
                                     <Font name="Malgun Gothic" size="12.0" />
                                  </font>
                               </JFXButton>
-                              <JFXButton buttonType="RAISED" onAction="#handleSaveTimeTable" text="시간표 출력">
+                              <JFXButton buttonType="RAISED" disable="true" onAction="#handleSaveData" text="데이터&#10;내보내기" textAlignment="CENTER">
                                  <font>
                                     <Font name="Malgun Gothic" size="12.0" />
                                  </font>
                               </JFXButton>
-                              <JFXButton buttonType="RAISED" onAction="#handleAutomaticCreateTimeTable" text="자동 생성">
+                              <JFXButton buttonType="RAISED" disable="true" onAction="#handleSaveTimeTable" text="시간표 출력">
+                                 <font>
+                                    <Font name="Malgun Gothic" size="12.0" />
+                                 </font>
+                              </JFXButton>
+                              <JFXButton buttonType="RAISED" disable="true" onAction="#handleAutomaticCreateTimeTable" text="자동 생성">
                                  <font>
                                     <Font name="Malgun Gothic" size="12.0" />
                                  </font>

@@ -1,9 +1,13 @@
 package KumohTime.Model.DataBase;
 
+import java.net.InetAddress;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -20,6 +24,60 @@ public class DataBase extends DBHeader implements DataBaseAdapter {
 
 	private void initConnection() {
 		conn = super.getConnection();
+	}
+	
+	public void writeLog() {
+		initConnection();
+
+		Statement stmt = null;
+
+		try {
+			
+			InetAddress ip;
+			ip = InetAddress.getLocalHost();
+			
+			DateFormat f = new SimpleDateFormat("yyyy.MM.dd HH:mm:ss");
+			
+			String sql = "INSERT INTO Log(time, ip) VALUES('" + f.format(Calendar.getInstance().getTime()) + "', '" + ip.getHostAddress() + "')";
+			stmt = conn.createStatement();
+			stmt.executeUpdate(sql);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				stmt.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+
+	}
+	
+	public void bugReport(String message, String version) {
+		initConnection();
+
+		Statement stmt = null;
+
+		try {
+			
+			InetAddress ip;
+			ip = InetAddress.getLocalHost();
+			
+			DateFormat f = new SimpleDateFormat("yyyy.MM.dd HH:mm:ss");
+			
+			String sql = "INSERT INTO Bug(message, ip, time, version) VALUES('" + message + "', '" + ip.getHostAddress() + "', ' " + f.format(Calendar.getInstance().getTime()) + "','"+version+"')";
+			stmt = conn.createStatement();
+			stmt.executeUpdate(sql);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				stmt.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+
 	}
 
 	public AppData loadAppData() {
