@@ -10,6 +10,7 @@ public class AppData {
 
 	final public static String propertisePath = System.getenv("APPDATA") + "/kumohtime/config/";
 	final public static String dataPath = System.getenv("APPDATA") + "/kumohtime/data/";
+	final public static String databasePath= System.getenv("APPDATA") + "/kumohtime/kumohtime.db";
 	
 	public static int runningThread = 0;
 	public static int totalThread = 0;

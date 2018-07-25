@@ -3,6 +3,7 @@ package KumohTime.Model;
 import java.util.Comparator;
 
 import KumohTime.Model.DataBase.DataBase;
+import KumohTime.Model.DataBase.SQLite;
 import KumohTime.Model.TimeTable.Lecture;
 import KumohTime.Model.TimeTable.LectureTime;
 import KumohTime.Util.OrderingByKoreanEnglishNumbuerSpecial;
@@ -22,7 +23,7 @@ public class TimeTableData {
 	private ObservableList<String> filterGrade = FXCollections.observableArrayList();
 	
 	public TimeTableData() {
-		listLecture = new DataBase().loadLectureList();
+		listLecture = new SQLite().loadDataFromFile();
 		filteredLecture.setAll(listLecture);
 		
 		filterQuater.add("전체");

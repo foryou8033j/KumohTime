@@ -11,6 +11,7 @@ import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
@@ -27,6 +28,7 @@ public class MainApp extends Application {
 	public void start(Stage primaryStage) {
 
 		this.primaryStage = primaryStage;
+		primaryStage.getIcons().add(new Image("icon.jpg"));
 		primaryStage.show();
 
 		LoadingDialog dialog = new LoadingDialog(primaryStage);
@@ -36,7 +38,7 @@ public class MainApp extends Application {
 			@Override
 			protected Void call() throws Exception {
 
-				updateMessage("DB 업데이트 중");
+				updateMessage("DB 불러오는 중");
 				new DataBase().writeLog();
 				
 				appData = new AppData(new DataBase().loadAppData());
