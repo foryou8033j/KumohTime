@@ -1,63 +1,76 @@
 package KumohTime.Model.TimeTable.SaveData;
 
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.SimpleIntegerProperty;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlRootElement;
 
+import javafx.scene.paint.Color;
+
+@XmlRootElement(name = "lecture")
+@XmlAccessorType(XmlAccessType.FIELD)
 public class SaveData {
 
-	private final IntegerProperty year = new SimpleIntegerProperty(0);
-	private final StringProperty quater = new SimpleStringProperty("");
-	private final StringProperty name = new SimpleStringProperty("");
-	private final StringProperty code = new SimpleStringProperty("");
-	
+	private final int year;
+	private final String quater;
+	private final String name;
+	private final String code;
+	private double red;
+	private double green;
+	private double blue;
+
 	public SaveData() {
-		this(0, "", "", "");
+		this(0, "", "", "", Color.LIGHTGRAY.getRed(), Color.LIGHTGRAY.getGreen(), Color.LIGHTGRAY.getBlue());
 	}
-	
-	public SaveData(int year, String quater, String name, String code) {
+
+	public SaveData(int year, String quater, String name, String code, double red, double green, double blue) {
 		super();
-		this.year.set(year);
-		this.quater.set(quater);
-		this.name.set(name);
-		this.code.set(code);
-		
-		System.out.println(year + " " + quater + " " + name + " " + code);
+		this.year = year;
+		this.quater = quater;
+		this.name = name;
+		this.code = code;
+		this.red = red;
+		this.green = green;
+		this.blue = blue;
+	}
+
+	public double getRed() {
+		return red;
+	}
+
+	public void setRed(double red) {
+		this.red = red;
+	}
+
+	public double getGreen() {
+		return green;
+	}
+
+	public void setGreen(double green) {
+		this.green = green;
+	}
+
+	public double getBlue() {
+		return blue;
+	}
+
+	public void setBlue(double blue) {
+		this.blue = blue;
 	}
 
 	public int getYear() {
-		return year.get();
-	}
-
-	public void setYear(int year) {
-		this.year.set(year);
+		return year;
 	}
 
 	public String getQuater() {
-		return quater.get();
-	}
-
-	public void setQuater(String quater) {
-		this.quater.set(quater);
+		return quater;
 	}
 
 	public String getName() {
-		return name.get();
-	}
-
-	public void setName(String name) {
-		this.name.set(name);
+		return name;
 	}
 
 	public String getCode() {
-		return code.get();
+		return code;
 	}
 
-	public void setCode(String code) {
-		this.code.set(code);
-	}
-	
-	
-	
 }

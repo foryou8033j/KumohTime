@@ -104,17 +104,17 @@
                                     <Font name="Malgun Gothic" size="12.0" />
                                  </font>
                               </JFXButton>
-                              <JFXButton buttonType="RAISED" disable="true" onAction="#handleLoadData" text="데이터&#10;불러오기" textAlignment="CENTER">
+                              <JFXButton buttonType="RAISED" onAction="#handleLoadData" text="데이터&#10;불러오기" textAlignment="CENTER">
                                  <font>
                                     <Font name="Malgun Gothic" size="12.0" />
                                  </font>
                               </JFXButton>
-                              <JFXButton buttonType="RAISED" disable="true" onAction="#handleSaveData" text="데이터&#10;내보내기" textAlignment="CENTER">
+                              <JFXButton buttonType="RAISED" onAction="#handleSaveData" text="데이터&#10;내보내기" textAlignment="CENTER">
                                  <font>
                                     <Font name="Malgun Gothic" size="12.0" />
                                  </font>
                               </JFXButton>
-                              <JFXButton buttonType="RAISED" disable="true" onAction="#handleSaveTimeTable" text="시간표 출력">
+                              <JFXButton buttonType="RAISED" onAction="#handleSaveTimeTable" text="시간표 출력">
                                  <font>
                                     <Font name="Malgun Gothic" size="12.0" />
                                  </font>
@@ -132,7 +132,7 @@
                   <Insets bottom="10.0" left="10.0" top="10.0" />
                </padding>
             </GridPane>
-            <BorderPane SplitPane.resizableWithParent="false">
+            <BorderPane fx:id="capturePane" SplitPane.resizableWithParent="false">
                <padding>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </padding>

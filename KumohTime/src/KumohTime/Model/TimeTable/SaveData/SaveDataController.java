@@ -17,7 +17,7 @@ public class SaveDataController {
 
 	public SaveDataController() {
 		file = new File(AppData.saveFilePath);
-		if(!file.exists())
+		if(!isExists())
 			saveData();
 		else
 			loadData();
@@ -25,6 +25,10 @@ public class SaveDataController {
 
 	public ObservableList<SaveData> getSaveDatas() {
 		return saveDatas;
+	}
+	
+	public boolean isExists() {
+		return file.exists();
 	}
 
 	public void loadData() {

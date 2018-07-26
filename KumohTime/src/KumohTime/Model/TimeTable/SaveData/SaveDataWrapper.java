@@ -1,21 +1,25 @@
 package KumohTime.Model.TimeTable.SaveData;
 
-import java.util.List;
-
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
 @XmlRootElement(name = "LectureList")
+@XmlAccessorType (XmlAccessType.FIELD)
 public class SaveDataWrapper {
 	
-	private List<SaveData> lectures;
+	private ObservableList<SaveData> lectures = FXCollections.observableArrayList();
 
 	@XmlElement(name = "lecture")
-	public List<SaveData> getDatas() {
+	public ObservableList<SaveData> getDatas() {
 		return lectures;
 	}
 
-	public void setDatas(List<SaveData> lectures) {
-		this.lectures = lectures;
+	public void setDatas(ObservableList<SaveData> lectures) {
+		this.lectures.setAll(lectures);
 	}
 }

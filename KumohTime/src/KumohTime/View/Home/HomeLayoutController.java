@@ -1,7 +1,12 @@
 package KumohTime.View.Home;
 
+import java.io.File;
+import java.io.IOException;
 import java.net.URL;
+import java.nio.file.Files;
 import java.util.ResourceBundle;
+
+import javax.imageio.ImageIO;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
@@ -13,9 +18,11 @@ import com.jfoenix.controls.RecursiveTreeItem;
 import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
 
 import KumohTime.MainApp;
+import KumohTime.Model.AppData;
 import KumohTime.Model.DataBase.DataBase;
 import KumohTime.Model.TimeTable.Lecture;
 import KumohTime.Model.TimeTable.LectureTime;
+import KumohTime.Model.TimeTable.SaveData.SaveData;
 import KumohTime.Util.Dialog.AlertDialog;
 import KumohTime.Util.Dialog.BugReportDialog;
 import KumohTime.View.Home.SelectedLecture.SelectedLectureLayoutController;
@@ -23,24 +30,30 @@ import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
+import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.chart.PieChart.Data;
+import javafx.scene.SnapshotParameters;
 import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeTableCell;
 import javafx.scene.control.TreeTableColumn;
 import javafx.scene.control.TreeTableRow;
 import javafx.scene.control.TreeTableView;
+import javafx.scene.image.WritableImage;
 import javafx.scene.input.ContextMenuEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
+import javafx.stage.FileChooser;
 import javafx.util.Callback;
 
 public class HomeLayoutController implements Initializable {
@@ -131,17 +144,20 @@ public class HomeLayoutController implements Initializable {
 
 	@FXML
 	private Text basicEssential;
-	
+
 	@FXML
 	private Text etcPoint;
 
 	@FXML
 	private Text sumOfLecture;
+	
+    @FXML
+    private BorderPane capturePane;
 
 	private ObservableList<GridPane> selectedLayoutList = FXCollections.observableArrayList();
 	private ObservableList<SelectedLectureLayoutController> selectedLayoutControllerList = FXCollections
 			.observableArrayList();
-	
+
 	private ObservableList<VBox> showedNode = FXCollections.observableArrayList();
 
 	@FXML
@@ -149,12 +165,12 @@ public class HomeLayoutController implements Initializable {
 		try {
 			Lecture v = table.getSelectionModel().getSelectedItem().getValue();
 			if (v.isSelectAble.get()) {
-				
+
 				v.isSelected.set(true);
 				v.isSelectAble.set(false);
 				mainApp.getAppData().getTimeTableData().getSelectedLecture().add(v);
 				mainApp.getAppData().getTimeTableData().disableSimilarLecture(v);
-				
+
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -170,42 +186,135 @@ public class HomeLayoutController implements Initializable {
 	@FXML
 	void handleLoadData(ActionEvent event) {
 
+		FileChooser fileChooser = new FileChooser();
+
+		// 확장자 필터를 설정한다.
+		FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Data files (*.dat)", "*.dat");
+		fileChooser.getExtensionFilters().add(extFilter);
+
+		// Save File Dialog를 보여준다.
+		File file = fileChooser.showOpenDialog(mainApp.getPrimaryStage());
+
+		if (file != null) {
+			try {
+				File saveFilePath = new File(AppData.saveFilePath);
+				saveFilePath.delete();
+				Files.copy(new File(file.getPath()).toPath(), saveFilePath.toPath());
+
+				mainApp.getAppData().getTimeTableData().getSelectedLecture().clear();
+				loadFromSaveFile();
+				new AlertDialog(mainApp, "성공!", "파일을 성공적으로 불러왔습니다.", "확인");
+
+			} catch (IOException e) {
+				new AlertDialog(mainApp, "오류", "파일을 불러오는 도중에 오류가 발생하였습니다.", "확인");
+				e.printStackTrace();
+			}
+		}
+
 	}
 
 	@FXML
 	void handleRemove(ActionEvent event) {
-		
+
 		try {
 			GridPane v = addedList.selectionModelProperty().get().getSelectedItem();
-			Lecture lecture = mainApp.getAppData().getTimeTableData().getSelectedLecture().get(selectedLayoutList.indexOf(v));
-			
+			Lecture lecture = mainApp.getAppData().getTimeTableData().getSelectedLecture()
+					.get(selectedLayoutList.indexOf(v));
+
 			lecture.isSelected.set(false);
 			mainApp.getAppData().getTimeTableData().getSelectedLecture().remove(lecture);
 			mainApp.getAppData().getTimeTableData().enableSimilarLecture(lecture);
-			
-			
-		}catch (Exception e) {
+
+		} catch (Exception e) {
 			e.printStackTrace();
 			return;
 		}
 	}
-	
-    @FXML
-    void handleBugReport(ActionEvent event) {
-    	if(!DataBase.isOfflineMode)
-    		new BugReportDialog(mainApp);
-    	else
-    		new AlertDialog(mainApp, "알림", "오프라인모드에서는 사용 할 수 없습니다.", "확인");
-    }
+
+	@FXML
+	void handleBugReport(ActionEvent event) {
+		if (!DataBase.isOfflineMode)
+			new BugReportDialog(mainApp);
+		else
+			new AlertDialog(mainApp, "알림", "오프라인모드에서는 사용 할 수 없습니다.", "확인");
+	}
 
 	@FXML
 	void handleSaveData(ActionEvent event) {
+
+		FileChooser fileChooser = new FileChooser();
+
+		// 확장자 필터를 설정한다.
+		FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Data files (*.dat)", "*.dat");
+		fileChooser.getExtensionFilters().add(extFilter);
+
+		// Save File Dialog를 보여준다.
+		File file = fileChooser.showSaveDialog(mainApp.getPrimaryStage());
+
+		if (file != null) {
+
+			// 정확한 확장자를 가져야 한다.
+			if (file.getPath().endsWith(".dat")) {
+				try {
+					mainApp.saveSelectedLecture();
+					File targetFile = new File(file.getPath());
+					targetFile.delete();
+					Files.copy(new File(AppData.saveFilePath).toPath(), targetFile.toPath());
+					new AlertDialog(mainApp, "성공!", "파일을 성공적으로 저장하였습니다.", "확인");
+
+				} catch (IOException e) {
+					new AlertDialog(mainApp, "오류", "파일을 내보내는 도중에 오류가 발생하였습니다.", "확인");
+					e.printStackTrace();
+				}
+			}
+
+		}
 
 	}
 
 	@FXML
 	void handleSaveTimeTable(ActionEvent event) {
 
+		
+
+		try {
+			
+			WritableImage writableImage = capturePane.snapshot(new SnapshotParameters(), null);
+			
+			FileChooser fileChooser = new FileChooser();
+
+			// 확장자 필터를 설정한다.
+			FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Image files (*.png)", "*.png", "*.PNG");
+			fileChooser.getExtensionFilters().add(extFilter);
+
+			// Save File Dialog를 보여준다.
+			File file = fileChooser.showSaveDialog(mainApp.getPrimaryStage());
+
+			if (file != null) {
+
+				// 정확한 확장자를 가져야 한다.
+				if (file.getPath().endsWith(".png") || file.getPath().endsWith(".PNG")) {
+					try {
+						
+						if(file.exists())
+							file.delete();
+						
+						ImageIO.write(SwingFXUtils.fromFXImage(writableImage, null), "png", file);
+						
+						new AlertDialog(mainApp, "성공!", "이미지를 성공적으로 저장하였습니다.", "확인");
+
+					} catch (Exception e) {
+						new AlertDialog(mainApp, "오류", "파일을 저장하는 도중에 오류가 발생하였습니다.", "확인");
+						e.printStackTrace();
+					}
+				}
+
+			}
+			
+			System.out.println("Captured: " + file.getAbsolutePath());
+		} catch (Exception ex) {
+			//Logger.getLogger(JavaFXCaptureScreen.class.getName()).log(Level.SEVERE, null, ex);
+		}
 	}
 
 	@FXML
@@ -264,8 +373,7 @@ public class HomeLayoutController implements Initializable {
 										item.isSelected.set(false);
 										mainApp.getAppData().getTimeTableData().getSelectedLecture().remove(item);
 										mainApp.getAppData().getTimeTableData().enableSimilarLecture(item);
-									}
-									else if (item.isSelectAble.get())
+									} else if (item.isSelectAble.get())
 										handleAdd(null);
 								}
 							});
@@ -274,7 +382,7 @@ public class HomeLayoutController implements Initializable {
 								setStyle("-fx-background-color:lightgrey");
 								if (item.isSelected.get())
 									setStyle("-fx-background-color:lightcoral");
-							}else {
+							} else {
 								setStyle(null);
 							}
 						}
@@ -330,10 +438,10 @@ public class HomeLayoutController implements Initializable {
 			public void onChanged(Change<? extends Lecture> c) {
 
 				try {
-					
-					if(mainApp.getAppData().getTimeTableData().getSelectedLecture().size()==0){
+
+					if (mainApp.getAppData().getTimeTableData().getSelectedLecture().size() == 0) {
 						remove.setDisable(true);
-					}else {
+					} else {
 						remove.setDisable(false);
 					}
 
@@ -360,60 +468,80 @@ public class HomeLayoutController implements Initializable {
 							}
 						}
 					}
-					
+
 					int mE = 0;
 					int mS = 0;
 					int rE = 0;
 					int rS = 0;
 					int bE = 0;
 					int eP = 0;
-					
-					for(Lecture v:mainApp.getAppData().getTimeTableData().getSelectedLecture()) {
-						
+
+					for (Lecture v : mainApp.getAppData().getTimeTableData().getSelectedLecture()) {
+
 						String type = v.getType().get();
 						String essential = v.getEssential().get();
 						int point = v.getPoint().get();
-						
-						if(type.equals("전공")) {
-							if(essential.equals("필수"))
+
+						if (type.equals("전공")) {
+							if (essential.equals("필수"))
 								mE += point;
 							else
 								mS += point;
-						}else if(type.equals("전문교양")) {
-							if(essential.equals("필수"))
+						} else if (type.equals("전문교양")) {
+							if (essential.equals("필수"))
 								rE += point;
 							else
 								rS += point;
-						}else if(type.equals("MSC")) {
+						} else if (type.equals("MSC")) {
 							bE += point;
-						}else {
+						} else {
 							eP += point;
 						}
-						
+
 						v.getColorProperty().addListener((observable, oldValue, newValue) -> {
 							redrawTimeTable();
 						});
-						
+
 					}
-					
+
 					majorEssential.setText(String.valueOf(mE));
 					majorSelect.setText(String.valueOf(mS));
 					refinementEssential.setText(String.valueOf(rE));
 					refinementSelect.setText(String.valueOf(rS));
 					basicEssential.setText(String.valueOf(bE));
 					etcPoint.setText(String.valueOf(eP));
-					sumOfLecture.setText(String.valueOf(mE+mS+rE+rS+bE+eP));
+					sumOfLecture.setText(String.valueOf(mE + mS + rE + rS + bE + eP));
 
 					table.getSelectionModel().clearSelection();
 					table.refresh();
-					
+
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
 
 			}
 		});
-		
+
+		loadFromSaveFile();
+	}
+
+	private void loadFromSaveFile() {
+		if (mainApp.getAppData().getSaveDataController().isExists()) {
+			// 저장 된 데이터를 불러 온다.
+			for (SaveData data : mainApp.getAppData().getSaveDataController().getSaveDatas()) {
+				for (Lecture v : mainApp.getAppData().getTimeTableData().getListLecture()) {
+					if (data.getName().equals(v.getName().get()) && data.getCode().equals(v.getCode().get())
+							&& data.getYear() == v.getYear().get() && data.getQuater().equals(v.getQuarter().get())) {
+						v.setColor(Color.color(data.getRed(), data.getGreen(), data.getBlue()));
+						v.isSelected.set(true);
+						mainApp.getAppData().getTimeTableData().getSelectedLecture().add(v);
+						mainApp.getAppData().getTimeTableData().disableSimilarLecture(v);
+					}
+				}
+			}
+			table.refresh();
+			table.getSelectionModel().clearSelection();
+		}
 	}
 
 	private void doFilter() {
@@ -421,60 +549,60 @@ public class HomeLayoutController implements Initializable {
 				filterEssential.getValue(), filterType.getValue(), filterMajor.getValue(), filterCode.getText(),
 				filterName.getText());
 	}
-	
+
 	protected void redrawTimeTable() {
-		
+
 		timeTable.getChildren().removeAll(showedNode);
 		showedNode.clear();
-		
-		for(Lecture v:mainApp.getAppData().getTimeTableData().getSelectedLecture()) {
-			
+
+		for (Lecture v : mainApp.getAppData().getTimeTableData().getSelectedLecture()) {
+
 			double r = v.getColor().getRed() * 255;
 			double g = v.getColor().getGreen() * 255;
 			double b = v.getColor().getBlue() * 255;
-			
-			for(LectureTime time:v.getLectureTime()) {
+
+			for (LectureTime time : v.getLectureTime()) {
 				boolean isDrawed = false;
-				for(Number timeOfDay:time.getTime()) {
+				for (Number timeOfDay : time.getTime()) {
 					VBox vb = new VBox();
 					vb.setAlignment(Pos.CENTER);
-					vb.setStyle("-fx-background-color:rgb(" + r+ "," + g + ", " + b+ ")");
+					vb.setStyle("-fx-background-color:rgb(" + r + "," + g + ", " + b + ")");
 					Text name = new Text(v.getName().get());
-					name.setFont(Font.font("malgun gothic", 12));
-					
-					if(v.getName().get().length() > 6) {
-						int parseIndex = name.getText().length()/2;
-						if(name.getText().contains(" ") && name.getText().indexOf(" ")>parseIndex/2)
+					name.setFont(Font.font("malgun gothic", 10));
+
+					if (v.getName().get().length() > 8) {
+						int parseIndex = name.getText().length() / 2;
+						if (name.getText().contains(" ") && name.getText().indexOf(" ") > parseIndex / 2)
 							parseIndex = name.getText().indexOf(' ');
-						else if(name.getText().contains("과") && name.getText().indexOf("과")>parseIndex/2)
+						else if (name.getText().contains("과") && name.getText().indexOf("과") > parseIndex / 2)
 							parseIndex = name.getText().indexOf('과');
-						else if(name.getText().contains("와") && name.getText().indexOf("와")>parseIndex/2)
-								parseIndex = name.getText().indexOf('와');
-						else if(name.getText().contains("의") && name.getText().indexOf("의")>parseIndex/2)
-								parseIndex = name.getText().indexOf('의');
-						else if(name.getText().contains("및") && name.getText().indexOf("및")>parseIndex/2)
+						else if (name.getText().contains("와") && name.getText().indexOf("와") > parseIndex / 2)
+							parseIndex = name.getText().indexOf('와');
+						else if (name.getText().contains("의") && name.getText().indexOf("의") > parseIndex / 2)
+							parseIndex = name.getText().indexOf('의');
+						else if (name.getText().contains("및") && name.getText().indexOf("및") > parseIndex / 2)
 							parseIndex = name.getText().indexOf('및');
-						
-						
-						String first = name.getText().substring(0, parseIndex+1);
-						String last = name.getText().substring(parseIndex+1, name.getText().length());
-						String txt = first+"\r\n"+last;
-						
+
+						String first = name.getText().substring(0, parseIndex + 1);
+						String last = name.getText().substring(parseIndex + 1, name.getText().length());
+						String txt = first + "\r\n" + last;
+
 						name.setTextAlignment(TextAlignment.CENTER);
 						name.setText(txt);
-						
-						if(first.length() > 6 || last.length() > 6)
+
+						if (first.length() > 6 || last.length() > 8)
 							name.setFont(Font.font("malgun gothic", 10));
 					}
-					
+
 					Text professor = new Text(v.getProfessor().get());
-					professor.setFont(Font.font("malgun gothic", 12));
+					professor.setFont(Font.font("malgun gothic", 10));
 					Text room = new Text(time.getRoom());
-					room.setFont(Font.font("malgun gothic", 12));
+					room.setFont(Font.font("malgun gothic", 10));
 					
-					if(!isDrawed) vb.getChildren().addAll(name, professor, room);
+					if (!isDrawed)
+						vb.getChildren().addAll(name, professor, room);
 					
-					timeTable.add(vb, time.dayOfWeek()+1, timeOfDay.intValue());
+					timeTable.add(vb, time.dayOfWeek() + 1, timeOfDay.intValue());
 					showedNode.add(vb);
 					isDrawed = true;
 				}
@@ -558,11 +686,11 @@ public class HomeLayoutController implements Initializable {
 				mainApp.getAppData().getTimeTableData().resetFilter();
 			}
 		});
-		
+
 		selectedLayoutList.addListener(new ListChangeListener<GridPane>() {
 			@Override
 			public void onChanged(Change<? extends GridPane> c) {
-				
+
 				redrawTimeTable();
 			}
 		});

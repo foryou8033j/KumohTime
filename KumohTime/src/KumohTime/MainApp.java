@@ -41,10 +41,10 @@ public class MainApp extends Application {
 			protected Void call() throws Exception {
 
 				updateMessage("DB 불러오는 중");
-				new DataBase().writeLog();
 				
+				new DataBase().writeLog();
 				appData = new AppData(new DataBase().loadAppData());
-
+				
 				initStage();
 
 				return null;
@@ -77,13 +77,7 @@ public class MainApp extends Application {
 
 					@Override
 					protected Void call() throws Exception {
-
-						mainApp.getAppData().getSaveDataController().getSaveDatas().clear();
-						for(Lecture v:mainApp.getAppData().getTimeTableData().getSelectedLecture()) {
-							mainApp.getAppData().getSaveDataController().getSaveDatas().add(new SaveData(v.getYear().get(),v.getQuarter().get(), v.getName().get(), v.getCode().get()));
-						}
-						
-						
+						saveSelectedLecture();
 						return null;
 					}
 
@@ -127,6 +121,26 @@ public class MainApp extends Application {
 		}
 	}
 
+	public void saveSelectedLecture() {
+		mainApp.getAppData().getSaveDataController().getSaveDatas().clear();
+		for(Lecture v:mainApp.getAppData().getTimeTableData().getSelectedLecture()) {
+			mainApp.getAppData().getSaveDataController().getSaveDatas().add(
+					new SaveData(
+							v.getYear().get(),
+							v.getQuarter().get(),
+							v.getName().get(),
+							v.getCode().get(),
+							v.getColor().getRed(),
+							v.getColor().getGreen(),
+							v.getColor().getBlue()
+							));
+		}
+	}
+	
+	public Stage getPrimaryStage() {
+		return primaryStage;
+	}
+	
 	public AppData getAppData() {
 		return appData;
 	}

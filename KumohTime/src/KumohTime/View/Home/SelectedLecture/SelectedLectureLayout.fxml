@@ -32,18 +32,18 @@
             <Font name="Malgun Gothic" size="12.0" />
          </font>
       </Text>
-      <Text fx:id="code" strokeType="OUTSIDE" strokeWidth="0.0" text="코드" GridPane.columnIndex="4">
-         <font>
-            <Font name="Malgun Gothic" size="12.0" />
-         </font>
-      </Text>
       <Text fx:id="time" strokeType="OUTSIDE" strokeWidth="0.0" text="시간" GridPane.columnIndex="3">
          <font>
             <Font name="Malgun Gothic" size="12.0" />
          </font>
       </Text>
-      <JFXButton buttonType="RAISED" onAction="#handleCopy" prefHeight="23.0" prefWidth="109.0" text="복사" textFill="#8000ff" GridPane.columnIndex="5" />
+      <JFXButton fx:id="copyAll" buttonType="RAISED" onAction="#handleCopy" prefHeight="27.0" prefWidth="115.0" text="전체 복사" textFill="#8000ff" GridPane.columnIndex="5" />
       <JFXButton buttonType="RAISED" onAction="#handleDelete" prefHeight="23.0" prefWidth="49.0" text="X" textFill="RED" />
       <JFXColorPicker fx:id="colorPicker" GridPane.columnIndex="6" />
+      <JFXButton fx:id="code" buttonType="RAISED" onAction="#handleCodeCopy" prefHeight="32.0" prefWidth="97.0" text="코드" textFill="#cd0e0e" GridPane.columnIndex="4">
+         <font>
+            <Font name="Malgun Gothic" size="12.0" />
+         </font>
+      </JFXButton>
    </children>
 </GridPane>
