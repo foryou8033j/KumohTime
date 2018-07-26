@@ -197,12 +197,15 @@ public class HomeLayoutController implements Initializable {
 
 		if (file != null) {
 			try {
+				
 				File saveFilePath = new File(AppData.saveFilePath);
 				saveFilePath.delete();
+				
 				Files.copy(new File(file.getPath()).toPath(), saveFilePath.toPath());
 
 				mainApp.getAppData().getTimeTableData().getSelectedLecture().clear();
 				loadFromSaveFile();
+				
 				new AlertDialog(mainApp, "성공!", "파일을 성공적으로 불러왔습니다.", "확인");
 
 			} catch (IOException e) {
@@ -526,7 +529,11 @@ public class HomeLayoutController implements Initializable {
 	}
 
 	private void loadFromSaveFile() {
+		
 		if (mainApp.getAppData().getSaveDataController().isExists()) {
+			
+			mainApp.getAppData().getSaveDataController().loadData();
+			
 			// 저장 된 데이터를 불러 온다.
 			for (SaveData data : mainApp.getAppData().getSaveDataController().getSaveDatas()) {
 				for (Lecture v : mainApp.getAppData().getTimeTableData().getListLecture()) {
@@ -536,11 +543,16 @@ public class HomeLayoutController implements Initializable {
 						v.isSelected.set(true);
 						mainApp.getAppData().getTimeTableData().getSelectedLecture().add(v);
 						mainApp.getAppData().getTimeTableData().disableSimilarLecture(v);
+						
 					}
 				}
 			}
 			table.refresh();
 			table.getSelectionModel().clearSelection();
+			
+			System.out.print("Save File Loaded");
+		}else {
+			System.out.print("Save File doesn't exists");
 		}
 	}
 

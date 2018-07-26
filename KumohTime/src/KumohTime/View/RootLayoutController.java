@@ -51,7 +51,8 @@ public class RootLayoutController {
 						+ "5. 일부 자잘한 버그를 수정했습니다!\n"
 						+ "   * 선택한 시간표를 제거할 때 선택될 수 없는 시간표가 선택 가능하게 되는 문제를 해결했습니다.\n"
 						+ "   * 시간표의 글씨 크기를 조금 줄였어요.. 글자가 크니까 자꾸 벗어나더라구요..\n"
-						+ "   * 아무 메세지 없이 종료되는 문제를 수정하였습니다.\n\n"
+						+ "   * 아무 메세지 없이 종료되는 문제를 수정하였습니다.\n"
+						+ "   * 시간표 파일을 제대로 불러 오지 못하는 현상을 수정하였습니다.\n\n"
 						+ "TIP : 과목을 더블 클릭하면 추가/수정이 편리해요~", "확인");
 				mainApp.getAppData().getAppPropertise().setNotify(true);
 				mainApp.getAppData().getAppPropertise().savePropertise();
