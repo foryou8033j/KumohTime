@@ -5,12 +5,14 @@ import java.util.List;
 
 import KumohTime.MainApp;
 import KumohTime.Model.Properties.AppPropertise;
+import KumohTime.Model.TimeTable.SaveData.SaveDataController;
 
 public class AppData {
 
 	final public static String propertisePath = System.getenv("APPDATA") + "/kumohtime/config/";
 	final public static String dataPath = System.getenv("APPDATA") + "/kumohtime/data/";
 	final public static String databasePath= System.getenv("APPDATA") + "/kumohtime/kumohtime.db";
+	final public static String saveFilePath= dataPath + "savefile.xml";
 	
 	public static int runningThread = 0;
 	public static int totalThread = 0;
@@ -23,6 +25,7 @@ public class AppData {
 	private TimeTableData timeTableData;
 	
 	private AppPropertise appPropertise;
+	private SaveDataController saveDataController;
 	
 	public AppData(AppData appData) {
 		appPropertise = new AppPropertise();
@@ -32,6 +35,7 @@ public class AppData {
 		this.serverPath = appData.getServerPath();
 		
 		timeTableData = new TimeTableData();
+		saveDataController = new SaveDataController();
 	}
 
 	public AppData(float serverVersion, String serverPath, List<String> notifications) {
@@ -59,5 +63,11 @@ public class AppData {
 	public TimeTableData getTimeTableData() {
 		return timeTableData;
 	}
+
+	public SaveDataController getSaveDataController() {
+		return saveDataController;
+	}
+	
+	
 
 }

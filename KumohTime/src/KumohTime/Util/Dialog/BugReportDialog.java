@@ -31,8 +31,6 @@ public class BugReportDialog {
 
 		public BugReportDialog(MainApp mainApp) {
 
-			
-			
 		JFXDialogLayout content = new JFXDialogLayout();
 		Text text = new Text("오류 신고");
 		text.setFont(Font.font("malgun gothic", FontWeight.BOLD, 18));

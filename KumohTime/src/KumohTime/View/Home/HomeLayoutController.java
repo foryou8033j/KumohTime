@@ -13,8 +13,10 @@ import com.jfoenix.controls.RecursiveTreeItem;
 import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
 
 import KumohTime.MainApp;
+import KumohTime.Model.DataBase.DataBase;
 import KumohTime.Model.TimeTable.Lecture;
 import KumohTime.Model.TimeTable.LectureTime;
+import KumohTime.Util.Dialog.AlertDialog;
 import KumohTime.Util.Dialog.BugReportDialog;
 import KumohTime.View.Home.SelectedLecture.SelectedLectureLayoutController;
 import javafx.beans.property.ReadOnlyStringWrapper;
@@ -26,6 +28,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
+import javafx.scene.chart.PieChart.Data;
 import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeTableCell;
 import javafx.scene.control.TreeTableColumn;
@@ -146,10 +149,15 @@ public class HomeLayoutController implements Initializable {
 		try {
 			Lecture v = table.getSelectionModel().getSelectedItem().getValue();
 			if (v.isSelectAble.get()) {
-				mainApp.getAppData().getTimeTableData().disableSimilarLecture(v);
+				
+				v.isSelected.set(true);
+				v.isSelectAble.set(false);
 				mainApp.getAppData().getTimeTableData().getSelectedLecture().add(v);
+				mainApp.getAppData().getTimeTableData().disableSimilarLecture(v);
+				
 			}
 		} catch (Exception e) {
+			e.printStackTrace();
 			return;
 		}
 	}
@@ -169,19 +177,25 @@ public class HomeLayoutController implements Initializable {
 		
 		try {
 			GridPane v = addedList.selectionModelProperty().get().getSelectedItem();
-			Lecture lecture = mainApp.getAppData().getTimeTableData().getSelectedLecture()
-					.get(selectedLayoutList.indexOf(v));
-			mainApp.getAppData().getTimeTableData().enableSimilarLecture(lecture);
+			Lecture lecture = mainApp.getAppData().getTimeTableData().getSelectedLecture().get(selectedLayoutList.indexOf(v));
+			
+			lecture.isSelected.set(false);
 			mainApp.getAppData().getTimeTableData().getSelectedLecture().remove(lecture);
+			mainApp.getAppData().getTimeTableData().enableSimilarLecture(lecture);
+			
 			
 		}catch (Exception e) {
+			e.printStackTrace();
 			return;
 		}
 	}
 	
     @FXML
     void handleBugReport(ActionEvent event) {
-    	new BugReportDialog(mainApp);
+    	if(!DataBase.isOfflineMode)
+    		new BugReportDialog(mainApp);
+    	else
+    		new AlertDialog(mainApp, "알림", "오프라인모드에서는 사용 할 수 없습니다.", "확인");
     }
 
 	@FXML
@@ -247,10 +261,11 @@ public class HomeLayoutController implements Initializable {
 							setOnMouseClicked(e -> {
 								if (e.getClickCount() == 2) {
 									if (item.isSelected.get()) {
-										Lecture lecture = table.getSelectionModel().getSelectedItem().getValue();
-										mainApp.getAppData().getTimeTableData().enableSimilarLecture(lecture);
-										mainApp.getAppData().getTimeTableData().getSelectedLecture().remove(lecture);
-									} else if (item.isSelectAble.get())
+										item.isSelected.set(false);
+										mainApp.getAppData().getTimeTableData().getSelectedLecture().remove(item);
+										mainApp.getAppData().getTimeTableData().enableSimilarLecture(item);
+									}
+									else if (item.isSelectAble.get())
 										handleAdd(null);
 								}
 							});
@@ -259,10 +274,7 @@ public class HomeLayoutController implements Initializable {
 								setStyle("-fx-background-color:lightgrey");
 								if (item.isSelected.get())
 									setStyle("-fx-background-color:lightcoral");
-							}
-
-							else {
-								setDisable(false);
+							}else {
 								setStyle(null);
 							}
 						}
@@ -401,6 +413,7 @@ public class HomeLayoutController implements Initializable {
 
 			}
 		});
+		
 	}
 
 	private void doFilter() {
@@ -490,41 +503,57 @@ public class HomeLayoutController implements Initializable {
 		filterMajor.valueProperty().addListener((observable, oldValue, newValue) -> {
 			filter.setSelected(true);
 			doFilter();
+			table.refresh();
+			table.getSelectionModel().clearSelection();
 		});
 
 		filterQuarter.valueProperty().addListener((observable, oldValue, newValue) -> {
 			filter.setSelected(true);
 			doFilter();
+			table.refresh();
+			table.getSelectionModel().clearSelection();
 		});
 
 		filterGrade.valueProperty().addListener((observable, oldValue, newValue) -> {
 			filter.setSelected(true);
 			doFilter();
+			table.refresh();
+			table.getSelectionModel().clearSelection();
 		});
 
 		filterEssential.valueProperty().addListener((observable, oldValue, newValue) -> {
 			filter.setSelected(true);
 			doFilter();
+			table.refresh();
+			table.getSelectionModel().clearSelection();
 		});
 
 		filterType.valueProperty().addListener((observable, oldValue, newValue) -> {
 			filter.setSelected(true);
 			doFilter();
+			table.refresh();
+			table.getSelectionModel().clearSelection();
 		});
 
 		filterCode.textProperty().addListener((observable, oldValue, newValue) -> {
 			filter.setSelected(true);
 			doFilter();
+			table.refresh();
+			table.getSelectionModel().clearSelection();
 		});
 
 		filterName.textProperty().addListener((observable, oldValue, newValue) -> {
 			filter.setSelected(true);
 			doFilter();
+			table.refresh();
+			table.getSelectionModel().clearSelection();
 		});
 
 		filter.selectedProperty().addListener((observable, oldValue, newValue) -> {
 			if (filter.isSelected()) {
 				doFilter();
+				table.refresh();
+				table.getSelectionModel().clearSelection();
 			} else {
 				mainApp.getAppData().getTimeTableData().resetFilter();
 			}

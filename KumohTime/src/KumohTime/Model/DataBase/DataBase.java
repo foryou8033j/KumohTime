@@ -17,19 +17,32 @@ import org.sqlite.SQLiteConfig;
 
 import KumohTime.Model.AppData;
 import KumohTime.Model.TimeTable.Lecture;
+import KumohTime.Util.Dialog.ExceptionDialog;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.control.Alert.AlertType;
 
 public class DataBase extends DBHeader implements DataBaseAdapter {
 
 	private Connection conn;
 
-	private void initConnection() {
+	static public boolean isOfflineMode = false;
+
+	private boolean initConnection() {
 		conn = super.getConnection();
+		if (conn == null) {
+			if (!isOfflineMode)
+				isOfflineMode = true;
+			return false;
+		}
+		else
+			return true;
 	}
 
 	public void writeLog() {
-		initConnection();
+		if (!initConnection())
+			return;
 
 		Statement stmt = null;
 
@@ -56,8 +69,9 @@ public class DataBase extends DBHeader implements DataBaseAdapter {
 
 	}
 
-	public void bugReport(String message, String version) {
-		initConnection();
+	public boolean bugReport(String message, String version) {
+		if (!initConnection())
+			return false;
 
 		Statement stmt = null;
 
@@ -77,17 +91,22 @@ public class DataBase extends DBHeader implements DataBaseAdapter {
 		} finally {
 			try {
 				stmt.close();
+
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
 		}
+
+		return true;
 
 	}
 
 	public AppData loadAppData() {
 
 		List<String> notifications = new LinkedList<String>();
-		initConnection();
+
+		if (!initConnection())
+			return new AppData(0.0f, "", notifications);
 
 		Statement stmt = null;
 		ResultSet rs = null;
@@ -155,7 +174,6 @@ public class DataBase extends DBHeader implements DataBaseAdapter {
 		return lectureList;
 
 	}
-
 
 	/*
 	 * @Override public boolean Register(String name, String id, String password) {

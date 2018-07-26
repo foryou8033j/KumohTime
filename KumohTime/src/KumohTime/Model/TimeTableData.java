@@ -23,6 +23,7 @@ public class TimeTableData {
 	private ObservableList<String> filterGrade = FXCollections.observableArrayList();
 	
 	public TimeTableData() {
+		
 		listLecture = new SQLite().loadDataFromFile();
 		filteredLecture.setAll(listLecture);
 		
@@ -102,12 +103,12 @@ public class TimeTableData {
 	}
 	
 	public void disableSimilarLecture(Lecture lecture) {
-		lecture.isSelectAble.set(false);
-		lecture.isSelected.set(true);
 		
 		for (Lecture v:listLecture) {
+			
 			String currentLectureCode = lecture.getCode().get().substring(0, lecture.getCode().get().indexOf("-"));
 			String targetLectureCode = v.getCode().get().substring(0, v.getCode().get().indexOf("-"));
+			
 			if(currentLectureCode.equals(targetLectureCode))
 				v.isSelectAble.set(false);
 			
@@ -115,25 +116,37 @@ public class TimeTableData {
 				if(lecTime.isConflict(v))
 					v.isSelectAble.set(false);
 			}
-			
 		}
+		
 	}
 	
 	public void enableSimilarLecture(Lecture lecture) {
+		
 		lecture.isSelectAble.set(true);
-		lecture.isSelected.set(false);
 		
 		for (Lecture v:listLecture) {
-			String currentLectureCode = lecture.getCode().get().substring(0, lecture.getCode().get().indexOf("-"));
-			String targetLectureCode = v.getCode().get().substring(0, v.getCode().get().indexOf("-"));
-			if(currentLectureCode.equals(targetLectureCode))
-				v.isSelectAble.set(true);
+			v.isSelectAble.set(true);
+		}
+		
+		for(Lecture sv:selectedLecture) {
 			
-			for(LectureTime lecTime:lecture.getLectureTime()) {
-				if(lecTime.isConflict(v))
-					v.isSelectAble.set(true);
+			String targetLectureCode = sv.getCode().get().substring(0, sv.getCode().get().indexOf("-"));
+			
+			for (Lecture v:listLecture) {
+				
+				String currentLectureCode = v.getCode().get().substring(0, v.getCode().get().indexOf("-"));
+				if(targetLectureCode.equals(currentLectureCode))
+					v.isSelectAble.set(false);
+				
+				for(LectureTime vT:v.getLectureTime()) {
+					if(vT.isConflict(sv)) {
+						v.isSelectAble.set(false);
+					}
+				}
 			}
 		}
+		
+		
 	}
 	
 	public ObservableList<Lecture> getListLecture() {

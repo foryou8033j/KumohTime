@@ -42,13 +42,11 @@ public class DBHeader {
 	}
 	
 	protected Connection getConnection() {
+		
 		try {
 			return DriverManager.getConnection(url, id, pw);
 		} catch (SQLException e) {
-			Platform.runLater(() -> {
-				new ExceptionDialog(AlertType.ERROR, "오류", "오류", "데이터베이스에 연결 할 수 없습니다.", e).showAndWait();
-			});
-			System.exit(1);
+			System.out.println("DB 연결 실패");
 		}
 		
 		return null;

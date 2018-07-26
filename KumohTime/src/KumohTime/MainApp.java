@@ -4,6 +4,8 @@ import javax.swing.text.PlainDocument;
 
 import KumohTime.Model.AppData;
 import KumohTime.Model.DataBase.DataBase;
+import KumohTime.Model.TimeTable.Lecture;
+import KumohTime.Model.TimeTable.SaveData.SaveData;
 import KumohTime.Util.Dialog.Loading.LoadingDialog;
 import KumohTime.View.RootLayoutController;
 import javafx.application.Application;
@@ -76,12 +78,19 @@ public class MainApp extends Application {
 					@Override
 					protected Void call() throws Exception {
 
+						mainApp.getAppData().getSaveDataController().getSaveDatas().clear();
+						for(Lecture v:mainApp.getAppData().getTimeTableData().getSelectedLecture()) {
+							mainApp.getAppData().getSaveDataController().getSaveDatas().add(new SaveData(v.getYear().get(),v.getQuarter().get(), v.getName().get(), v.getCode().get()));
+						}
+						
+						
 						return null;
 					}
 
 				};
 
 				task.setOnSucceeded(t -> {
+					mainApp.getAppData().getSaveDataController().saveData();
 					dialog.close();
 					System.exit(0);
 				});

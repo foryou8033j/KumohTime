@@ -5,11 +5,11 @@ import java.util.List;
 
 public class LectureTime {
 
-	int dayOfWeek = 0;
+	private int dayOfWeek = 0;
 	
-	boolean time[] ={false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false};
+	private boolean time[] ={false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false};
 	
-	final String room;
+	private final String room;
 	
 	public LectureTime(String time, String room) {
 		
@@ -90,7 +90,7 @@ public class LectureTime {
 		
 		for(LectureTime v:lecture.getLectureTime()) {
 			
-			if(dayOfWeek == v.dayOfWeek) {
+			if(dayOfWeek == v.dayOfWeek()) {
 				
 				for(Number a:getTime()) {
 					for(Number b:v.getTime()) {

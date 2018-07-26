@@ -44,7 +44,7 @@
                                  </font>
                               </JFXToggleButton>
                               <JFXComboBox fx:id="filterQuarter" prefHeight="23.0" prefWidth="75.0" promptText="학기" />
-                              <JFXComboBox fx:id="filterGrade" prefHeight="23.0" prefWidth="54.0" promptText="학년" />
+                              <JFXComboBox fx:id="filterGrade" prefHeight="23.0" prefWidth="66.0" promptText="학년" />
                               <JFXComboBox fx:id="filterEssential" prefHeight="23.0" prefWidth="99.0" promptText="구분" />
                               <JFXComboBox fx:id="filterType" prefHeight="23.0" prefWidth="97.0" promptText="교과목종류" />
                               <JFXComboBox fx:id="filterMajor" prefHeight="23.0" prefWidth="145.0" promptText="교육과정" visibleRowCount="15" />
