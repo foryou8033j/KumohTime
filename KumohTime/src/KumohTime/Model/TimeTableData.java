@@ -116,7 +116,6 @@ public class TimeTableData {
 			for (LectureTime lecTime : lecture.getLectureTime()) {
 				if (lecTime.isConflict(v))
 					v.isSelectAble.set(false);
-
 			}
 		}
 

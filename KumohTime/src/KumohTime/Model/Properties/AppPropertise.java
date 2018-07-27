@@ -21,6 +21,7 @@ public class AppPropertise {
 
 	private String title = "KumohTime";
 	private float version = BIND_VERSION;
+	private float _version = 0;
 	private boolean isNotified = false;
 
 	public String getTitle() {
@@ -73,8 +74,17 @@ public class AppPropertise {
 			title = props.getProperty("TITLE");
 			version = Float.valueOf(props.getProperty("VERSION"));
 			isNotified = Boolean.valueOf(props.getProperty("NOTIFY"));
+			_version = Float.valueOf(props.getProperty("_VERSION", "0.1"));
+			
 
-		} catch (IOException e) {
+			System.out.println("asd");
+			
+			if(_version != BIND_VERSION) {
+				isNotified = false;
+				_version = BIND_VERSION;
+			}
+			
+		} catch (Exception e) {
 			new ExceptionDialog(AlertType.ERROR, "오류", "오류", "어플리케이션 기본 속성 파일을 읽는 도중 오류가 발생하였습니다.", e).showAndWait();
 			System.exit(1);
 		}
@@ -86,6 +96,7 @@ public class AppPropertise {
 		Properties prop = new Properties();
 		prop.setProperty("TITLE", title);
 		prop.setProperty("VERSION", getVersionString());
+		prop.setProperty("_VERSION", String.valueOf(_version));
 		prop.setProperty("NOTIFY", String.valueOf(isNotified));
 
 		try {

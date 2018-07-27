@@ -7,6 +7,9 @@
 <?import com.jfoenix.controls.JFXToggleButton?>
 <?import com.jfoenix.controls.JFXTreeTableView?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.TreeTableColumn?>
 <?import javafx.scene.control.TreeTableView?>
@@ -97,9 +100,9 @@
                         <JFXListView fx:id="addedList" prefHeight="209.0" prefWidth="804.0" BorderPane.alignment="CENTER" />
                      </center>
                      <right>
-                        <VBox alignment="CENTER" prefHeight="209.0" prefWidth="98.0" spacing="10.0" BorderPane.alignment="CENTER">
+                        <VBox alignment="CENTER" prefHeight="209.0" prefWidth="98.0" spacing="5.0" BorderPane.alignment="CENTER">
                            <children>
-                              <JFXButton buttonType="RAISED" onAction="#handleBugReport" text="오류신고" textAlignment="CENTER">
+                              <JFXButton buttonType="RAISED" onAction="#handleBugReport" text="관리자&#10;메세지 전송" textAlignment="CENTER">
                                  <font>
                                     <Font name="Malgun Gothic" size="12.0" />
                                  </font>
@@ -151,7 +154,6 @@
                               <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                               <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                               <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                             <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                           </columnConstraints>
                           <rowConstraints>
@@ -209,15 +211,6 @@
                               <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: yellow;" GridPane.columnIndex="5">
                                  <children>
                                     <Text strokeType="OUTSIDE" strokeWidth="0.0" text="금">
-                                       <font>
-                                          <Font name="Malgun Gothic Bold" size="14.0" />
-                                       </font>
-                                    </Text>
-                                 </children>
-                              </VBox>
-                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: yellow;" GridPane.columnIndex="6">
-                                 <children>
-                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="토">
                                        <font>
                                           <Font name="Malgun Gothic Bold" size="14.0" />
                                        </font>
@@ -438,4 +431,28 @@
         </items>
       </SplitPane>
    </center>
+   <top>
+      <MenuBar BorderPane.alignment="CENTER">
+        <menus>
+          <Menu mnemonicParsing="false" text="파일">
+            <items>
+              <MenuItem mnemonicParsing="false" onAction="#handleMenubarSave" text="데이터 저장" />
+                  <MenuItem mnemonicParsing="false" onAction="#hadleMenubarDataSave" text="다른 이름으로 데이터 저장..." />
+                  <MenuItem mnemonicParsing="false" onAction="#handleMenubarDataLoad" text="데이터 불러오기 ..." />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="강의정보">
+            <items>
+              <MenuItem mnemonicParsing="false" onAction="#handleMakeLecture" text="임시 강의 채우기..." />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="정보">
+            <items>
+              <MenuItem mnemonicParsing="false" onAction="#handleUpdateLog" text="업데이트 정보..." />
+                  <MenuItem mnemonicParsing="false" onAction="#handleAbout" text="About..." />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+   </top>
 </BorderPane>

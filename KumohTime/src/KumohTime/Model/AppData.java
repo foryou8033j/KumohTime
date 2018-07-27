@@ -28,6 +28,7 @@ public class AppData {
 	private SaveDataController saveDataController;
 	
 	public AppData(AppData appData) {
+		
 		appPropertise = new AppPropertise();
 		this.appVersion = getAppPropertise().getVersion();
 		this.serverVersion = appData.getServerVersion();

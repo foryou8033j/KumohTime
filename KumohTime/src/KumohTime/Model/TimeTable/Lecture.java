@@ -1,5 +1,6 @@
 package KumohTime.Model.TimeTable;
 
+import java.util.Calendar;
 import java.util.StringTokenizer;
 
 import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
@@ -20,6 +21,7 @@ public class Lecture extends RecursiveTreeObject<Lecture> {
 
 	public BooleanProperty isSelectAble = new SimpleBooleanProperty(true);
 	public BooleanProperty isSelected = new SimpleBooleanProperty(false);
+	public BooleanProperty isTemp = new SimpleBooleanProperty(false);
 
 	private IntegerProperty index;
 	private IntegerProperty year;
@@ -59,7 +61,32 @@ public class Lecture extends RecursiveTreeObject<Lecture> {
 		this.time = new SimpleStringProperty(time);
 		this.limitPerson = new SimpleIntegerProperty(limitPerson);
 		this.lecPackage = new SimpleStringProperty(lecPackage);
+		isTemp.set(false);
 
+		stringToTime(time);
+	}
+	
+	
+
+	public Lecture(String name, String code, String professor, String time,
+			Color color) {
+		super();
+		
+		this.year = new SimpleIntegerProperty(Calendar.getInstance().get(Calendar.YEAR));
+		this.quarter = new SimpleStringProperty("임시데이터");
+		
+		this.name = new SimpleStringProperty(name);
+		this.code = new SimpleStringProperty(code);
+		this.professor = new SimpleStringProperty(professor);
+		this.time = new SimpleStringProperty(time);
+		this.color.set(color);
+		isTemp.set(true);
+		System.out.println(isTemp.get());
+		
+		stringToTime(time);
+	}
+	
+	private void stringToTime(String time) {
 		if (time != null && time.contains(",")) {
 			StringTokenizer token = new StringTokenizer(time, ",");
 			
@@ -87,6 +114,8 @@ public class Lecture extends RecursiveTreeObject<Lecture> {
 			convertedTime.add(new LectureTime(t, rm));
 		}
 	}
+
+
 
 	public IntegerProperty getYear() {
 		return year;

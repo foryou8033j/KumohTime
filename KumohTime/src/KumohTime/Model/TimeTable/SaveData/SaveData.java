@@ -10,27 +10,37 @@ import javafx.scene.paint.Color;
 @XmlAccessorType(XmlAccessType.FIELD)
 public class SaveData {
 
+	private final boolean temp;
 	private final int year;
 	private final String quater;
 	private final String name;
+	private final String professor;
 	private final String code;
+	private final String time;
 	private double red;
 	private double green;
 	private double blue;
 
 	public SaveData() {
-		this(0, "", "", "", Color.LIGHTGRAY.getRed(), Color.LIGHTGRAY.getGreen(), Color.LIGHTGRAY.getBlue());
+		this(false, 0, "", "", "", "", "", Color.LIGHTGRAY.getRed(), Color.LIGHTGRAY.getGreen(), Color.LIGHTGRAY.getBlue());
 	}
 
-	public SaveData(int year, String quater, String name, String code, double red, double green, double blue) {
+	public SaveData(boolean temp,int year, String quater, String name, String professor, String code, String time, double red, double green, double blue) {
 		super();
+		this.temp = temp;
 		this.year = year;
 		this.quater = quater;
 		this.name = name;
+		this.professor = professor;
 		this.code = code;
+		this.time = time;
 		this.red = red;
 		this.green = green;
 		this.blue = blue;
+	}
+
+	public boolean isTemp() {
+		return temp;
 	}
 
 	public double getRed() {
@@ -72,5 +82,17 @@ public class SaveData {
 	public String getCode() {
 		return code;
 	}
+
+	public String getProfessor() {
+		return professor;
+	}
+
+	public String getTime() {
+		return time;
+	}
+	
+	
+	
+	
 
 }

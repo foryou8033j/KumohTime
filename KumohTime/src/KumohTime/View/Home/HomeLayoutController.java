@@ -25,6 +25,7 @@ import KumohTime.Model.TimeTable.LectureTime;
 import KumohTime.Model.TimeTable.SaveData.SaveData;
 import KumohTime.Util.Dialog.AlertDialog;
 import KumohTime.Util.Dialog.BugReportDialog;
+import KumohTime.Util.Dialog.TempLectureAddDialog;
 import KumohTime.View.Home.SelectedLecture.SelectedLectureLayoutController;
 import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.collections.FXCollections;
@@ -160,6 +161,55 @@ public class HomeLayoutController implements Initializable {
 
 	private ObservableList<VBox> showedNode = FXCollections.observableArrayList();
 
+	private boolean isMakeLectureNofitied = false;
+	
+    @FXML
+    void handleMakeLecture(ActionEvent event) {
+
+    	//if(!isMakeLectureNofitied) {
+    	//	new AlertDialog(mainApp, "알림", "여기서 추가되는 데이터를 임시로만 동작합니다.", "확인");
+    	//	isMakeLectureNofitied = true;
+    	//}
+    	
+    	TempLectureAddDialog dialog = new TempLectureAddDialog(mainApp);
+    	
+    	
+    	
+    	
+    }
+
+    @FXML
+    void hadleMenubarDataSave(ActionEvent event) {
+    	handleSaveData(null);
+    }
+    
+    @FXML
+    void handleMenubarDataLoad(ActionEvent event) {
+    	handleLoadData(null);
+    }
+
+    @FXML
+    void handleMenubarSave(ActionEvent event) {
+    	
+    	mainApp.getAppData().getSaveDataController().saveData();
+    	new AlertDialog(mainApp, "성공!", "시간표 목록 저장 완료\n사실, 프로그램이 정상적으로 종료되면 자동으로 저장됩니다 ㅎㅎ", "확인");
+    }
+
+    @FXML
+    void handleUpdateLog(ActionEvent event) {
+    	mainApp.showUpdateLog();
+    }
+
+    @FXML
+    void handleAbout(ActionEvent event) {
+    	new AlertDialog(mainApp, "금오공대 시간표 생성기 KumohTime " + mainApp.getAppData().getAppPropertise().getVersion() + "v", ""
+    			+ "이 프로그램은 kit-share 에서만 배포가 가능합니다.\n"
+    			+ "허가받지 않은 2차 배포는 불이익이 발생 할 수 있습니다.\n\n"
+    			+ "Contact : foryou8033j@gmail.com\n"
+    			+ "Copyright(c)2018 서정삼 All rights reserved Exclude course information\n"
+    			+ "금오공과대학교 컴퓨터공학과", "확인");
+    }
+	
 	@FXML
 	void handleAdd(ActionEvent event) {
 		try {
@@ -481,6 +531,8 @@ public class HomeLayoutController implements Initializable {
 
 					for (Lecture v : mainApp.getAppData().getTimeTableData().getSelectedLecture()) {
 
+						if(v.isTemp.get()) continue;
+						
 						String type = v.getType().get();
 						String essential = v.getEssential().get();
 						int point = v.getPoint().get();
@@ -546,6 +598,12 @@ public class HomeLayoutController implements Initializable {
 						
 					}
 				}
+				
+				if(data.isTemp()) {
+					Lecture lecture = new Lecture(data.getName(), data.getCode(), data.getProfessor(), data.getTime(), Color.color(data.getRed(), data.getGreen(), data.getBlue()));
+					mainApp.getAppData().getTimeTableData().getSelectedLecture().add(lecture);
+					mainApp.getAppData().getTimeTableData().disableSimilarLecture(lecture);
+				}
 			}
 			table.refresh();
 			table.getSelectionModel().clearSelection();
@@ -580,7 +638,11 @@ public class HomeLayoutController implements Initializable {
 					vb.setAlignment(Pos.CENTER);
 					vb.setStyle("-fx-background-color:rgb(" + r + "," + g + ", " + b + ")");
 					Text name = new Text(v.getName().get());
-					name.setFont(Font.font("malgun gothic", 10));
+					name.setFont(Font.font("malgun gothic", 12));
+					Text professor = new Text(v.getProfessor().get());
+					professor.setFont(Font.font("malgun gothic", 12));
+					Text room = new Text(time.getRoom());
+					room.setFont(Font.font("malgun gothic", 12));
 
 					if (v.getName().get().length() > 8) {
 						int parseIndex = name.getText().length() / 2;
@@ -602,14 +664,15 @@ public class HomeLayoutController implements Initializable {
 						name.setTextAlignment(TextAlignment.CENTER);
 						name.setText(txt);
 
-						if (first.length() > 6 || last.length() > 8)
+						if (first.length() > 6 || last.length() > 8) {
 							name.setFont(Font.font("malgun gothic", 10));
+							professor.setFont(Font.font("malgun gothic", 10));
+							room.setFont(Font.font("malgun gothic", 10));
+						}
+							
 					}
 
-					Text professor = new Text(v.getProfessor().get());
-					professor.setFont(Font.font("malgun gothic", 10));
-					Text room = new Text(time.getRoom());
-					room.setFont(Font.font("malgun gothic", 10));
+					
 					
 					if (!isDrawed)
 						vb.getChildren().addAll(name, professor, room);

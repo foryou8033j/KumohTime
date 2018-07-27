@@ -118,7 +118,7 @@ public class DataBase extends DBHeader implements DataBaseAdapter {
 
 			float version = 0;
 			String path = null;
-
+			
 			while (rs.next()) {
 				version = Float.valueOf(rs.getString("version"));
 				path = rs.getString("path");
