@@ -38,27 +38,27 @@ public class LectureTime {
 		for(int i=1; i<time.length(); i++) {
 			
 			if(time.charAt(i) == 'A') {
-				this.time[9] = true;
-				continue;
-			}
-			if(time.charAt(i) == 'B') {
 				this.time[10] = true;
 				continue;
 			}
-			if(time.charAt(i) == 'C') {
+			if(time.charAt(i) == 'B') {
 				this.time[11] = true;
 				continue;
 			}
-			if(time.charAt(i) == 'D') {
+			if(time.charAt(i) == 'C') {
 				this.time[12] = true;
 				continue;
 			}
-			if(time.charAt(i) == 'E') {
+			if(time.charAt(i) == 'D') {
 				this.time[13] = true;
 				continue;
 			}
-			if(time.charAt(i) == 'F') {
+			if(time.charAt(i) == 'E') {
 				this.time[14] = true;
+				continue;
+			}
+			if(time.charAt(i) == 'F') {
+				this.time[15] = true;
 				continue;
 			}
 			
