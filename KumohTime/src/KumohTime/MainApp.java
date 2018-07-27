@@ -146,8 +146,8 @@ public class MainApp extends Application {
 	public void showUpdateLog() {
 		new AlertDialog(mainApp, mainApp.getAppData().getAppPropertise().getVersionString() + " 버전 업데이트 ! (2018.07.28) 2/2", ""
 				+ "클라이언트 사용 수는 600회가 넘는데 kit-share 에 댓글은 4개 달렸더라구요\n"
-				+ "너무 신나서 공중제비 돌 뻔 했어요 씐난당\n\n"
-				+ "관심 가지고 사용 해 주셔서 감사합니다~", "확인");
+				+ "너무 신나서 공중제비 돌 뻔 했어요\n"
+				+ "다음 학기, 내년, 후년에도 운영이 될 수 있도록 도와주세요!", "확인");
 		
 		new AlertDialog(mainApp, mainApp.getAppData().getAppPropertise().getVersionString() + " 버전 업데이트 ! (2018.07.28) 1/2", ""
 				+ "1. 아무 메세지 없이 종료되는 분은 kit-share에서 새로운 버전을 내려 받아 주세요.\n"
