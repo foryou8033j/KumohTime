@@ -27,13 +27,13 @@ public class BugReportDialog {
 		public BugReportDialog(MainApp mainApp) {
 
 		JFXDialogLayout content = new JFXDialogLayout();
-		Text text = new Text("관리자에게 메세지 전송");
+		Text text = new Text("개발자에게 메세지 전송");
 		text.setFont(Font.font("malgun gothic", FontWeight.BOLD, 18));
 		content.setHeading(text);
 
 		JFXTextArea area = new JFXTextArea();
 		VBox vb = new VBox(20);
-		Text body = new Text("메세지는 관리자에게 즉시 알려지게 됩니다.\n하고싶은 말이나 아이디어, 오류 등등을 보내주세요\n해결 가능 한 문제점 이라면 다음 업데이트에 반영됩니다.");
+		Text body = new Text("메세지는 개발자에게 즉시 알려지게 됩니다.\n하고싶은 말이나 아이디어, 오류 등등을 보내주세요\n해결 가능 한 문제점 이라면 다음 업데이트에 반영됩니다.");
 		body.setFont(Font.font("malgun gothic", FontWeight.NORMAL, 14));
 		vb.getChildren().addAll(body, area);
 

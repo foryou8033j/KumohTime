@@ -111,7 +111,31 @@ public class Lecture extends RecursiveTreeObject<Lecture> {
 			String t = time.substring(0, time.indexOf("/"));
 			String rm = time.substring(time.indexOf("/")+1, time.length());
 			
-			convertedTime.add(new LectureTime(t, rm));
+			for(int i=0; i<t.length(); i++) {
+				
+				char ch = t.charAt(i);
+				String tm = "";
+				String tmp = t.copyValueOf(t.toCharArray());
+				
+				if(ch=='월' || ch=='화' || ch=='수' || ch=='목' || ch=='금' || ch=='토' || ch=='일')
+					tm += ch;
+				else
+					continue;
+				
+				tmp = tmp.replaceAll("월", "");
+				tmp = tmp.replaceAll("화", "");
+				tmp = tmp.replaceAll("수", "");
+				tmp = tmp.replaceAll("목", "");
+				tmp = tmp.replaceAll("금", "");
+				tmp = tmp.replaceAll("토", "");
+				tmp = tmp.replaceAll("일", "");
+				
+				tm += tmp;
+				System.out.println(tm);
+				convertedTime.add(new LectureTime(tm, rm));
+			}
+			
+			
 		}
 	}
 

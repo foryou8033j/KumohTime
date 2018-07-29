@@ -38,7 +38,7 @@
          </font>
       </Text>
       <JFXButton fx:id="copyAll" buttonType="RAISED" onAction="#handleCopy" prefHeight="27.0" prefWidth="115.0" text="전체 복사" textFill="#8000ff" GridPane.columnIndex="5" />
-      <JFXButton buttonType="RAISED" onAction="#handleDelete" prefHeight="23.0" prefWidth="49.0" text="X" textFill="RED" />
+      <JFXButton fx:id="delete" buttonType="RAISED" onAction="#handleDelete" prefHeight="23.0" prefWidth="49.0" text="X" textFill="RED" />
       <JFXColorPicker fx:id="colorPicker" GridPane.columnIndex="6" />
       <JFXButton fx:id="code" buttonType="RAISED" onAction="#handleCodeCopy" prefHeight="32.0" prefWidth="97.0" text="코드" textFill="#cd0e0e" GridPane.columnIndex="4">
          <font>

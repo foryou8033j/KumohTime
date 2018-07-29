@@ -509,7 +509,7 @@ public class HomeLayoutController implements Initializable {
 									MainApp.class.getResource("View/Home/SelectedLecture/SelectedLectureLayout.fxml"));
 							GridPane pane = loader.load();
 							SelectedLectureLayoutController controller = loader.getController();
-							controller.setDefault(mainApp, v, pane);
+							controller.setDefault(mainApp, v, pane, true);
 
 							selectedLayoutList.add(pane);
 							selectedLayoutControllerList.add(controller);
@@ -581,8 +581,9 @@ public class HomeLayoutController implements Initializable {
 			}
 		});
 
-		sugangModeDialog = new SugangModeDialog(mainApp);
 		loadFromSaveFile();
+		
+		sugangModeDialog = new SugangModeDialog(mainApp, sugangpackmode);
 	}
 
 	private void loadFromSaveFile() {

@@ -143,6 +143,8 @@ public class DataBase extends DBHeader implements DataBaseAdapter {
 	
 	public String getSugangTime() {
 
+		initConnection();
+		
 		Statement stmt = null;
 		ResultSet rs = null;
 

@@ -33,6 +33,8 @@ public class LectureTime {
 			dayOfWeek = 4;
 		if(ch == '토')
 			dayOfWeek = 5;
+		if(ch == '일')
+			dayOfWeek = 6;
 		
 		
 		for(int i=1; i<time.length(); i++) {

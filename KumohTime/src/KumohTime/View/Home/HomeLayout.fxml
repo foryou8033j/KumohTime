@@ -103,7 +103,7 @@
                      <right>
                         <VBox alignment="CENTER" prefHeight="209.0" prefWidth="98.0" spacing="5.0" BorderPane.alignment="CENTER">
                            <children>
-                              <JFXButton buttonType="RAISED" onAction="#handleBugReport" text="관리자&#10;메세지 전송" textAlignment="CENTER">
+                              <JFXButton buttonType="RAISED" onAction="#handleBugReport" text="개발자에게&#10;메세지 전송" textAlignment="CENTER">
                                  <font>
                                     <Font name="Malgun Gothic" size="12.0" />
                                  </font>
