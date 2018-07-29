@@ -34,6 +34,9 @@ public class SugangModeLayoutController implements Initializable {
 
     @FXML
     private Text time;
+    
+    @FXML
+    private Text sugangmessage;
 
     @FXML
     void handleOpenKitShare(ActionEvent event) {
@@ -110,17 +113,29 @@ public class SugangModeLayoutController implements Initializable {
 		
 		new Thread(()-> {
 			
-			String targetTimeString = new DataBase().getSugangTime();
+			String[] sugangData = new DataBase().getSugangTime();
 			new DataBase().writeLog(mainApp.getAppData().getAppPropertise().getVersionString());
 			
 			// 시간값이 맞는지 검증
 			SimpleDateFormat format = new SimpleDateFormat("yyyy.MM.dd HH:mm:ss");
 			
 			try {
+				
+				sugangmessage.setText(sugangData[0]);
 				targetTime = Calendar.getInstance();
-				targetTime.setTime(format.parse(targetTimeString));
+				
+				if(!sugangData[1].equals(""))
+					targetTime.setTime(format.parse(sugangData[1]));
 				
 				while(true) {
+					
+					Thread.sleep(10);
+					
+					if(sugangData[1].equals("")) {
+						time.setText(format.format(Calendar.getInstance().getTime()));
+						continue;
+					}
+					
 					Calendar now = Calendar.getInstance();
 					
 					long diffTime = targetTime.getTimeInMillis() - now.getTimeInMillis();
@@ -154,7 +169,7 @@ public class SugangModeLayoutController implements Initializable {
 							
 					}
 					
-					Thread.sleep(10);
+					
 						
 						
 					

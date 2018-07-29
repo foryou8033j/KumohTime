@@ -45,7 +45,7 @@ public class MainApp extends Application {
 			@Override
 			protected Void call() throws Exception {
 
-				updateMessage("DB 불러오는 중");
+				updateMessage("로컬 DB 불러오는 중");
 				appData = new AppData(new DataBase().loadAppData());
 				initStage();
 				
@@ -69,12 +69,17 @@ public class MainApp extends Application {
 
 		Platform.runLater(() -> {
 			primaryStage.setTitle(appData.getAppPropertise().getTitle() + " " + appData.getAppPropertise().getVersion());
+			
 			primaryStage.setOnCloseRequest(e -> {
 				
 				Platform.runLater(() -> {
 					saveSelectedLecture();
-					dialog = new RecommandDialog(mainApp);
-					dialog.getDialog().show();
+					if(!DataBase.isOfflineMode) {
+						dialog = new RecommandDialog(mainApp);
+						dialog.getDialog().show();
+					}else {
+						System.exit(0);
+					}
 					
 				});
 				

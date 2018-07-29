@@ -22,7 +22,7 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="수강꾸러미 신청까지" />
+            <Text fx:id="sugangmessage" strokeType="OUTSIDE" strokeWidth="0.0" text="수강꾸러미 신청까지" />
             <Text fx:id="time" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.columnIndex="1" />
             <JFXButton buttonType="RAISED" onAction="#handleOpenSugangPage" prefHeight="40.0" prefWidth="150.0" text="수강신청 페이지 열기" GridPane.columnIndex="2" />
             <JFXButton buttonType="RAISED" onAction="#handleOpenUnivPage" prefHeight="40.0" prefWidth="150.0" text="학교홈페이지 열기" GridPane.columnIndex="3" />

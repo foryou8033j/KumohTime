@@ -141,9 +141,12 @@ public class DataBase extends DBHeader implements DataBaseAdapter {
 		return null;
 	}
 	
-	public String getSugangTime() {
+	public String[] getSugangTime() {
 
-		initConnection();
+		String[] str = {"현재시간", ""};
+		
+		if (!initConnection())
+			return str;
 		
 		Statement stmt = null;
 		ResultSet rs = null;
@@ -154,12 +157,17 @@ public class DataBase extends DBHeader implements DataBaseAdapter {
 			rs = stmt.executeQuery(sql);
 
 			String time = null;
+			String message = null;
 			
 			while (rs.next()) {
+				message = rs.getString("sugangmessage");
 				time = rs.getString("sugangtime");
 			}
+			
+			str[0] = message;
+			str[1] = time;
 
-			return time;
+			return str;
 
 		} catch (Exception e) {
 			e.printStackTrace();
