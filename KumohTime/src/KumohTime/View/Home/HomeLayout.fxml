@@ -145,7 +145,7 @@
                      <children>
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="시간표">
                            <font>
-                              <Font name="Malgun Gothic" size="24.0" />
+                              <Font name="Malgun Gothic Bold" size="24.0" />
                            </font>
                         </Text>
                         <GridPane fx:id="timeTable" gridLinesVisible="true" onContextMenuRequested="#handleTimeTableContextMenuRequested" onMouseClicked="#handleTimeTableClicked">

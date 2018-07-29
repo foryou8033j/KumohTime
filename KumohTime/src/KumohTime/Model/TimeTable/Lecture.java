@@ -1,6 +1,7 @@
 package KumohTime.Model.TimeTable;
 
 import java.util.Calendar;
+import java.util.Random;
 import java.util.StringTokenizer;
 
 import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
@@ -41,11 +42,43 @@ public class Lecture extends RecursiveTreeObject<Lecture> {
 
 	private ObservableList<LectureTime> convertedTime = FXCollections.observableArrayList();
 	private ObjectProperty<Color> color = new SimpleObjectProperty<Color>(Color.LIGHTGRAY);
+	
+    Color[] pastell = {
+    		Color.rgb(237, 223, 185),
+    		Color.rgb(237, 199, 121),
+    		Color.rgb(215, 127, 110),
+    		Color.rgb(115, 165, 152),
+    		Color.rgb(169, 188, 139),
+    		Color.rgb(255, 222, 255),
+    		Color.rgb(222, 222, 255),
+    		Color.rgb(255, 255, 222),
+    		
+    		Color.rgb(222, 222, 239),
+    		Color.rgb(222, 239, 255),
+    		Color.rgb(222, 255, 255),
+    		
+    		Color.rgb(239, 222, 239),
+    		Color.rgb(255, 222, 222),
+    		Color.rgb(239, 222, 222),
+    		Color.rgb(255, 239, 222),
+    		Color.rgb(255, 222, 239),
+
+    		Color.rgb(239, 222, 255),
+    		Color.rgb(222, 255, 239),
+    		Color.rgb(239, 255, 222),
+    		Color.rgb(222, 255, 222),
+    		Color.rgb(222, 239, 222),
+    		Color.rgb(222, 239, 239),
+    		Color.rgb(239, 239, 222)
+    		};
 
 	public Lecture(int index, int year, String quarter, String type, String trace, int grade, String essential,
 			String name, int point, String code, String professor, String major, String time, int limitPerson,
 			String lecPackage) {
 		super();
+		
+		setColor(pastell[new Random().nextInt(pastell.length)]);
+		
 		this.index = new SimpleIntegerProperty(index);
 		this.year = new SimpleIntegerProperty(year);
 		this.quarter = new SimpleStringProperty(quarter);
@@ -71,6 +104,8 @@ public class Lecture extends RecursiveTreeObject<Lecture> {
 	public Lecture(String name, String code, String professor, String time,
 			Color color) {
 		super();
+		
+		setColor(pastell[new Random().nextInt(pastell.length)]);
 		
 		this.year = new SimpleIntegerProperty(Calendar.getInstance().get(Calendar.YEAR));
 		this.quarter = new SimpleStringProperty("임시데이터");
@@ -131,7 +166,6 @@ public class Lecture extends RecursiveTreeObject<Lecture> {
 				tmp = tmp.replaceAll("일", "");
 				
 				tm += tmp;
-				System.out.println(tm);
 				convertedTime.add(new LectureTime(tm, rm));
 			}
 			

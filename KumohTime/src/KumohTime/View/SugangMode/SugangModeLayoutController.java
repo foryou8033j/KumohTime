@@ -109,7 +109,9 @@ public class SugangModeLayoutController implements Initializable {
 		});
 		
 		new Thread(()-> {
+			
 			String targetTimeString = new DataBase().getSugangTime();
+			new DataBase().writeLog(mainApp.getAppData().getAppPropertise().getVersionString());
 			
 			// 시간값이 맞는지 검증
 			SimpleDateFormat format = new SimpleDateFormat("yyyy.MM.dd HH:mm:ss");
@@ -131,7 +133,7 @@ public class SugangModeLayoutController implements Initializable {
 					long diffDays = diffTime / (24 * 60 * 60 * 1000);
 					
 					if(diffDays != 0)
-						time.setText("D-" + diffDays + " " + diffHours +":"+diffMinutes+":"+diffSeconds);
+						time.setText("D-" + diffDays + " " + diffHours +"시간 "+diffMinutes+"분 "+diffSeconds + "초");
 					else {
 						time.setFill(Paint.valueOf("red"));
 						if(diffHours != 0)

@@ -46,34 +46,6 @@ public class SelectedLectureLayoutController implements Initializable{
     @FXML
     private JFXButton copyAll;
     
-    Color[] pastell = {
-    		Color.rgb(237, 223, 185),
-    		Color.rgb(237, 199, 121),
-    		Color.rgb(215, 127, 110),
-    		Color.rgb(115, 165, 152),
-    		Color.rgb(169, 188, 139),
-    		Color.rgb(255, 222, 255),
-    		Color.rgb(222, 222, 255),
-    		Color.rgb(255, 255, 222),
-    		
-    		Color.rgb(222, 222, 239),
-    		Color.rgb(222, 239, 255),
-    		Color.rgb(222, 255, 255),
-    		
-    		Color.rgb(239, 222, 239),
-    		Color.rgb(255, 222, 222),
-    		Color.rgb(239, 222, 222),
-    		Color.rgb(255, 239, 222),
-    		Color.rgb(255, 222, 239),
-
-    		Color.rgb(239, 222, 255),
-    		Color.rgb(222, 255, 239),
-    		Color.rgb(239, 255, 222),
-    		Color.rgb(222, 255, 222),
-    		Color.rgb(222, 239, 222),
-    		Color.rgb(222, 239, 239),
-    		Color.rgb(239, 239, 222)
-    		};
 
     @FXML
     void handleCodeCopy(ActionEvent event) {
@@ -157,14 +129,13 @@ public class SelectedLectureLayoutController implements Initializable{
     		colorPicker.setDisable(true);
     	}
     	
+    	if(lecture.getLectureTime().size()==0)
+    		colorPicker.setVisible(false);
+    	
     	name.setText(lecture.getName().get());
     	professor.setText(lecture.getProfessor().get());
     	code.setText(lecture.getCode().get());
     	time.setText(lecture.getTime().get());
-    	
-    	if(lecture.getColor().equals(Color.LIGHTGRAY)) {
-    		lecture.setColor(pastell[new Random().nextInt(pastell.length)]);
-    	}
     	
     	colorPicker.valueProperty().set(lecture.getColor());
     	if(isUseAble) {

@@ -40,7 +40,7 @@ public class DataBase extends DBHeader implements DataBaseAdapter {
 			return true;
 	}
 
-	public void writeLog() {
+	public void writeLog(String version) {
 		if (!initConnection())
 			return;
 
@@ -53,8 +53,8 @@ public class DataBase extends DBHeader implements DataBaseAdapter {
 
 			DateFormat f = new SimpleDateFormat("yyyy.MM.dd HH:mm:ss");
 
-			String sql = "INSERT INTO Log(time, ip) VALUES('" + f.format(Calendar.getInstance().getTime()) + "', '"
-					+ ip.getHostAddress() + "')";
+			String sql = "INSERT INTO Log(time, ip, version) VALUES('" + f.format(Calendar.getInstance().getTime()) + "', '"
+					+ ip.getHostAddress() + "', '"+ version +"')";
 			stmt = conn.createStatement();
 			stmt.executeUpdate(sql);
 		} catch (Exception e) {
