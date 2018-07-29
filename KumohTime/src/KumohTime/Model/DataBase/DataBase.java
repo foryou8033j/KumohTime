@@ -140,6 +140,37 @@ public class DataBase extends DBHeader implements DataBaseAdapter {
 		}
 		return null;
 	}
+	
+	public String getSugangTime() {
+
+		Statement stmt = null;
+		ResultSet rs = null;
+
+		try {
+			String sql = "SELECT * FROM " + getDBName() + ".Application";
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery(sql);
+
+			String time = null;
+			
+			while (rs.next()) {
+				time = rs.getString("sugangtime");
+			}
+
+			return time;
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				rs.close();
+				stmt.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return null;
+	}
 
 	public ObservableList<Lecture> loadLectureList() {
 

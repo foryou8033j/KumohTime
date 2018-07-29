@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXListView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Text?>
+
+<BorderPane fx:id="list" prefHeight="400.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="KumohTime.View.SugangMode.SugangModeLayoutController">
+   <bottom>
+      <GridPane BorderPane.alignment="CENTER">
+        <columnConstraints>
+          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="수강신청까지" />
+            <Text fx:id="time" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.columnIndex="1" />
+            <JFXButton buttonType="RAISED" onAction="#handleOpenSugangPage" prefHeight="40.0" prefWidth="150.0" text="수강신청 페이지 열기" GridPane.columnIndex="2" />
+            <JFXButton buttonType="RAISED" onAction="#handleOpenUnivPage" prefHeight="40.0" prefWidth="150.0" text="학교홈페이지 열기" GridPane.columnIndex="3" />
+            <JFXButton buttonType="RAISED" onAction="#handleOpenKitShare" prefHeight="40.0" prefWidth="150.0" text="kit-share 열기" GridPane.columnIndex="4" />
+         </children>
+      </GridPane>
+   </bottom>
+   <center>
+      <JFXListView fx:id="list" BorderPane.alignment="CENTER" />
+   </center>
+</BorderPane>

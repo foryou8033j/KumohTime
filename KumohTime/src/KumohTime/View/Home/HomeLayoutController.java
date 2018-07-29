@@ -27,6 +27,7 @@ import KumohTime.Util.Dialog.AlertDialog;
 import KumohTime.Util.Dialog.BugReportDialog;
 import KumohTime.Util.Dialog.TempLectureAddDialog;
 import KumohTime.View.Home.SelectedLecture.SelectedLectureLayoutController;
+import KumohTime.View.SugangMode.SugangModeDialog;
 import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
@@ -36,7 +37,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.SnapshotParameters;
 import javafx.scene.control.TreeItem;
@@ -153,6 +153,9 @@ public class HomeLayoutController implements Initializable {
 	private Text sumOfLecture;
 	
     @FXML
+    private JFXToggleButton sugangpackmode;
+	
+    @FXML
     private BorderPane capturePane;
 
 	private ObservableList<GridPane> selectedLayoutList = FXCollections.observableArrayList();
@@ -162,6 +165,8 @@ public class HomeLayoutController implements Initializable {
 	private ObservableList<VBox> showedNode = FXCollections.observableArrayList();
 
 	private boolean isMakeLectureNofitied = false;
+	
+	private SugangModeDialog sugangModeDialog = null;
 	
     @FXML
     void handleMakeLecture(ActionEvent event) {
@@ -576,6 +581,7 @@ public class HomeLayoutController implements Initializable {
 			}
 		});
 
+		sugangModeDialog = new SugangModeDialog(mainApp);
 		loadFromSaveFile();
 	}
 
@@ -766,6 +772,15 @@ public class HomeLayoutController implements Initializable {
 			public void onChanged(Change<? extends GridPane> c) {
 
 				redrawTimeTable();
+			}
+		});
+		
+		sugangpackmode.selectedProperty().addListener((observable, oldValue, newValue) -> {
+			if(newValue.booleanValue()) {
+				mainApp.getPrimaryStage().close();
+				sugangModeDialog.show();
+			}else {
+				 mainApp.getPrimaryStage().show();
 			}
 		});
 

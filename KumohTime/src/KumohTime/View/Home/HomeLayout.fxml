@@ -93,6 +93,7 @@
                               <Font name="Malgun Gothic Bold" size="14.0" />
                            </font>
                         </JFXButton>
+                        <JFXToggleButton fx:id="sugangpackmode" text="수강꾸러미모드" />
                      </children>
                   </HBox>
                   <BorderPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="2">

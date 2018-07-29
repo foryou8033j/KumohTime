@@ -61,8 +61,12 @@ public class LectureTime {
 				this.time[15] = true;
 				continue;
 			}
+			try {
+				this.time[time.charAt(i) - '0'] = true;
+			}catch (Exception e) {
+				System.out.println(e.getMessage());
+			}
 			
-			this.time[time.charAt(i) - '0'] = true;
 		}
 	}
 	
