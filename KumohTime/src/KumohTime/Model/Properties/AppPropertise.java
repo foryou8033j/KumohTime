@@ -17,7 +17,7 @@ public class AppPropertise {
 
 	private Properties properties;
 
-	final private float BIND_VERSION = 0.81f;
+	final private float BIND_VERSION = 0.83f;
 
 	private String title = "KumohTime";
 	private float version = BIND_VERSION;

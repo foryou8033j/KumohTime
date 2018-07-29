@@ -172,10 +172,6 @@ public class HomeLayoutController implements Initializable {
     	//}
     	
     	TempLectureAddDialog dialog = new TempLectureAddDialog(mainApp);
-    	
-    	
-    	
-    	
     }
 
     @FXML
@@ -235,6 +231,8 @@ public class HomeLayoutController implements Initializable {
 
 	@FXML
 	void handleLoadData(ActionEvent event) {
+		
+		mainApp.saveSelectedLecture();
 
 		FileChooser fileChooser = new FileChooser();
 
@@ -257,7 +255,7 @@ public class HomeLayoutController implements Initializable {
 				loadFromSaveFile();
 				
 				new AlertDialog(mainApp, "성공!", "파일을 성공적으로 불러왔습니다.", "확인");
-
+				mainApp.saveSelectedLecture();
 			} catch (IOException e) {
 				new AlertDialog(mainApp, "오류", "파일을 불러오는 도중에 오류가 발생하였습니다.", "확인");
 				e.printStackTrace();
@@ -294,6 +292,8 @@ public class HomeLayoutController implements Initializable {
 
 	@FXML
 	void handleSaveData(ActionEvent event) {
+		
+		mainApp.saveSelectedLecture();
 
 		FileChooser fileChooser = new FileChooser();
 
@@ -309,7 +309,6 @@ public class HomeLayoutController implements Initializable {
 			// 정확한 확장자를 가져야 한다.
 			if (file.getPath().endsWith(".dat")) {
 				try {
-					mainApp.saveSelectedLecture();
 					File targetFile = new File(file.getPath());
 					targetFile.delete();
 					Files.copy(new File(AppData.saveFilePath).toPath(), targetFile.toPath());

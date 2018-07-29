@@ -19,6 +19,7 @@ import javafx.scene.text.Text;
 public class AlertDialog{
 
 	private JFXButton button;
+	private JFXDialog dialog;
 	
 	public AlertDialog(MainApp mainApp,String title, String message, String okMessage) {
 		
@@ -32,9 +33,11 @@ public class AlertDialog{
 	    content.setHeading(text);
 	    
 	    content.setBody(textMessage);
-	    JFXDialog dialog = new JFXDialog(mainApp.getRootLayoutController().getRootLayout(), content, JFXDialog.DialogTransition.CENTER);
+	    dialog = new JFXDialog(mainApp.getRootLayoutController().getRootLayout(), content, JFXDialog.DialogTransition.CENTER);
 	    button = new JFXButton(okMessage);
 	    button.setFont(Font.font("malgun gothic", FontWeight.NORMAL, 12));
+	    button.setPrefWidth(100);
+	    button.setPrefHeight(50);
 	    button.setOnAction(new EventHandler<ActionEvent>() {
 	        @Override
 	        public void handle(ActionEvent event) {
@@ -48,6 +51,10 @@ public class AlertDialog{
 	
 	public JFXButton getButton() {
 		return button;
+	}
+	
+	public JFXDialog getDialog() {
+		return dialog;
 	}
 
 }

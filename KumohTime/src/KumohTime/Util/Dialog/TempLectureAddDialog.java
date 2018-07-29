@@ -22,6 +22,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
@@ -64,6 +65,7 @@ public class TempLectureAddDialog {
 			JFXButton addButton = new JFXButton("추가");
 			addButton.setPrefWidth(100);
 			addButton.setPrefHeight(30);
+			addButton.setRipplerFill(Color.RED);
 			addButton.setButtonType(ButtonType.RAISED);
 			addButton.setOnAction(e -> {
 				if(controllerList.size() > 5) {
@@ -79,6 +81,8 @@ public class TempLectureAddDialog {
 					JFXDialog.DialogTransition.CENTER);
 			button = new JFXButton("완료");
 			button.setPrefWidth(100);
+			button.setPrefHeight(50);
+			button.setRipplerFill(Color.BLUE);
 			button.setFont(Font.font("malgun gothic", FontWeight.NORMAL, 12));
 			button.setOnAction(new EventHandler<ActionEvent>() {
 				@Override
