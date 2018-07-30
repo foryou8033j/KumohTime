@@ -3,16 +3,17 @@ package KumohTime.Model;
 import java.util.LinkedList;
 import java.util.List;
 
-import KumohTime.MainApp;
 import KumohTime.Model.Properties.AppPropertise;
+import KumohTime.Model.Properties.ResourcePropertise;
 import KumohTime.Model.TimeTable.SaveData.SaveDataController;
 
 public class AppData {
 
-	final public static String propertisePath = System.getenv("APPDATA") + "/kumohtime/config/";
-	final public static String dataPath = System.getenv("APPDATA") + "/kumohtime/data/";
-	final public static String databasePath= System.getenv("APPDATA") + "/kumohtime/kumohtime.db";
+	final public static String propertisePath = "config/";
+	final public static String dataPath = "data/";
+	final public static String databasePath= "kumohtime.db";
 	final public static String saveFilePath= dataPath + "savefile.dat";
+	final public static String clientPath = "KumohTime.jar";
 	
 	public static int runningThread = 0;
 	public static int totalThread = 0;
@@ -20,29 +21,28 @@ public class AppData {
 	private float appVersion;
 	private float serverVersion;
 	private String serverPath;
-	private List<String> notification = new LinkedList<String>();
 	
 	private TimeTableData timeTableData;
 	
 	private AppPropertise appPropertise;
 	private SaveDataController saveDataController;
+	private ResourcePropertise resourcesPropertise;
 	
 	public AppData(AppData appData) {
 		
 		appPropertise = new AppPropertise();
 		this.appVersion = getAppPropertise().getVersion();
 		this.serverVersion = appData.getServerVersion();
-		this.notification.addAll(appData.getNotificaitionList());
 		this.serverPath = appData.getServerPath();
 		
 		timeTableData = new TimeTableData();
 		saveDataController = new SaveDataController();
+		resourcesPropertise = new ResourcePropertise();
 	}
 
-	public AppData(float serverVersion, String serverPath, List<String> notifications) {
+	public AppData(float serverVersion, String serverPath) {
 		this.serverVersion = serverVersion;
 		this.serverPath = serverPath;
-		this.notification.addAll(notifications);
 	}
 
 	public String getServerPath() {
@@ -51,10 +51,6 @@ public class AppData {
 
 	public float getServerVersion() {
 		return serverVersion;
-	}
-
-	public List<String> getNotificaitionList() {
-		return notification;
 	}
 	
 	public AppPropertise getAppPropertise() {
@@ -67,6 +63,10 @@ public class AppData {
 
 	public SaveDataController getSaveDataController() {
 		return saveDataController;
+	}
+	
+	public ResourcePropertise getResourcePropertise() {
+		return resourcesPropertise;
 	}
 	
 	

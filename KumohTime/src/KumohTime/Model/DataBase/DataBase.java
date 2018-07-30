@@ -2,8 +2,6 @@ package KumohTime.Model.DataBase;
 
 import java.net.InetAddress;
 import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -13,21 +11,17 @@ import java.util.Calendar;
 import java.util.LinkedList;
 import java.util.List;
 
-import org.sqlite.SQLiteConfig;
-
 import KumohTime.Model.AppData;
 import KumohTime.Model.TimeTable.Lecture;
-import KumohTime.Util.Dialog.ExceptionDialog;
-import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.scene.control.Alert.AlertType;
 
 public class DataBase extends DBHeader implements DataBaseAdapter {
 
 	private Connection conn;
 
 	static public boolean isOfflineMode = false;
+	static private String dbVersion = "version";
 
 	private boolean initConnection() {
 		conn = super.getConnection();
@@ -103,10 +97,8 @@ public class DataBase extends DBHeader implements DataBaseAdapter {
 
 	public AppData loadAppData() {
 
-		List<String> notifications = new LinkedList<String>();
-
 		if (!initConnection())
-			return new AppData(0.0f, "", notifications);
+			return new AppData(0.0f, "");
 
 		Statement stmt = null;
 		ResultSet rs = null;
@@ -120,13 +112,11 @@ public class DataBase extends DBHeader implements DataBaseAdapter {
 			String path = null;
 			
 			while (rs.next()) {
-				version = Float.valueOf(rs.getString("version"));
+				version = Float.valueOf(rs.getString(dbVersion));
 				path = rs.getString("path");
-				String notificaition = rs.getString("notification");
-				notifications.add(notificaition);
 			}
 
-			return new AppData(version, path, notifications);
+			return new AppData(version, path);
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -177,6 +167,75 @@ public class DataBase extends DBHeader implements DataBaseAdapter {
 				stmt.close();
 			} catch (SQLException e) {
 				e.printStackTrace();
+			}
+		}
+		return null;
+	}
+	
+	public float loadDataBaseVersion() {
+
+		initConnection();
+
+		float version = 0.0f;
+		Statement stmt = null;
+		ResultSet rs = null;
+
+		try {
+			String sql = "SELECT * FROM "+ getDBName() +".Application";
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery(sql);
+
+			while (rs.next()) {
+				version = Float.valueOf(rs.getString("db"));
+			}
+		} catch (Exception e) {
+			System.out.println("DB 서버에 연결 할 수 없습니다.");
+		} finally {
+			try {
+				rs.close();
+				stmt.close();
+				
+			} catch (SQLException e) {
+				System.out.println("DB 서버에 연결 할 수 없습니다.");
+			}
+		}
+		
+		return version;
+	}
+	
+	public AppData loadApplicationVersion() {
+
+		if(!initConnection())
+			return null;
+
+		Statement stmt = null;
+		ResultSet rs = null;
+
+		try {
+			String sql = "SELECT * FROM "+ getDBName() +".Application";
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery(sql);
+
+			float version = 0;
+			String path = null;
+
+			while (rs.next()) {
+				version = Float.valueOf(rs.getString(dbVersion));
+				path = rs.getString("path");
+			}
+
+			return new AppData(version, path);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("DB 서버에 연결 할 수 없습니다.");
+		} finally {
+			try {
+				rs.close();
+				stmt.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+				System.out.println("DB 서버에 연결 할 수 없습니다.");
 			}
 		}
 		return null;

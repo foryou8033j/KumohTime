@@ -1,6 +1,8 @@
 package KumohTime.Model.TimeTable.SaveData;
 
 import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.Marshaller;
@@ -16,9 +18,23 @@ public class SaveDataController {
 	private ObservableList<SaveData> saveDatas = FXCollections.observableArrayList();
 
 	public SaveDataController() {
+		
+		File oldFile = new File(System.getenv("APPDATA") + "/kumohtime/data/savefile.dat");
 		file = new File(AppData.saveFilePath);
-		if(!isExists())
+		
+		if(oldFile.exists()) {
+			try {
+				file.delete();
+				Files.copy(oldFile.toPath(), file.toPath());
+				oldFile.delete();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		if(!isExists()) {
 			saveData();
+		}
 		else
 			loadData();
 	}
