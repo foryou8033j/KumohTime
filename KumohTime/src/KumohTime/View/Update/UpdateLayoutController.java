@@ -18,10 +18,13 @@ import KumohTime.Model.AppData;
 import KumohTime.Model.DataBase.DataBase;
 import KumohTime.Model.Properties.AppPropertise;
 import KumohTime.Model.Properties.ResourcePropertise;
+import KumohTime.Util.OSCheck;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.text.Text;
 
 public class UpdateLayoutController {
@@ -61,6 +64,7 @@ public class UpdateLayoutController {
 						
 						log.appendText("\r\n최신 업데이트가 존재합니다.\r\n");
 						log.appendText("업데이트가 예약되었습니다....\r\n");
+						
 						/*
 						URL url = new URL(mainApp.getAppData().getServerPath() + mainApp.getAppData().getServerVersion() + "/kumohtime.jar");
 						
@@ -188,10 +192,24 @@ public class UpdateLayoutController {
 				
 				try {
 					
-					Process proc = null;
-					String[] cmd = { "cmd", "/c", "start",".\\resources\\updateClient.bat", appData.getServerPath(), String.valueOf(appData.getServerVersion()) };
-					proc = Runtime.getRuntime().exec(cmd);
-					System.exit(0);
+					if(OSCheck.isWindows()){
+						Process proc = null;
+						String[] cmd = { "cmd", "/c", "start",".\\resources\\updateClient.bat", appData.getServerPath(), String.valueOf(appData.getServerVersion()) };
+						proc = Runtime.getRuntime().exec(cmd);
+						System.exit(0);
+					}else if(OSCheck.isMac()) {
+					
+						Process proc = null;
+						String[] cmd = { "./resources/updateClient.sh", appData.getServerPath(), String.valueOf(appData.getServerVersion()) };
+						proc = Runtime.getRuntime().exec(cmd);
+						Alert alert = new Alert(AlertType.INFORMATION);
+						alert.setTitle("알림");
+						alert.setHeaderText("업데이트 완료");
+						alert.setContentText("어플리케이션이 종료 됩니다, 다시 시작 해 주세요.");
+						alert.showAndWait();
+						System.exit(0);
+					}
+					
 					
 				} catch (IOException e1) {
 					e1.printStackTrace();
