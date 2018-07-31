@@ -2,13 +2,17 @@ package KumohTime.View.Update;
 
 import java.awt.Robot;
 import java.io.BufferedInputStream;
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
 import java.nio.channels.Channels;
 import java.nio.channels.ReadableByteChannel;
+
+import javax.swing.text.PlainDocument;
 
 import com.jfoenix.controls.JFXProgressBar;
 import com.jfoenix.controls.JFXTextArea;
@@ -18,10 +22,14 @@ import KumohTime.Model.AppData;
 import KumohTime.Model.DataBase.DataBase;
 import KumohTime.Model.Properties.AppPropertise;
 import KumohTime.Model.Properties.ResourcePropertise;
+import KumohTime.Util.OSCheck;
+import javafx.application.Platform;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.text.Text;
 
 public class UpdateLayoutController {
@@ -61,6 +69,7 @@ public class UpdateLayoutController {
 						
 						log.appendText("\r\n최신 업데이트가 존재합니다.\r\n");
 						log.appendText("업데이트가 예약되었습니다....\r\n");
+						
 						/*
 						URL url = new URL(mainApp.getAppData().getServerPath() + mainApp.getAppData().getServerVersion() + "/kumohtime.jar");
 						
@@ -188,10 +197,23 @@ public class UpdateLayoutController {
 				
 				try {
 					
-					Process proc = null;
-					String[] cmd = { "cmd", "/c", "start",".\\resources\\updateClient.bat", appData.getServerPath(), String.valueOf(appData.getServerVersion()) };
-					proc = Runtime.getRuntime().exec(cmd);
-					System.exit(0);
+					if(OSCheck.isWindows()){
+						Process proc = null;
+						String[] cmd = { "cmd", "/c", "start",".\\resources\\updateClient.bat", appData.getServerPath(), String.valueOf(appData.getServerVersion()) };
+						proc = Runtime.getRuntime().exec(cmd);
+						System.exit(0);
+						
+					}else if(OSCheck.isMac()) {
+					
+						String[] changePermission = { "chmod", "+x", "./resources/updateClient.sh"};
+						Runtime.getRuntime().exec(changePermission);
+						
+						String[] cmd = { "./resources/updateClient.sh", appData.getServerPath(), String.valueOf(appData.getServerVersion())};
+						ProcessBuilder builder = new ProcessBuilder(cmd);
+				        Process process = builder.start();
+						System.exit(0);
+					}
+					
 					
 				} catch (IOException e1) {
 					e1.printStackTrace();

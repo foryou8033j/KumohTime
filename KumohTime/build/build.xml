@@ -5,6 +5,7 @@
 			<filelist>
 				<file name="${java.home}\..\lib\ant-javafx.jar"/>
 				<file name="${java.home}\lib\jfxrt.jar"/>
+				<file name="${basedir}"/>
 			</filelist>
 		</path>
 	
@@ -20,45 +21,45 @@
 		<mkdir dir="externalLibs" />
 	
 		<copy todir="externalLibs">
-			<fileset dir="C:\Users\admin\git\KumohTime\KumohTime\Resources">
-				<filename name="jfoenix-8.0.4.jar"/>
-			</fileset>
-		</copy>
-		<copy todir="externalLibs">
-			<fileset dir="C:\Users\admin\git\KumohTime\KumohTime\Resources">
-				<filename name="sqlite-jdbc-3.23.1.jar"/>
-			</fileset>
-		</copy>
-		<copy todir="externalLibs">
-			<fileset dir="C:\Users\admin\git\KumohTime\KumohTime\Resources">
+			<fileset dir="/Users/seojeongsam/git/KumohTime/KumohTime/Resources">
 				<filename name="mysql-connector-java-8.0.11.jar"/>
 			</fileset>
 		</copy>
 		<copy todir="externalLibs">
-			<fileset dir="C:\Users\admin\git\KumohTime\KumohTime\Resources">
+			<fileset dir="/Users/seojeongsam/git/KumohTime/KumohTime/Resources">
 				<filename name="local_policy.jar"/>
 			</fileset>
 		</copy>
 		<copy todir="externalLibs">
-			<fileset dir="C:\Users\admin\git\KumohTime\KumohTime\Resources">
-				<filename name="US_export_policy.jar"/>
+			<fileset dir="/Users/seojeongsam/git/KumohTime/KumohTime/Resources">
+				<filename name="controlsfx-8.40.14.jar"/>
 			</fileset>
 		</copy>
 		<copy todir="externalLibs">
-			<fileset dir="C:\Users\admin\git\KumohTime\KumohTime\Resources">
-				<filename name="controlsfx-8.40.14.jar"/>
+			<fileset dir="/Users/seojeongsam/git/KumohTime/KumohTime/Resources">
+				<filename name="jfoenix-8.0.4.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/Users/seojeongsam/git/KumohTime/KumohTime/Resources">
+				<filename name="sqlite-jdbc-3.23.1.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="/Users/seojeongsam/git/KumohTime/KumohTime/Resources">
+				<filename name="US_export_policy.jar"/>
 			</fileset>
 		</copy>
 	
 		<mkdir dir="project" />
 		<copy todir="project">
-			<fileset dir="C:\Users\admin\git\KumohTime\KumohTime">
-				<include name="src/**" />
+			<fileset dir="/Users/seojeongsam/git/KumohTime/KumohTime">
+				<include name="Resources/**" />
 			</fileset>
 		</copy>
 		<copy todir="project">
-			<fileset dir="C:\Users\admin\git\KumohTime\KumohTime">
-				<include name="Resources/**" />
+			<fileset dir="/Users/seojeongsam/git/KumohTime/KumohTime">
+				<include name="src/**" />
 			</fileset>
 		</copy>
 	
@@ -133,12 +134,14 @@
 		<fx:resources id="appRes">
 			<fx:fileset dir="dist" includes="KumohTime.jar"/>
 			<fx:fileset dir="dist" includes="libs/*"/>
+			<fx:fileset dir="dist" includes="resources/**"/>
 		</fx:resources>
 	
 		<fx:application id="fxApplication"
 			name="KumohTime"
 			mainClass="KumohTime.MainApp"
 			toolkit="fx"
+			version="1.0"
 		/>
 	
 		<mkdir dir="build/classes/META-INF" />

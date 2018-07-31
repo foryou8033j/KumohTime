@@ -6,6 +6,7 @@ import KumohTime.Model.AppData;
 import KumohTime.Model.DataBase.DataBase;
 import KumohTime.Model.TimeTable.Lecture;
 import KumohTime.Model.TimeTable.SaveData.SaveData;
+import KumohTime.Util.OSCheck;
 import KumohTime.Util.Dialog.AlertDialog;
 import KumohTime.Util.Dialog.RecommandDialog;
 import KumohTime.Util.Dialog.Loading.LoadingDialog;
@@ -36,7 +37,7 @@ public class MainApp extends Application {
 
 		this.primaryStage = primaryStage;
 		primaryStage.getIcons().add(new Image("icon.jpg"));
-
+		
 		if(new File("resources/updateClient.bat").exists()) {
 			UpdateStage updateStage = new UpdateStage(mainApp);
 		}else{

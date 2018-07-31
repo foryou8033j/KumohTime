@@ -26,7 +26,7 @@
               </rowConstraints>
                <children>
                   <JFXProgressBar fx:id="progress" prefHeight="6.0" prefWidth="426.0" />
-                  <Text fx:id="percent" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.rowIndex="1">
+                  <Text fx:id="percent" strokeType="OUTSIDE" strokeWidth="0.0" text="" GridPane.rowIndex="1">
                      <font>
                         <Font name="Malgun Gothic" size="14.0" />
                      </font>

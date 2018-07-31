@@ -2,13 +2,17 @@ package KumohTime.View.Update;
 
 import java.awt.Robot;
 import java.io.BufferedInputStream;
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
 import java.nio.channels.Channels;
 import java.nio.channels.ReadableByteChannel;
+
+import javax.swing.text.PlainDocument;
 
 import com.jfoenix.controls.JFXProgressBar;
 import com.jfoenix.controls.JFXTextArea;
@@ -19,6 +23,7 @@ import KumohTime.Model.DataBase.DataBase;
 import KumohTime.Model.Properties.AppPropertise;
 import KumohTime.Model.Properties.ResourcePropertise;
 import KumohTime.Util.OSCheck;
+import javafx.application.Platform;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.concurrent.Task;
@@ -197,16 +202,15 @@ public class UpdateLayoutController {
 						String[] cmd = { "cmd", "/c", "start",".\\resources\\updateClient.bat", appData.getServerPath(), String.valueOf(appData.getServerVersion()) };
 						proc = Runtime.getRuntime().exec(cmd);
 						System.exit(0);
+						
 					}else if(OSCheck.isMac()) {
 					
-						Process proc = null;
-						String[] cmd = { "./resources/updateClient.sh", appData.getServerPath(), String.valueOf(appData.getServerVersion()) };
-						proc = Runtime.getRuntime().exec(cmd);
-						Alert alert = new Alert(AlertType.INFORMATION);
-						alert.setTitle("알림");
-						alert.setHeaderText("업데이트 완료");
-						alert.setContentText("어플리케이션이 종료 됩니다, 다시 시작 해 주세요.");
-						alert.showAndWait();
+						String[] changePermission = { "chmod", "+x", "./resources/updateClient.sh"};
+						Runtime.getRuntime().exec(changePermission);
+						
+						String[] cmd = { "./resources/updateClient.sh", appData.getServerPath(), String.valueOf(appData.getServerVersion())};
+						ProcessBuilder builder = new ProcessBuilder(cmd);
+				        Process process = builder.start();
 						System.exit(0);
 					}
 					
