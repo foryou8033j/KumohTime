@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXSpinner?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<VBox alignment="CENTER" prefHeight="121.0" prefWidth="220.0" spacing="20.0" style="-fx-background-color: fff; -fx-border-color: black; -fx-border-width: 1;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="KumohTime.Util.Dialog.Loading.LoadingDialogLayoutController">
+   <effect>
+      <DropShadow />
+   </effect>
+   <children>
+      <JFXSpinner fx:id="spinner" radius="50.0" />
+      <Text fx:id="text" strokeType="OUTSIDE" strokeWidth="0.0" text="Loading">
+         <font>
+            <Font name="Malgun Gothic Bold" size="12.0" />
+         </font>
+      </Text>
+   </children>
+</VBox>

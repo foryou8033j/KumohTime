@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXColorPicker?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<GridPane prefHeight="29.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="KumohTime.View.Home.SelectedLecture.SelectedLectureLayoutController">
+   <columnConstraints>
+      <ColumnConstraints halignment="CENTER" maxWidth="40.0" minWidth="10.0" prefWidth="40.0" />
+      <ColumnConstraints halignment="CENTER" prefWidth="200.0" />
+      <ColumnConstraints halignment="CENTER" maxWidth="100.0" minWidth="0.0" prefWidth="100.0" />
+      <ColumnConstraints halignment="CENTER" maxWidth="120.0" minWidth="10.0" prefWidth="120.0" />
+      <ColumnConstraints halignment="CENTER" maxWidth="100.0" minWidth="10.0" prefWidth="100.0" />
+      <ColumnConstraints halignment="CENTER" maxWidth="120.0" minWidth="10.0" prefWidth="120.0" />
+      <ColumnConstraints halignment="CENTER" maxWidth="100.0" minWidth="10.0" prefWidth="100.0" />
+   </columnConstraints>
+   <rowConstraints>
+      <RowConstraints minHeight="10.0" valignment="CENTER" vgrow="SOMETIMES" />
+   </rowConstraints>
+   <children>
+      <Text fx:id="name" strokeType="OUTSIDE" strokeWidth="0.0" text="과목명" GridPane.columnIndex="1">
+         <font>
+            <Font name="Malgun Gothic" size="12.0" />
+         </font>
+      </Text>
+      <Text fx:id="professor" strokeType="OUTSIDE" strokeWidth="0.0" text="교수명" GridPane.columnIndex="2">
+         <font>
+            <Font name="Malgun Gothic" size="12.0" />
+         </font>
+      </Text>
+      <Text fx:id="time" strokeType="OUTSIDE" strokeWidth="0.0" text="시간" GridPane.columnIndex="3">
+         <font>
+            <Font name="Malgun Gothic" size="12.0" />
+         </font>
+      </Text>
+      <JFXButton fx:id="copyAll" buttonType="RAISED" onAction="#handleCopy" prefHeight="27.0" prefWidth="115.0" text="전체 복사" textFill="#8000ff" GridPane.columnIndex="5" />
+      <JFXButton fx:id="delete" buttonType="RAISED" onAction="#handleDelete" prefHeight="23.0" prefWidth="49.0" text="X" textFill="RED" />
+      <JFXColorPicker fx:id="colorPicker" GridPane.columnIndex="6" />
+      <JFXButton fx:id="code" buttonType="RAISED" onAction="#handleCodeCopy" prefHeight="32.0" prefWidth="97.0" text="코드" textFill="#cd0e0e" GridPane.columnIndex="4">
+         <font>
+            <Font name="Malgun Gothic" size="12.0" />
+         </font>
+      </JFXButton>
+   </children>
+</GridPane>

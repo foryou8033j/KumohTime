@@ -1,0 +1,459 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXListView?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import com.jfoenix.controls.JFXToggleButton?>
+<?import com.jfoenix.controls.JFXTreeTableView?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TreeTableColumn?>
+<?import javafx.scene.control.TreeTableView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<BorderPane prefHeight="900.0" prefWidth="1600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="KumohTime.View.Home.HomeLayoutController">
+   <center>
+      <SplitPane dividerPositions="0.6" prefHeight="160.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+        <items>
+            <GridPane>
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="10.0" prefWidth="901.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="498.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="238.0" minHeight="0.0" prefHeight="39.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="215.0" minHeight="10.0" prefHeight="209.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <VBox prefWidth="100.0" spacing="10.0" GridPane.vgrow="ALWAYS">
+                     <children>
+                        <HBox alignment="CENTER" prefHeight="41.0" prefWidth="786.0" spacing="20.0">
+                           <children>
+                              <JFXToggleButton fx:id="filter" text="필터">
+                                 <font>
+                                    <Font name="Malgun Gothic Bold" size="12.0" />
+                                 </font>
+                              </JFXToggleButton>
+                              <JFXComboBox fx:id="filterQuarter" prefHeight="23.0" prefWidth="75.0" promptText="학기" />
+                              <JFXComboBox fx:id="filterGrade" prefHeight="23.0" prefWidth="66.0" promptText="학년" />
+                              <JFXComboBox fx:id="filterEssential" prefHeight="23.0" prefWidth="99.0" promptText="구분" />
+                              <JFXComboBox fx:id="filterType" prefHeight="23.0" prefWidth="97.0" promptText="교과목종류" />
+                              <JFXComboBox fx:id="filterMajor" prefHeight="23.0" prefWidth="145.0" promptText="교육과정" visibleRowCount="15" />
+                              <JFXTextField fx:id="filterCode" prefHeight="23.0" prefWidth="93.0" promptText="교과목코드">
+                                 <font>
+                                    <Font name="Malgun Gothic" size="11.0" />
+                                 </font></JFXTextField>
+                              <JFXTextField fx:id="filterName" prefHeight="23.0" prefWidth="130.0" promptText="교과목명">
+                                 <font>
+                                    <Font name="Malgun Gothic" size="11.0" />
+                                 </font></JFXTextField>
+                           </children>
+                        </HBox>
+                        <JFXTreeTableView fx:id="table" tableMenuButtonVisible="true" VBox.vgrow="ALWAYS">
+                           <columns>
+                              <TreeTableColumn fx:id="typeColumn" maxWidth="2000.0" prefWidth="38.0" text="종류" />
+                              <TreeTableColumn fx:id="majorColumn" prefWidth="83.0" text="학과" />
+                              <TreeTableColumn fx:id="gradeColumn" maxWidth="2000.0" prefWidth="127.0" text="학년" />
+                              <TreeTableColumn fx:id="essentialColumn" maxWidth="2000.0" prefWidth="75.0" text="구분" />
+                              <TreeTableColumn fx:id="nameColumn" prefWidth="75.0" text="교과목명" />
+                              <TreeTableColumn fx:id="pointColumn" maxWidth="2000.0" prefWidth="75.0" text="학점" />
+                              <TreeTableColumn fx:id="professorColumn" maxWidth="4000.0" prefWidth="75.0" text="담당교수" />
+                              <TreeTableColumn fx:id="codeColumn" prefWidth="75.0" text="코드" />
+                              <TreeTableColumn fx:id="timeColumn" prefWidth="75.0" text="강의시간" />
+                              <TreeTableColumn fx:id="limitPersonColumn" maxWidth="2000.0" prefWidth="75.0" text="제한인원" visible="false" />
+                              <TreeTableColumn fx:id="packageColumn" maxWidth="2000.0" prefWidth="75.0" text="수강&#10;꾸러미" visible="false" />
+                           </columns>
+                           <columnResizePolicy>
+                              <TreeTableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                           </columnResizePolicy>
+                        </JFXTreeTableView>
+                     </children>
+                  </VBox>
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0" GridPane.rowIndex="1">
+                     <children>
+                        <JFXButton fx:id="add" buttonType="RAISED" onAction="#handleAdd" prefHeight="30.0" prefWidth="60.0" text="▼">
+                           <font>
+                              <Font name="Malgun Gothic Bold" size="14.0" />
+                           </font>
+                        </JFXButton>
+                        <JFXButton fx:id="remove" buttonType="RAISED" disable="true" onAction="#handleRemove" prefHeight="30.0" prefWidth="60.0" text="▲">
+                           <font>
+                              <Font name="Malgun Gothic Bold" size="14.0" />
+                           </font>
+                        </JFXButton>
+                        <JFXToggleButton fx:id="sugangpackmode" text="수강꾸러미모드" />
+                     </children>
+                  </HBox>
+                  <BorderPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="2">
+                     <center>
+                        <JFXListView fx:id="addedList" prefHeight="209.0" prefWidth="804.0" BorderPane.alignment="CENTER" />
+                     </center>
+                     <right>
+                        <VBox alignment="CENTER" prefHeight="209.0" prefWidth="98.0" spacing="5.0" BorderPane.alignment="CENTER">
+                           <children>
+                              <JFXButton buttonType="RAISED" onAction="#handleBugReport" text="개발자에게&#10;메세지 전송" textAlignment="CENTER">
+                                 <font>
+                                    <Font name="Malgun Gothic" size="12.0" />
+                                 </font>
+                              </JFXButton>
+                              <JFXButton buttonType="RAISED" onAction="#handleLoadData" text="데이터&#10;불러오기" textAlignment="CENTER">
+                                 <font>
+                                    <Font name="Malgun Gothic" size="12.0" />
+                                 </font>
+                              </JFXButton>
+                              <JFXButton buttonType="RAISED" onAction="#handleSaveData" text="데이터&#10;내보내기" textAlignment="CENTER">
+                                 <font>
+                                    <Font name="Malgun Gothic" size="12.0" />
+                                 </font>
+                              </JFXButton>
+                              <JFXButton buttonType="RAISED" onAction="#handleSaveTimeTable" text="시간표 출력">
+                                 <font>
+                                    <Font name="Malgun Gothic" size="12.0" />
+                                 </font>
+                              </JFXButton>
+                              <JFXButton buttonType="RAISED" disable="true" onAction="#handleAutomaticCreateTimeTable" text="자동 생성">
+                                 <font>
+                                    <Font name="Malgun Gothic" size="12.0" />
+                                 </font>
+                              </JFXButton>
+                           </children></VBox>
+                     </right>
+                  </BorderPane>
+               </children>
+               <padding>
+                  <Insets bottom="10.0" left="10.0" top="10.0" />
+               </padding>
+            </GridPane>
+            <BorderPane fx:id="capturePane" SplitPane.resizableWithParent="false">
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
+               <center>
+                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="10.0" BorderPane.alignment="CENTER">
+                     <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="시간표">
+                           <font>
+                              <Font name="Malgun Gothic Bold" size="24.0" />
+                           </font>
+                        </Text>
+                        <GridPane fx:id="timeTable" gridLinesVisible="true" onContextMenuRequested="#handleTimeTableContextMenuRequested" onMouseClicked="#handleTimeTableClicked">
+                          <columnConstraints>
+                              <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                              <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                              <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                              <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                              <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                          </columnConstraints>
+                          <rowConstraints>
+                            <RowConstraints minHeight="10.0" prefHeight="100.0" valignment="CENTER" vgrow="ALWAYS" />
+                            <RowConstraints minHeight="10.0" prefHeight="100.0" valignment="CENTER" vgrow="ALWAYS" />
+                            <RowConstraints minHeight="10.0" prefHeight="100.0" valignment="CENTER" vgrow="ALWAYS" />
+                              <RowConstraints minHeight="10.0" prefHeight="100.0" valignment="CENTER" vgrow="ALWAYS" />
+                              <RowConstraints minHeight="10.0" prefHeight="100.0" valignment="CENTER" vgrow="ALWAYS" />
+                              <RowConstraints minHeight="10.0" prefHeight="100.0" valignment="CENTER" vgrow="ALWAYS" />
+                              <RowConstraints minHeight="10.0" prefHeight="100.0" valignment="CENTER" vgrow="ALWAYS" />
+                              <RowConstraints minHeight="10.0" prefHeight="100.0" valignment="CENTER" vgrow="ALWAYS" />
+                              <RowConstraints minHeight="10.0" prefHeight="100.0" valignment="CENTER" vgrow="ALWAYS" />
+                              <RowConstraints minHeight="10.0" prefHeight="100.0" valignment="CENTER" vgrow="ALWAYS" />
+                              <RowConstraints minHeight="10.0" prefHeight="100.0" valignment="CENTER" vgrow="ALWAYS" />
+                              <RowConstraints minHeight="10.0" prefHeight="100.0" valignment="CENTER" vgrow="ALWAYS" />
+                              <RowConstraints minHeight="10.0" prefHeight="100.0" valignment="CENTER" vgrow="ALWAYS" />
+                          </rowConstraints>
+                           <children>
+                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: yellow;" GridPane.columnIndex="1">
+                                 <children>
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="월">
+                                       <font>
+                                          <Font name="Malgun Gothic Bold" size="14.0" />
+                                       </font>
+                                    </Text>
+                                 </children>
+                              </VBox>
+                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: yellow;" GridPane.columnIndex="2">
+                                 <children>
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="화">
+                                       <font>
+                                          <Font name="Malgun Gothic Bold" size="14.0" />
+                                       </font>
+                                    </Text>
+                                 </children>
+                              </VBox>
+                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: yellow;" GridPane.columnIndex="3">
+                                 <children>
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="수">
+                                       <font>
+                                          <Font name="Malgun Gothic Bold" size="14.0" />
+                                       </font>
+                                    </Text>
+                                 </children>
+                              </VBox>
+                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: yellow;" GridPane.columnIndex="4">
+                                 <children>
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="목">
+                                       <font>
+                                          <Font name="Malgun Gothic Bold" size="14.0" />
+                                       </font>
+                                    </Text>
+                                 </children>
+                              </VBox>
+                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: yellow;" GridPane.columnIndex="5">
+                                 <children>
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="금">
+                                       <font>
+                                          <Font name="Malgun Gothic Bold" size="14.0" />
+                                       </font>
+                                    </Text>
+                                 </children>
+                              </VBox>
+                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: yellow;" GridPane.rowIndex="1">
+                                 <children>
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="1&#10;09:00&#10; ~ 09:50" textAlignment="CENTER">
+                                       <font>
+                                          <Font name="Malgun Gothic Bold" size="13.0" />
+                                       </font>
+                                    </Text>
+                                 </children>
+                              </VBox>
+                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: yellow;" GridPane.rowIndex="3">
+                                 <children>
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="3&#10;11:00&#10; ~ 11:50" textAlignment="CENTER">
+                                       <font>
+                                          <Font name="Malgun Gothic Bold" size="13.0" />
+                                       </font>
+                                    </Text>
+                                 </children>
+                              </VBox>
+                              <VBox alignment="CENTER" prefHeight="69.0" prefWidth="55.0" style="-fx-background-color: yellow;" GridPane.rowIndex="2">
+                                 <children>
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="2&#10;10:00&#10; ~ 10:50" textAlignment="CENTER">
+                                       <font>
+                                          <Font name="Malgun Gothic Bold" size="13.0" />
+                                       </font>
+                                    </Text>
+                                 </children>
+                              </VBox>
+                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: yellow;" GridPane.rowIndex="4">
+                                 <children>
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="4&#10;12:00&#10; ~ 12:50" textAlignment="CENTER">
+                                       <font>
+                                          <Font name="Malgun Gothic Bold" size="13.0" />
+                                       </font>
+                                    </Text>
+                                 </children>
+                              </VBox>
+                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: yellow;" GridPane.rowIndex="5">
+                                 <children>
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="5&#10;13:00&#10; ~ 13:50" textAlignment="CENTER">
+                                       <font>
+                                          <Font name="Malgun Gothic Bold" size="13.0" />
+                                       </font>
+                                    </Text>
+                                 </children>
+                              </VBox>
+                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: yellow;" GridPane.rowIndex="6">
+                                 <children>
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="6&#10;14:00&#10; ~ 14:50" textAlignment="CENTER">
+                                       <font>
+                                          <Font name="Malgun Gothic Bold" size="13.0" />
+                                       </font>
+                                    </Text>
+                                 </children>
+                              </VBox>
+                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: yellow;" GridPane.rowIndex="7">
+                                 <children>
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="7&#10;15:00&#10; ~ 15:50" textAlignment="CENTER">
+                                       <font>
+                                          <Font name="Malgun Gothic Bold" size="13.0" />
+                                       </font>
+                                    </Text>
+                                 </children>
+                              </VBox>
+                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: yellow;" GridPane.rowIndex="8">
+                                 <children>
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="8&#10;16:00&#10; ~ 16:50" textAlignment="CENTER">
+                                       <font>
+                                          <Font name="Malgun Gothic Bold" size="13.0" />
+                                       </font>
+                                    </Text>
+                                 </children>
+                              </VBox>
+                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: yellow;" GridPane.rowIndex="9">
+                                 <children>
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="9&#10;17:00&#10; ~ 17:50" textAlignment="CENTER">
+                                       <font>
+                                          <Font name="Malgun Gothic Bold" size="13.0" />
+                                       </font>
+                                    </Text>
+                                 </children>
+                              </VBox>
+                              <VBox alignment="CENTER" prefHeight="68.0" prefWidth="67.0" style="-fx-background-color: yellow;" GridPane.rowIndex="10">
+                                 <children>
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="A&#10;18:00&#10; ~ 18:50" textAlignment="CENTER">
+                                       <font>
+                                          <Font name="Malgun Gothic Bold" size="13.0" />
+                                       </font>
+                                    </Text>
+                                 </children>
+                              </VBox>
+                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: yellow;" GridPane.rowIndex="11">
+                                 <children>
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="B&#10;19:00&#10; ~ 19:50" textAlignment="CENTER">
+                                       <font>
+                                          <Font name="Malgun Gothic Bold" size="13.0" />
+                                       </font>
+                                    </Text>
+                                 </children>
+                              </VBox>
+                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: yellow;" GridPane.rowIndex="12">
+                                 <children>
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="C&#10;20:00&#10; ~ 20:50" textAlignment="CENTER">
+                                       <font>
+                                          <Font name="Malgun Gothic Bold" size="13.0" />
+                                       </font>
+                                    </Text>
+                                 </children>
+                              </VBox>
+                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: yellow;">
+                                 <children>
+                                    <Line endX="-18.849258422851562" endY="-48.302650451660156" startX="-106.14215087890625" startY="12.83090591430664" />
+                                 </children>
+                              </VBox>
+                           </children>
+                        </GridPane>
+                     </children>
+                  </VBox>
+               </center>
+               <bottom>
+                  <GridPane prefHeight="43.0" prefWidth="616.0" BorderPane.alignment="CENTER">
+                    <columnConstraints>
+                        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                      <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                      <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="전필">
+                           <font>
+                              <Font name="Malgun Gothic" size="12.0" />
+                           </font>
+                        </Text>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="교필" GridPane.columnIndex="2">
+                           <font>
+                              <Font name="Malgun Gothic" size="12.0" />
+                           </font>
+                        </Text>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="교선" GridPane.columnIndex="3">
+                           <font>
+                              <Font name="Malgun Gothic" size="12.0" />
+                           </font>
+                        </Text>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="전선" GridPane.columnIndex="1">
+                           <font>
+                              <Font name="Malgun Gothic" size="12.0" />
+                           </font>
+                        </Text>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="기필" GridPane.columnIndex="4">
+                           <font>
+                              <Font name="Malgun Gothic" size="12.0" />
+                           </font>
+                        </Text>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="합계" GridPane.columnIndex="6">
+                           <font>
+                              <Font name="Malgun Gothic Bold" size="12.0" />
+                           </font>
+                        </Text>
+                        <Text fx:id="majorEssential" strokeType="OUTSIDE" strokeWidth="0.0" text="0" GridPane.rowIndex="1">
+                           <font>
+                              <Font name="Malgun Gothic" size="12.0" />
+                           </font>
+                        </Text>
+                        <Text fx:id="majorSelect" strokeType="OUTSIDE" strokeWidth="0.0" text="0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                           <font>
+                              <Font name="Malgun Gothic" size="12.0" />
+                           </font>
+                        </Text>
+                        <Text fx:id="refinementEssential" strokeType="OUTSIDE" strokeWidth="0.0" text="0" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                           <font>
+                              <Font name="Malgun Gothic" size="12.0" />
+                           </font>
+                        </Text>
+                        <Text fx:id="refinementSelect" strokeType="OUTSIDE" strokeWidth="0.0" text="0" GridPane.columnIndex="3" GridPane.rowIndex="1">
+                           <font>
+                              <Font name="Malgun Gothic" size="12.0" />
+                           </font>
+                        </Text>
+                        <Text fx:id="basicEssential" strokeType="OUTSIDE" strokeWidth="0.0" text="0" GridPane.columnIndex="4" GridPane.rowIndex="1">
+                           <font>
+                              <Font name="Malgun Gothic" size="12.0" />
+                           </font>
+                        </Text>
+                        <Text fx:id="sumOfLecture" strokeType="OUTSIDE" strokeWidth="0.0" text="0" GridPane.columnIndex="6" GridPane.rowIndex="1">
+                           <font>
+                              <Font name="Malgun Gothic Bold" size="12.0" />
+                           </font>
+                        </Text>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="기타" GridPane.columnIndex="5">
+                           <font>
+                              <Font name="Malgun Gothic" size="12.0" />
+                           </font>
+                        </Text>
+                        <Text fx:id="etcPoint" strokeType="OUTSIDE" strokeWidth="0.0" text="0" GridPane.columnIndex="5" GridPane.rowIndex="1">
+                           <font>
+                              <Font name="Malgun Gothic" size="12.0" />
+                           </font>
+                        </Text>
+                     </children>
+                     <BorderPane.margin>
+                        <Insets top="10.0" />
+                     </BorderPane.margin>
+                  </GridPane>
+               </bottom>
+            </BorderPane>
+        </items>
+      </SplitPane>
+   </center>
+   <top>
+      <MenuBar BorderPane.alignment="CENTER">
+        <menus>
+          <Menu mnemonicParsing="false" text="파일">
+            <items>
+              <MenuItem mnemonicParsing="false" onAction="#handleMenubarSave" text="데이터 저장" />
+                  <MenuItem mnemonicParsing="false" onAction="#hadleMenubarDataSave" text="다른 이름으로 데이터 저장..." />
+                  <MenuItem mnemonicParsing="false" onAction="#handleMenubarDataLoad" text="데이터 불러오기 ..." />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="강의정보">
+            <items>
+              <MenuItem mnemonicParsing="false" onAction="#handleMakeLecture" text="임시 강의 채우기..." />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="정보">
+            <items>
+              <MenuItem mnemonicParsing="false" onAction="#handleUpdateLog" text="업데이트 정보..." />
+                  <MenuItem mnemonicParsing="false" onAction="#handleAbout" text="About..." />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+   </top>
+</BorderPane>
