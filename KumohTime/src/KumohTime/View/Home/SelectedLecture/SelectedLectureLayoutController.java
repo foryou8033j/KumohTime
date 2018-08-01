@@ -49,7 +49,7 @@ public class SelectedLectureLayoutController implements Initializable{
 
     @FXML
     void handleCodeCopy(ActionEvent event) {
-    	StringSelection stringSelection = new StringSelection(code.getText());
+    	StringSelection stringSelection = new StringSelection(code.getText().replaceAll("-", ""));
     	Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
     	clipboard.setContents(stringSelection, null);
     	
