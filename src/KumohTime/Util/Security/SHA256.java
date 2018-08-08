@@ -12,8 +12,9 @@ import javax.crypto.spec.SecretKeySpec;
 
 /**
  * Encrypt String using SHA256
- * @author foryo
- *
+ * @author Jeongsam Seo
+ * @since 2018-07-05
+ * 
  */
 public class SHA256 {
 

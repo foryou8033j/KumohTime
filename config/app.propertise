@@ -1,6 +1,6 @@
 #Application Propertise
-#Mon Jul 30 23:47:10 KST 2018
-NOTIFY=false
-_VERSION=0.89
-VERSION=0.89
+#Wed Aug 08 23:50:32 KST 2018
+NOTIFY=true
+_VERSION=0.92
+VERSION=0.92
 TITLE=KumohTime

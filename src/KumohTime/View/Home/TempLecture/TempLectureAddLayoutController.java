@@ -16,6 +16,12 @@ import javafx.fxml.Initializable;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 
+/**
+ * 임시 강의를 추가하는 레이아웃 컨트롤러
+ * @author Jeongsam Seo
+ * @since 2018-07-29
+ *
+ */
 public class TempLectureAddLayoutController implements Initializable{
 
     @FXML
@@ -46,17 +52,25 @@ public class TempLectureAddLayoutController implements Initializable{
 		pane.add(checkComboBox, 3, 0);
 	}
 	
+	/**
+	 * 
+	 * @return
+	 */
 	public Lecture getLectureData() {
 		
 		String time = dayOfweek.getSelectionModel().getSelectedItem();
-		for(String v:checkComboBox.getCheckModel().getCheckedItems()) {
+		
+		for(String v:checkComboBox.getCheckModel().getCheckedItems())
 			time = time.concat(v.replaceAll("교시", ""));
-		}
 		
 		return new Lecture(name.getText(), "강의-임시", professor.getText(), time.concat("/"+room.getText()), Color.CORAL);
 		
 	}
 	
+	/**
+	 * 임시로 추가한 목록이 시간표에 삽입 가능한지 검사한다.
+	 * @return 삽입 가능 여부
+	 */
 	public boolean isGetAble() {
 		
 		if(name.getText().length() < 1)

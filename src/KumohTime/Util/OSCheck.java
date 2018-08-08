@@ -1,5 +1,10 @@
 package KumohTime.Util;
 
+/**
+ * 현재 사용자의 OS 환경을 검사한다.
+ * @author Jeongsam Seo
+ * @since 2018-08-01
+ */
 public class OSCheck {
 
 	private static String OS = System.getProperty("os.name").toLowerCase();

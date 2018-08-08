@@ -7,16 +7,20 @@ import KumohTime.Model.Properties.AppPropertise;
 import KumohTime.Model.Properties.ResourcePropertise;
 import KumohTime.Model.TimeTable.SaveData.SaveDataController;
 
+/**
+ * Application 의 동적 데이터를 관리한다.
+ * @author Jeongsam Seo
+ * @since 2018.07-28
+ *
+ */
 public class AppData {
 
+	//Properties 등 Data Path
 	final public static String propertisePath = "config/";
 	final public static String dataPath = "data/";
 	final public static String databasePath= "kumohtime.db";
 	final public static String saveFilePath= dataPath + "savefile.dat";
 	final public static String clientPath = "KumohTime.jar";
-	
-	public static int runningThread = 0;
-	public static int totalThread = 0;
 	
 	private float appVersion;
 	private float serverVersion;
