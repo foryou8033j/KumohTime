@@ -21,7 +21,7 @@ public class DBPropertise {
 
 	public static String host = "kit-share.com";
 	private String id = "kumohtime";
-	private String password = "1k5rmf\\ht1a";
+	private String password = "agM+o+A7zSZDTtsQncSIGw\\=\\=";
 	private String db = "KumohTime";
 
 	public String getHost() {
