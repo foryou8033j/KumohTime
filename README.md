@@ -1,0 +1,16 @@
+# KumohTime
+
+<!--[![Build Status](https://github.com/foryou8033j/KumohTime?branch=master)](https://github.com/foryou8033j/KumohTime)-->
+
+금오공대생의 시간표 작성에 도움을 주기위한 시간표 작성 도우미 KumohTime 입니다
+
+<center>
+<img width="100%" src="./KumohTime/img/home.png"></img>
+</center>
+
+## Installation <hr>
+설치 가능한 Installer 버전은 [금오공대생을 위한 커뮤니티 kit-share](http://kit-share.com) 에서 내려 받을 수 있습니다.  
+현재 `Windows 버전`과 `Mac OS X` 버전이 제공되고 있으며, 두 버전 모두 인증서 삽입이 되어 있지 않아 보안경고가 발생 할 수 있습니다.
+
+## To do  <hr>
+1. 시간표 자동 생성 기능
