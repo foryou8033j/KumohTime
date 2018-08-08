@@ -4,7 +4,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-import KumohTime.Model.Properties.DBPropertise;
+import KumohTime.Model.Properties.DBProperties;
 import KumohTime.Util.Dialog.ExceptionDialog;
 import javafx.application.Platform;
 import javafx.scene.control.Alert.AlertType;
@@ -18,7 +18,7 @@ import javafx.scene.control.Alert.AlertType;
 public class DBHeader {
 
 	//DB Propertise
-	private DBPropertise dbPropertise = new DBPropertise();
+	private DBProperties dbPropertise = new DBProperties();
 	
 	private String url = "jdbc:mysql://"+ dbPropertise.getHost() +":3306/"+ dbPropertise.getDB() +"?serverTimezone=UTC";
 	private Connection conn;

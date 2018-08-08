@@ -21,7 +21,7 @@ import javafx.scene.control.Alert.AlertType;
  * @since 2018-07-28
  *
  */
-public class DBPropertise {
+public class DBProperties {
 
 	final private String resourcePath = AppData.propertisePath + "db.propertise";
 
@@ -48,7 +48,7 @@ public class DBPropertise {
 		return db;
 	}
 
-	public DBPropertise() {
+	public DBProperties() {
 		properties = new Properties();
 
 		File file = new File(resourcePath);

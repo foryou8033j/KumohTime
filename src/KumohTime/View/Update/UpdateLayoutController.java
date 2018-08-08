@@ -15,8 +15,8 @@ import com.jfoenix.controls.JFXTextArea;
 import KumohTime.MainApp;
 import KumohTime.Model.AppData;
 import KumohTime.Model.DataBase.DataBase;
-import KumohTime.Model.Properties.AppPropertise;
-import KumohTime.Model.Properties.ResourcePropertise;
+import KumohTime.Model.Properties.AppProperties;
+import KumohTime.Model.Properties.ResourceProperties;
 import KumohTime.Util.OSCheck;
 import javafx.application.Platform;
 import javafx.beans.property.DoubleProperty;
@@ -50,7 +50,7 @@ public class UpdateLayoutController {
 	 */
 	private void initClientUpdate() {
 
-		float clientVersion = new AppPropertise().getVersion();
+		float clientVersion = new AppProperties().getVersion();
 		float serverVersion = appData.getServerVersion();
 
 		log.appendText("업데이트 정보를 확인 중 입니다.\r\n");
@@ -103,7 +103,7 @@ public class UpdateLayoutController {
 				log.appendText("\r\nDB 업데이트 확인 중...\r\n");
 
 				updateProgress(-1, 100);
-				float clientVersion = new ResourcePropertise().getVersion();
+				float clientVersion = new ResourceProperties().getVersion();
 				serverVersion = new DataBase().loadDataBaseVersion();
 
 				if (serverVersion > clientVersion) {
@@ -137,7 +137,7 @@ public class UpdateLayoutController {
 					fis.close();
 					bis.close();
 
-					new ResourcePropertise().savePropertise(serverVersion);
+					new ResourceProperties().savePropertise(serverVersion);
 
 				}
 				return null;

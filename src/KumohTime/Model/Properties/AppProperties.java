@@ -16,17 +16,23 @@ import javafx.scene.control.Alert.AlertType;
  * @author Jeongsam Seo
  *
  */
-public class AppPropertise {
+public class AppProperties {
 
 	final private String resourcePath = AppData.propertisePath + "app.propertise";
 
 	private Properties properties;
 
-	final public float BIND_VERSION = 0.92f;
+	//배포 버전의 버전관리
+	final public float BIND_VERSION = 0.93f;
 
+	//Application Title
 	private String title = "KumohTime";
-	private float version = BIND_VERSION;
-	private float _version = 0;
+	
+	//아래 두개 변수는 개발도중 업데이트 버전 관리 착오로 생겨났습니다, 두개 변수를 수정 할 경우 0.92 버전 이전 사용자가 업데이트를 수행 할 수 없습니다.
+	private float version = BIND_VERSION;	//0.92 이전의 버전 컨트롤 변수 (Portable 전용)
+	private float _version = 0;				//0.92 이후의 버전 컨트롤 변수 (Installer 전용)
+	
+	@Deprecated
 	private boolean isNotified = false;
 
 	public String getTitle() {
@@ -41,15 +47,17 @@ public class AppPropertise {
 		return String.valueOf(version);
 	}
 
+	@Deprecated
 	public void setNotify(boolean set) {
 		isNotified = set;
 	}
 
+	@Deprecated
 	public boolean isNotify() {
 		return isNotified;
 	}
 
-	public AppPropertise() {
+	public AppProperties() {
 		properties = new Properties();
 
 		File file = new File(resourcePath);
@@ -61,7 +69,6 @@ public class AppPropertise {
 			version = BIND_VERSION;
 			savePropertise();
 		}
-		
 	}
 
 	public void loadPropertise() {
