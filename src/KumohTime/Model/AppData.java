@@ -1,10 +1,7 @@
 package KumohTime.Model;
 
-import java.util.LinkedList;
-import java.util.List;
-
-import KumohTime.Model.Properties.AppPropertise;
-import KumohTime.Model.Properties.ResourcePropertise;
+import KumohTime.Model.Properties.AppProperties;
+import KumohTime.Model.Properties.ResourceProperties;
 import KumohTime.Model.TimeTable.SaveData.SaveDataController;
 
 /**
@@ -22,26 +19,27 @@ public class AppData {
 	final public static String saveFilePath= dataPath + "savefile.dat";
 	final public static String clientPath = "KumohTime.jar";
 	
-	private float appVersion;
-	private float serverVersion;
-	private String serverPath;
+	private float appVersion;		//Application Version
+	private float serverVersion;	//Server Application Version (Recently)
+	private String serverPath;		//Server Data Path
 	
-	private TimeTableData timeTableData;
+	private TimeTableData timeTableData;	//TimeTable Data Collection
 	
-	private AppPropertise appPropertise;
-	private SaveDataController saveDataController;
-	private ResourcePropertise resourcesPropertise;
+	private AppProperties appProperties;	//Application Properties
+	private ResourceProperties resourcesProperties;	//Local Database Properties
+	
+	private SaveDataController saveDataController;	//Save Data File Controller
 	
 	public AppData(AppData appData) {
 		
-		appPropertise = new AppPropertise();
+		appProperties = new AppProperties();
 		this.appVersion = getAppPropertise().getVersion();
 		this.serverVersion = appData.getServerVersion();
 		this.serverPath = appData.getServerPath();
 		
 		timeTableData = new TimeTableData();
 		saveDataController = new SaveDataController();
-		resourcesPropertise = new ResourcePropertise();
+		resourcesProperties = new ResourceProperties();
 	}
 
 	public AppData(float serverVersion, String serverPath) {
@@ -57,8 +55,8 @@ public class AppData {
 		return serverVersion;
 	}
 	
-	public AppPropertise getAppPropertise() {
-		return appPropertise;
+	public AppProperties getAppPropertise() {
+		return appProperties;
 	}
 	
 	public TimeTableData getTimeTableData() {
@@ -69,8 +67,8 @@ public class AppData {
 		return saveDataController;
 	}
 	
-	public ResourcePropertise getResourcePropertise() {
-		return resourcesPropertise;
+	public ResourceProperties getResourcePropertise() {
+		return resourcesProperties;
 	}
 	
 	

@@ -11,21 +11,28 @@ import KumohTime.Util.OrderingByKoreanEnglishNumbuerSpecial;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
+/**
+ * 강의 정보를 전체적으로 관리한다.
+ * @author Jeongsam Seo
+ *
+ */
 public class TimeTableData {
 
-	private ObservableList<Lecture> listLecture = FXCollections.observableArrayList();
-	private ObservableList<Lecture> filteredLecture = FXCollections.observableArrayList();
-	private ObservableList<Lecture> selectedLecture = FXCollections.observableArrayList();
+	private ObservableList<Lecture> listLecture = FXCollections.observableArrayList();		//전체 리스트
+	private ObservableList<Lecture> filteredLecture = FXCollections.observableArrayList();	//필터링된 리스트(실제 시각화되어지는 대상 리스트)
+	private ObservableList<Lecture> selectedLecture = FXCollections.observableArrayList();	//선택된 리스트
 
-	private ObservableList<String> filterQuater = FXCollections.observableArrayList();
-	private ObservableList<String> filterMajor = FXCollections.observableArrayList();
-	private ObservableList<String> filterType = FXCollections.observableArrayList();
-	private ObservableList<String> filterEssential = FXCollections.observableArrayList();
-	private ObservableList<String> filterGrade = FXCollections.observableArrayList();
+	private ObservableList<String> filterQuater = FXCollections.observableArrayList();		//필터링 옵션 (학기)
+	private ObservableList<String> filterMajor = FXCollections.observableArrayList();		//필터링 옵션 (전공)
+	private ObservableList<String> filterType = FXCollections.observableArrayList();		//필터링 옵션 (구분)
+	private ObservableList<String> filterEssential = FXCollections.observableArrayList();	//필터링 옵션 (필수여부)
+	private ObservableList<String> filterGrade = FXCollections.observableArrayList();		//필터링 옵션 (학년)
 
 	public TimeTableData() {
 
-		listLecture = new SQLite().loadDataFromFile();
+		//listLecture = new DataBase().loadLectureList();	// Load DataBase From Server
+		listLecture = new SQLite().loadDataFromFile();		// Load DataBase From Local DB (SQLite)
+		
 		filteredLecture.setAll(listLecture);
 
 		filterQuater.add("전체");
