@@ -4,6 +4,7 @@ import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
 
+import KumohTime.Model.TimeTable.Lecture;
 import javafx.scene.paint.Color;
 
 @XmlRootElement(name = "lecture")
@@ -37,6 +38,20 @@ public class SaveData {
 		this.red = red;
 		this.green = green;
 		this.blue = blue;
+	}
+	
+	public SaveData(Lecture lecture) {
+		super();
+		this.temp = lecture.isTemp.get();
+		this.year = lecture.getYear().get();
+		this.quater = lecture.getQuarter().get();
+		this.name = lecture.getName().get();
+		this.professor = lecture.getProfessor().get();
+		this.code = lecture.getCode().get();
+		this.time = lecture.getTime().get();
+		this.red = lecture.getColor().getRed();
+		this.green = lecture.getColor().getGreen();
+		this.blue = lecture.getColor().getBlue();
 	}
 
 	public boolean isTemp() {
