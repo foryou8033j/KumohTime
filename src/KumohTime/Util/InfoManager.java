@@ -13,6 +13,10 @@ import javafx.stage.Popup;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 
+/**
+ * @deprecated
+ * @author Jeongsam Seo
+ */
 public class InfoManager {
 	
 

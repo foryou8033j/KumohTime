@@ -11,6 +11,11 @@ import KumohTime.Model.AppData;
 import KumohTime.Util.Dialog.ExceptionDialog;
 import javafx.scene.control.Alert.AlertType;
 
+/**
+ * Application 의 고정 정보를 관리한다.
+ * @author Jeongsam Seo
+ *
+ */
 public class AppPropertise {
 
 	final private String resourcePath = AppData.propertisePath + "app.propertise";

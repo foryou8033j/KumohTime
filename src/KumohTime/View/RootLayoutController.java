@@ -13,6 +13,13 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 
+/**
+ * 가장 기본 바닥이 되는 레이아웃, AlertLayout의 경우 StackPane 에 보여지므로
+ * RootLayout은 StackPane으로 정의
+ * @author Jeongsam Seo
+ * @since 2018-07-28
+ *
+ */
 public class RootLayoutController {
 
 	@FXML

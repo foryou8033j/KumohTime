@@ -9,9 +9,12 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
+/**
+ * 수강신청 모드 Stage
+ * @author Jeongsam Seo
+ *
+ */
 public class SugangModeDialog extends Stage {
-	
-	private MainApp mainApp;
 	
 	public SugangModeDialog(MainApp mainApp, JFXToggleButton toggleButton) {
 		
@@ -38,6 +41,7 @@ public class SugangModeDialog extends Stage {
 			e.printStackTrace();
 		}
 		
+		//Application 의 좌측 하단에 보여지게 한다.
 		setOnShown( e-> {
 			double x = mainApp.getPrimaryStage().getX();
 			double y = mainApp.getPrimaryStage().getY() + mainApp.getPrimaryStage().getHeight() - getHeight();

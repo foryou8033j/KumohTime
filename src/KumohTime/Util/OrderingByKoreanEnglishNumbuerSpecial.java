@@ -3,7 +3,9 @@ package KumohTime.Util;
 import java.util.Comparator;
 
 /**
- * 한글 > 영어 > 숫자 > 특수문자 순서 정렬 객체
+ * 한글 > 영어 > 숫자 > 특수문자 순서 정렬 한다.
+ * @author reimaginer.tistory.com, Reimaginer
+ * 
  */
 public class OrderingByKoreanEnglishNumbuerSpecial {
 	private static final int REVERSE = -1;

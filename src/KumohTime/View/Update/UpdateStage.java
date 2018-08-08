@@ -11,6 +11,12 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
+/**
+ * 업데이트 상황을 보여주는 Stage
+ * @author Jeongsam Seo
+ * @since 2018-08-01
+ *
+ */
 public class UpdateStage extends Stage {
 	
 	public UpdateStage(MainApp mainApp) {
@@ -21,8 +27,6 @@ public class UpdateStage extends Stage {
 		try {
 
 			alert.setTitle("KumohTime");
-			// alert.initStyle(StageStyle.UTILITY);
-			// alert.initModality(Modality.WINDOW_MODAL);
 			alert.show();
 
 			getIcons().add(new Image("icon.jpg"));
@@ -36,10 +40,9 @@ public class UpdateStage extends Stage {
 			Scene scene = new Scene(pane);
 			setScene(scene);
 
-			showAndWait();
+			showAndWait();	//업데이트가 이루어지는동안 전체 동작 제어
 			alert.close();
 			
-
 		} catch (Exception e) {
 			alert.close();
 			e.printStackTrace();

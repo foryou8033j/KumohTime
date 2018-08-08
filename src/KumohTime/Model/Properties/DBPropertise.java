@@ -13,6 +13,14 @@ import KumohTime.Util.Dialog.ExceptionDialog;
 import KumohTime.Util.Security.SHA256;
 import javafx.scene.control.Alert.AlertType;
 
+/**
+ * DataBase 의 접속 정보를 관리한다.
+ * 원본소스에는 Password의 원문이 저장됩니다, 암호화된 db.properties 를 제외하고는 패스워드를 저장하지 않습니다.
+ * 
+ * @author Jeongsam Seo
+ * @since 2018-07-28
+ *
+ */
 public class DBPropertise {
 
 	final private String resourcePath = AppData.propertisePath + "db.propertise";
@@ -21,7 +29,7 @@ public class DBPropertise {
 
 	public static String host = "kit-share.com";
 	private String id = "kumohtime";
-	private String password = "agM+o+A7zSZDTtsQncSIGw\\=\\=";
+	private String password = "";	// 정식 배포 이전에는 password를 원문으로 저장하지 않습니다.
 	private String db = "KumohTime";
 
 	public String getHost() {
