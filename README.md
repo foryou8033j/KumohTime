@@ -4,7 +4,7 @@
 
 금오공대생의 시간표 작성에 도움을 주기위한 시간표 작성 도우미 KumohTime 입니다
 
-![Kumoh Time](./KumohTime/img/home.png)
+![Kumoh Time](/KumohTime/img/home.PNG)
 
 ## Installation <hr>
 설치 가능한 Installer 버전은 [금오공대생을 위한 커뮤니티 kit-share](http://kit-share.com) 에서 내려 받을 수 있습니다.  
