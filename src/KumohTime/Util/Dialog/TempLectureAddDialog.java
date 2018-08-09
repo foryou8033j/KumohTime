@@ -1,9 +1,6 @@
 package KumohTime.Util.Dialog;
 
-import java.time.chrono.IsoChronology;
 import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXButton.ButtonType;
@@ -28,9 +25,9 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 
 /**
- * 간단한 오류 메세지를 보여주는 Dialog이다.
+ * 임시 강의 정보 추가 Dialog
  * 
- * @author Jeongsam
+ * @author Jeongsam Seo
  * @since 2018-07-05
  */
 public class TempLectureAddDialog {

@@ -238,6 +238,7 @@ public class UpdateLayoutController {
 	 * @param file   다운로드 파일명
 	 * @throws IOException
 	 */
+	@Deprecated
 	private static void downloadUsingStream(String urlStr, String file) throws IOException {
 		URL url = new URL(urlStr);
 		BufferedInputStream bis = new BufferedInputStream(url.openStream());
@@ -260,6 +261,7 @@ public class UpdateLayoutController {
 	 * @param file   다운로드 파일명
 	 * @throws IOException
 	 */
+	@Deprecated
 	private static void downloadUsingNIO(String urlStr, String file) throws IOException {
 		URL url = new URL(urlStr);
 		ReadableByteChannel rbc = Channels.newChannel(url.openStream());

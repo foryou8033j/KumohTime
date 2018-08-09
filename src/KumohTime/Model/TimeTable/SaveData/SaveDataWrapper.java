@@ -8,6 +8,12 @@ import javax.xml.bind.annotation.XmlRootElement;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
+/**
+ * 저장 데이터를 감싸는 Wrapper 클래스
+ * @author Jeongsam Seo
+ * @since 2018-08-01
+ *
+ */
 @XmlRootElement(name = "LectureList")
 @XmlAccessorType (XmlAccessType.FIELD)
 public class SaveDataWrapper {

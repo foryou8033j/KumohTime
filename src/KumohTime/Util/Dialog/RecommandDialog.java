@@ -14,6 +14,7 @@ import com.jfoenix.controls.JFXDialog;
 import com.jfoenix.controls.JFXDialogLayout;
 
 import KumohTime.MainApp;
+import KumohTime.Util.Browser;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -23,8 +24,8 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 
 /**
- * 간단한 오류 메세지를 보여주는 Dialog이다.
- * @author Jeongsam
+ * 종료 전 kit-share 접속을 권장하는 Dialog
+ * @author Jeongsam Seo
  * @since 2018-07-05
  */
 public class RecommandDialog{
@@ -59,15 +60,7 @@ public class RecommandDialog{
 	        public void handle(ActionEvent event) {
 	        	
 	        	Platform.runLater(() -> {
-	        		try {
-						Desktop.getDesktop().browse(new URI("https://kit-share.com/"));
-					} catch (IOException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					} catch (URISyntaxException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
+	        		Browser.open("https://kit-share.com/");
 		        	
 		        	dialog.close();
 		            System.exit(0);	

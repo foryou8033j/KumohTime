@@ -18,6 +18,11 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.paint.Color;
 
+/**
+ * 강의 정보 객체
+ * @author Jeongsam Seo
+ * @since 2018-07-28
+ */
 public class Lecture extends RecursiveTreeObject<Lecture> {
 
 	public BooleanProperty isSelectAble = new SimpleBooleanProperty(true);
@@ -43,6 +48,7 @@ public class Lecture extends RecursiveTreeObject<Lecture> {
 	private ObservableList<LectureTime> convertedTime = FXCollections.observableArrayList();
 	private ObjectProperty<Color> color = new SimpleObjectProperty<Color>(Color.LIGHTGRAY);
 	
+	//파스텔톤 색상 저장
     Color[] pastell = {
     		Color.rgb(237, 223, 185),
     		Color.rgb(237, 199, 121),
@@ -101,8 +107,7 @@ public class Lecture extends RecursiveTreeObject<Lecture> {
 	
 	
 
-	public Lecture(String name, String code, String professor, String time,
-			Color color) {
+	public Lecture(String name, String code, String professor, String time, Color color) {
 		super();
 		
 		setColor(pastell[new Random().nextInt(pastell.length)]);
@@ -121,30 +126,41 @@ public class Lecture extends RecursiveTreeObject<Lecture> {
 		stringToTime(time);
 	}
 	
+	/**
+	 * 원본데이터에서 주어지는 시간정보를 강의시간정보로 변환한다.
+	 * 목BC -> 객체화(LectureTime)
+	 * 이 메소드는 수정이 필요합니다
+	 * @param time
+	 */
 	private void stringToTime(String time) {
+		
+		
+		//강의시간을 각각 분리한다. 화67/D321,금6/D231 -> 화67/D321 금6/D231
 		if (time != null && time.contains(",")) {
 			StringTokenizer token = new StringTokenizer(time, ",");
 			
 			String rt = "";
 			
+			//강의시간이 2개로만 구분되는것이 아닐수도 있다
 			while (token.hasMoreTokens()) {
 				try {
 					rt = "";
 					rt = token.nextToken();
-					String t = rt.substring(0, rt.indexOf("/"));
-					String rm = rt.substring(rt.indexOf("/")+1, rt.length());
+					String t = rt.substring(0, rt.indexOf("/"));				//강의시간정보
+					String rm = rt.substring(rt.indexOf("/")+1, rt.length());	//강의실정보
 					
-					convertedTime.add(new LectureTime(t, rm));
+					convertedTime.add(new LectureTime(t, rm));	//시간 정보 저장
 					
 				}catch (Exception e) {
 					System.out.println("오류 : "+ rt + "\n"+toString());
 					e.printStackTrace();
 				}
 			}
+			
 		}else if(time != null) {
 			
-			String t = time.substring(0, time.indexOf("/"));
-			String rm = time.substring(time.indexOf("/")+1, time.length());
+			String t = time.substring(0, time.indexOf("/"));				//강의시간정보
+			String rm = time.substring(time.indexOf("/")+1, time.length());	//강의실정보
 			
 			for(int i=0; i<t.length(); i++) {
 				
@@ -152,11 +168,17 @@ public class Lecture extends RecursiveTreeObject<Lecture> {
 				String tm = "";
 				String tmp = t.copyValueOf(t.toCharArray());
 				
+				/*
+				 * 1개 요일 1개의 시간 정보를 저장한다.
+				 * 예 ) 월화목금678 과 같이 저장되어있는경우 요일정보를 분리하여 그 갯수만큼 월678 화678 목678 금 678의 시간 객체를 생성한다.
+				 * 요일정보를 하나 분리
+				 */
 				if(ch=='월' || ch=='화' || ch=='수' || ch=='목' || ch=='금' || ch=='토' || ch=='일')
 					tm += ch;
 				else
 					continue;
 				
+				// 남아있는 요일정보를 제거
 				tmp = tmp.replaceAll("월", "");
 				tmp = tmp.replaceAll("화", "");
 				tmp = tmp.replaceAll("수", "");
@@ -166,7 +188,7 @@ public class Lecture extends RecursiveTreeObject<Lecture> {
 				tmp = tmp.replaceAll("일", "");
 				
 				tm += tmp;
-				convertedTime.add(new LectureTime(tm, rm));
+				convertedTime.add(new LectureTime(t, rm));
 			}
 			
 			
@@ -235,6 +257,17 @@ public class Lecture extends RecursiveTreeObject<Lecture> {
 		return lecPackage;
 	}
 
+	/**
+	 * 필터링 옵션에 부합하는지 검사
+	 * @param quater	학기
+	 * @param grade		학년
+	 * @param essential	필수여부
+	 * @param type		구분
+	 * @param major		전공
+	 * @param code		코드
+	 * @param name		강의명
+	 * @return	부함여부
+	 */
 	public boolean isFilter(String quater, String grade, String essential, String type, String major, String code,
 			String name) {
 

@@ -12,8 +12,8 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 
 /**
- * 간단한 오류 메세지를 보여주는 Dialog이다.
- * @author Jeongsam
+ * 간단한  메세지를 보여주는 Dialog이다.
+ * @author Jeongsam Seo
  * @since 2018-07-05
  */
 public class AlertDialog{

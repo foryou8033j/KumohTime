@@ -17,9 +17,9 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 
 /**
- * 간단한 오류 메세지를 보여주는 Dialog이다.
+ * 개발자에게 메세지를 전송하는 Dialog
  * 
- * @author Jeongsam
+ * @author Jeongsam Seo
  * @since 2018-07-05
  */
 public class BugReportDialog {

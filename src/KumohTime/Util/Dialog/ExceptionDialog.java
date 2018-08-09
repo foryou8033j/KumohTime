@@ -9,7 +9,7 @@ import javafx.scene.layout.Priority;
 /**
  * 예외 처리 내용을 Dialog에 띄워준다.
  * 
- * @author Jeongsam
+ * @author Jeongsam Seo
  * @since 2015. 12. 24
  */
 public class ExceptionDialog extends Alert {

@@ -12,26 +12,37 @@ import KumohTime.Model.AppData;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
+/**
+ * 선택 강의 목록 저장을 위한 Controller
+ * @author Jeongsam Seo
+ * @since 2018-08-01
+ */
 public class SaveDataController {
 
 	private File file;
 	private ObservableList<SaveData> saveDatas = FXCollections.observableArrayList();
 
+	/**
+	 * 현 객체를 초기화하며 이미 존재하는 데이터가 있을경우 불러온다.
+	 */
 	public SaveDataController() {
 		
+		// 0.92 버전 이상 Installer 대응, 기존에 Portable 버전이용자의 데이터의 존재 유무를 확인한다.
 		File oldFile = new File(System.getenv("APPDATA") + "/kumohtime/data/savefile.dat");
 		file = new File(AppData.saveFilePath);
 		
+		// 이전 데이터가 존재 할 경우
 		if(oldFile.exists()) {
 			try {
 				file.delete();
-				Files.copy(oldFile.toPath(), file.toPath());
+				Files.copy(oldFile.toPath(), file.toPath());	//파일을 복사 해 온다.
 				oldFile.delete();
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
 		}
 		
+		// 저장된 수강목록 불러오기
 		if(!isExists()) {
 			saveData();
 		}
@@ -52,13 +63,12 @@ public class SaveDataController {
 			
 			JAXBContext context = JAXBContext.newInstance(SaveDataWrapper.class);
 			Unmarshaller um = context.createUnmarshaller();
-
-			// 파일로부터 XML을 읽은 다음 역 마샬링한다.
+			
 			SaveDataWrapper wrapper = (SaveDataWrapper) um.unmarshal(file);
 
 			saveDatas.setAll(wrapper.getDatas());
 
-		} catch (Exception e) { // 예외를 잡는다
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
@@ -69,14 +79,12 @@ public class SaveDataController {
 			Marshaller m = context.createMarshaller();
 			m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
 
-			// 연락처 데이터를 감싼다.
 			SaveDataWrapper wrapper = new SaveDataWrapper();
 			wrapper.setDatas(saveDatas);
 
-			// 마샬링 후 XML을 파일에 저장한다.
 			m.marshal(wrapper, file);
 
-		} catch (Exception e) { // 예외를 잡는다.
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}

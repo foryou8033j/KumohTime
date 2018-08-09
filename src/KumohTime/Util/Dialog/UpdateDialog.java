@@ -12,6 +12,7 @@ import com.jfoenix.controls.JFXTextArea;
 
 import KumohTime.MainApp;
 import KumohTime.Model.DataBase.DataBase;
+import KumohTime.Util.Browser;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.text.Font;
@@ -19,13 +20,24 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 
 /**
- * 간단한 오류 메세지를 보여주는 Dialog이다.
+ * 업데이트가 존재 할 경우 보여지는 Dialog이다
+ * 사용자 브라우저를 보여주고 신규버전을 내려받도록 유도한다.
  * 
- * @author Jeongsam
+ * @author Jeongsam Seo
  * @since 2018-07-05
+ * @deprecated 0.2 버전 이후 자동업데이트 기능을 추가하여 사용하지 않음
  */
+@Deprecated
 public class UpdateDialog {
 
+	/**
+	 * 0.2 버전 이후 자동업데이트 기능을 추가하여 사용하지 않음
+	 * @param mainApp	MainApp
+	 * @param title		Dialog Title
+	 * @param message	Dialog Message
+	 * @param okMessage	Dialog Action Button
+	 */
+	@Deprecated
 	public UpdateDialog(MainApp mainApp, String title, String message, String okMessage) {
 
 
@@ -51,14 +63,7 @@ public class UpdateDialog {
 		});
 		
 		dialog.setOnDialogClosed(event -> {
-			try {
-				Desktop.getDesktop().browse(new URI(mainApp.getAppData().getServerPath() + mainApp.getAppData().getServerVersion() + "/KumohTime.exe"));
-				System.exit(0);
-			} catch (IOException e) {
-				e.printStackTrace();
-			} catch (URISyntaxException e) {
-				e.printStackTrace();
-			}
+			Browser.open(mainApp.getAppData().getServerPath() + mainApp.getAppData().getServerVersion() + "/KumohTime.exe");
 		});
 		
 		content.setActions(button);

@@ -7,6 +7,12 @@ import javax.xml.bind.annotation.XmlRootElement;
 import KumohTime.Model.TimeTable.Lecture;
 import javafx.scene.paint.Color;
 
+
+/**
+ * 선택 강의 목록 저장을 위한 클래스
+ * @author Jeongsam Seo
+ * @since 2018-08-01
+ */
 @XmlRootElement(name = "lecture")
 @XmlAccessorType(XmlAccessType.FIELD)
 public class SaveData {
@@ -18,7 +24,7 @@ public class SaveData {
 	private final String professor;
 	private final String code;
 	private final String time;
-	private double red;
+	private double red;		//색상 정보를 ObjectProperty Type 으로 저장해도되나 Adapter 만들어주기 귀차늠
 	private double green;
 	private double blue;
 
