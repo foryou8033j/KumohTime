@@ -57,6 +57,11 @@ import javafx.scene.text.TextAlignment;
 import javafx.stage.FileChooser;
 import javafx.util.Callback;
 
+/**
+ * Home Layout Controller
+ * @author Jeongsam Seo
+ * @since 2018-07-28
+ */
 public class HomeLayoutController implements Initializable {
 
 	@FXML
@@ -158,25 +163,17 @@ public class HomeLayoutController implements Initializable {
     @FXML
     private BorderPane capturePane;
 
+    // 선택된 강의목록을 보여주기위한 GridPane ObservableList
 	private ObservableList<GridPane> selectedLayoutList = FXCollections.observableArrayList();
-	private ObservableList<SelectedLectureLayoutController> selectedLayoutControllerList = FXCollections
-			.observableArrayList();
+	private ObservableList<SelectedLectureLayoutController> selectedLayoutControllerList = FXCollections.observableArrayList(); //선택 된 강의 목록 Controller
 
 	private ObservableList<VBox> showedNode = FXCollections.observableArrayList();
-
-	private boolean isMakeLectureNofitied = false;
 	
-	private SugangModeDialog sugangModeDialog = null;
+	private SugangModeDialog sugangModeDialog = null;	// 수강신청 모드 Dailog
 	
     @FXML
     void handleMakeLecture(ActionEvent event) {
-
-    	//if(!isMakeLectureNofitied) {
-    	//	new AlertDialog(mainApp, "알림", "여기서 추가되는 데이터를 임시로만 동작합니다.", "확인");
-    	//	isMakeLectureNofitied = true;
-    	//}
-    	
-    	TempLectureAddDialog dialog = new TempLectureAddDialog(mainApp);
+    	new TempLectureAddDialog(mainApp);
     }
 
     @FXML
@@ -231,7 +228,7 @@ public class HomeLayoutController implements Initializable {
 
 	@FXML
 	void handleAutomaticCreateTimeTable(ActionEvent event) {
-
+		
 	}
 
 	@FXML
