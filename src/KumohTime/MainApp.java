@@ -189,12 +189,6 @@ public class MainApp extends Application {
 	 */
 	public void showUpdateLog() {
 
-		new AlertDialog(mainApp,
-				mainApp.getAppData().getAppPropertise().getVersionString() + " 버전 업데이트 ! (2018.07.30) 2/2",
-				"" + "KumohTime 써 주셔서 너무 너무 감사한데 댓글도 안달아주시고\n" + "kit-share 놀러도 안오시고" + "너무 씐나서 공중제비 겁나게 돌고 있어요\n"
-						+ "다음 학기, 내년, 후년에도 운영이 될 수 있도록 도와주세요!",
-				"확인");
-
 		/*
 		 * new AlertDialog(mainApp,
 		 * mainApp.getAppData().getAppPropertise().getVersionString() +
@@ -206,15 +200,14 @@ public class MainApp extends Application {
 		 */
 
 		new AlertDialog(mainApp,
-				mainApp.getAppData().getAppPropertise().getVersionString() + " 버전 업데이트 ! (2018.07.30) 1/2",
-				"" + "1. 수강꾸러미 대비 수강꾸러미 모드 추가\n" + "   * 의미가 없어 보이긴하는데 편하게 써주세요..\n\n" + "2. 계절학기 대응 시간표 로직 수정\n"
-						+ "   * 겨울계절을 기약하며.. ㅂㄷ\n\n" + "3. 상단 메뉴바를 통해 기존 강의 목록에 없는 시간을 추가 할 수 있습니다\n"
-						+ "   * 근로나 밥타임같은 시간을 추가해서 활용 해 보세요!\n\n"
-						+ "4. 시간표 기본색상을 어두컴컴 회색에서 쁘띠빤짞 파스텔톤이 기본으로 들어가게 변경했습니다!\n\n" + "5. 여름계절학기 수강목록을 추가했습니다\n"
-						+ "   * 의미없는거압니드아\n\n" + "5. 메세지 박스의 버튼 크기를 좀 큼직큼직하게 바꿧어요\n\n" + "5. 일부 버그를 수정했습니다.\n"
-						+ "   * 파일을 제대로 불러오지 못하는 오류를 수정 했습니다 x3\n" + "   * 일부 시간이 겹쳐지는 문제를 수정했습니다.\n"
-						+ "   * 강의시간이 없는 과목은 색상지정이 불가능하도록 변경했습니다\n" + "   * 수강코드 복사 시 '-' 가 복사되지 않도록 수정하였습니다.\n\n"
-						+ "6. 기존에 배포되던 Protable 버전에 대한 지원이 중지되었습니다...",
+				mainApp.getAppData().getAppPropertise().getVersionString() + " 버전 업데이트 ! (2018.08.14)",
+				"" 
+				+ "1. 수강 신청은 잘 하셨나요! 고생하셨어요 :D\n\n"
+				+ "2. 수강신청모드에서 나가는 방법을 수정하였습니다.\n"
+				+ "   * 기존의 방법이 직관적이지 못하다는 의견이 있어서 나가기 버튼을 추가하였습니다\n\n" 
+				+ "3. 기존에 배포되던 Protable 버전에 대한 지원이 중지되었습니다...\n\n"
+				+ "4. KumohTime 의 소스코드를 공개하였습니다.\n"
+				+ "   * 관심있으신분은 kit-share 에서 확인 가능합니다.",
 				"확인");
 	}
 

@@ -18,10 +18,15 @@ import KumohTime.Util.Browser;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.geometry.Pos;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
+import javafx.scene.text.TextAlignment;
 
 /**
  * 종료 전 kit-share 접속을 권장하는 Dialog
@@ -37,17 +42,29 @@ public class RecommandDialog{
 	public RecommandDialog(MainApp mainApp) {
 		
 		JFXDialogLayout content = new JFXDialogLayout();
-		Text text = new Text("정말 종료하시겠습니까?");
-		text.setFont(Font.font("malgun gothic", FontWeight.BOLD, 18));
-	    content.setHeading(text);
+		
+		Text title = new Text("정말 종료하시겠습니까?");
+		title.setFont(Font.font("malgun gothic", FontWeight.BOLD, 18));
+	    content.setHeading(title);
 	    
-	    String message = "종료 하시기 전에 kit-share 한번 방문 해 보시는거 어떠세요?";
-	    
-	    Text textMessage = new Text(message);
+	    /*
+	    Text textMessage = new Text("종료 하시기 전에 kit-share 한번 방문 해 보시는거 어떠세요?");
 	    textMessage.setFont(Font.font("malgun gothic", FontWeight.NORMAL, 14));
-	    content.setHeading(text);
-	    
 	    content.setBody(textMessage);
+	    */
+	    
+	    /*** 0.93 이벤트 응모 이벤트 패치 반영  ********/
+	    ImageView imageView = new ImageView(new Image("https://kit-share.com/files/attach/images/467/817/013/f1eed9968927ab413fa285da0d1d7e57.jpg"));
+	    Text context = new Text("종료 하시기 전에 kit-share에서 이벤트 참여하고 상품받아가세요!");
+	    context.setFont(Font.font("malgun gothic", FontWeight.NORMAL, 14));
+	    content.setBody(context);
+	    
+	    VBox vb = new VBox(20);
+	    vb.getChildren().addAll(context, imageView);
+	    vb.setAlignment(Pos.CENTER);
+	    content.setBody(vb);
+	    /******************************/
+	    
 	    dialog = new JFXDialog(mainApp.getRootLayoutController().getRootLayout(), content, JFXDialog.DialogTransition.CENTER);
 	    button = new JFXButton("방문 하기");
 	    button.setRipplerFill(Color.BLUE);
@@ -65,8 +82,6 @@ public class RecommandDialog{
 		        	dialog.close();
 		            System.exit(0);	
 	        	});
-	        	
-	        	
 	        }
 	    });
 	    
