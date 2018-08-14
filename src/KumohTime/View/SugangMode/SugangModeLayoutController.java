@@ -58,6 +58,12 @@ public class SugangModeLayoutController{
 	void handleOpenUnivPage(ActionEvent event) {
 		Browser.open("http://kumoh.ac.kr/");
 	}
+	
+    @FXML
+    void handleQuit(ActionEvent event) {
+    	stage.close();
+    	toggleButton.selectedProperty().set(false);
+    }
 
 	/**
 	 * 하단에 흐르는 시간 쓰레드
@@ -128,8 +134,13 @@ public class SugangModeLayoutController{
 		}).start();
 	}
 
+	private SugangModeDialog stage;
+	private JFXToggleButton toggleButton;
+	
 	public void setDefault(MainApp mainApp, JFXToggleButton toggleButton, SugangModeDialog stage) {
 		this.mainApp = mainApp;
+		this.stage = stage;
+		this.toggleButton = toggleButton;
 
 		list.setItems(selectedLayoutList);
 
