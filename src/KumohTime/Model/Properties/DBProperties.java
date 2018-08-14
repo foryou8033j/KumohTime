@@ -29,7 +29,7 @@ public class DBProperties {
 
 	public static String host = "kit-share.com";
 	private String id = "kumohtime";
-	private String password = "1k5rmf\\ht1a";	// 정식 배포 이전에는 password를 원문으로 저장하지 않습니다.
+	private String password = "";	// 정식 배포 이전에는 password를 원문으로 저장하지 않습니다.
 	private String db = "KumohTime";
 
 	public String getHost() {
