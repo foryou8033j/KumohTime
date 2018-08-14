@@ -23,6 +23,13 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 
+/**
+ * 선택 된 강의리스트 View Controller
+ * 
+ * @author Jeongsam Seo
+ * @since 2018-08-01
+ *
+ */
 public class SelectedLectureLayoutController implements Initializable{
 
     @FXML
