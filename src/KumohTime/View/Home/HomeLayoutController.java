@@ -23,6 +23,7 @@ import KumohTime.Model.DataBase.DataBase;
 import KumohTime.Model.TimeTable.Lecture;
 import KumohTime.Model.TimeTable.LectureTime;
 import KumohTime.Model.TimeTable.SaveData.SaveData;
+import KumohTime.Util.Browser;
 import KumohTime.Util.Dialog.AlertDialog;
 import KumohTime.Util.Dialog.BugReportDialog;
 import KumohTime.Util.Dialog.TempLectureAddDialog;
@@ -283,6 +284,12 @@ public class HomeLayoutController implements Initializable {
 			return;
 		}
 	}
+	
+
+    @FXML
+    void handleOpenGithub(ActionEvent event) {
+    	Browser.open("https://github.com/foryou8033j/KumohTime");
+    }
 
 	@FXML
 	void handleBugReport(ActionEvent event) {

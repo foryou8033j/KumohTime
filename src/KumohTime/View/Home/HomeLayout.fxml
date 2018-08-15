@@ -11,6 +11,7 @@
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.Tooltip?>
 <?import javafx.scene.control.TreeTableColumn?>
 <?import javafx.scene.control.TreeTableView?>
 <?import javafx.scene.layout.BorderPane?>
@@ -45,6 +46,13 @@
                                  <font>
                                     <Font name="Malgun Gothic Bold" size="12.0" />
                                  </font>
+                                 <tooltip>
+                                    <Tooltip text="필터 기능을 ON/OFF 할 수 있습니다">
+                                       <font>
+                                          <Font name="Malgun Gothic" size="12.0" />
+                                       </font>
+                                    </Tooltip>
+                                 </tooltip>
                               </JFXToggleButton>
                               <JFXComboBox fx:id="filterQuarter" prefHeight="23.0" prefWidth="75.0" promptText="학기" />
                               <JFXComboBox fx:id="filterGrade" prefHeight="23.0" prefWidth="66.0" promptText="학년" />
@@ -78,6 +86,13 @@
                            <columnResizePolicy>
                               <TreeTableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                            </columnResizePolicy>
+                           <tooltip>
+                              <Tooltip text="더블클릭하면 추가하거나 제거 할 수 있습니다">
+                                 <font>
+                                    <Font name="Malgun Gothic" size="12.0" />
+                                 </font>
+                              </Tooltip>
+                           </tooltip>
                         </JFXTreeTableView>
                      </children>
                   </VBox>
@@ -93,7 +108,14 @@
                               <Font name="Malgun Gothic Bold" size="14.0" />
                            </font>
                         </JFXButton>
-                        <JFXToggleButton fx:id="sugangpackmode" text="수강꾸러미모드" />
+                        <JFXToggleButton fx:id="sugangpackmode" text="수강신청모드">
+                           <tooltip>
+                              <Tooltip text="수강신청모드를 실행합니다">
+                                 <font>
+                                    <Font name="Malgun Gothic" size="12.0" />
+                                 </font>
+                              </Tooltip>
+                           </tooltip></JFXToggleButton>
                      </children>
                   </HBox>
                   <BorderPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="2">
@@ -107,21 +129,49 @@
                                  <font>
                                     <Font name="Malgun Gothic" size="12.0" />
                                  </font>
+                                 <tooltip>
+                                    <Tooltip text="개발자에게 메세지를 전달 할 수 있습니다">
+                                       <font>
+                                          <Font name="Malgun Gothic" size="12.0" />
+                                       </font>
+                                    </Tooltip>
+                                 </tooltip>
                               </JFXButton>
                               <JFXButton buttonType="RAISED" onAction="#handleLoadData" text="데이터&#10;불러오기" textAlignment="CENTER">
                                  <font>
                                     <Font name="Malgun Gothic" size="12.0" />
                                  </font>
+                                 <tooltip>
+                                    <Tooltip text="파일로 저장 된 데이터를 불러 올 수 있습니다">
+                                       <font>
+                                          <Font name="Malgun Gothic" size="12.0" />
+                                       </font>
+                                    </Tooltip>
+                                 </tooltip>
                               </JFXButton>
                               <JFXButton buttonType="RAISED" onAction="#handleSaveData" text="데이터&#10;내보내기" textAlignment="CENTER">
                                  <font>
                                     <Font name="Malgun Gothic" size="12.0" />
                                  </font>
+                                 <tooltip>
+                                    <Tooltip text="선택 된 시간표를 파일로 내보낼 수 있습니다">
+                                       <font>
+                                          <Font name="Malgun Gothic" size="12.0" />
+                                       </font>
+                                    </Tooltip>
+                                 </tooltip>
                               </JFXButton>
                               <JFXButton buttonType="RAISED" onAction="#handleSaveTimeTable" text="시간표 출력">
                                  <font>
                                     <Font name="Malgun Gothic" size="12.0" />
                                  </font>
+                                 <tooltip>
+                                    <Tooltip text="선택 된 시간표를 이미지로 내보낼 수 있습니다">
+                                       <font>
+                                          <Font name="Malgun Gothic" size="12.0" />
+                                       </font>
+                                    </Tooltip>
+                                 </tooltip>
                               </JFXButton>
                               <JFXButton buttonType="RAISED" disable="true" onAction="#handleAutomaticCreateTimeTable" text="자동 생성">
                                  <font>
@@ -328,7 +378,7 @@
                               </VBox>
                               <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: yellow;">
                                  <children>
-                                    <Line endX="-18.849258422851562" endY="-48.302650451660156" startX="-106.14215087890625" startY="12.83090591430664" />
+                                    <Line endX="-18.849258422851562" endY="-48.302650451660156" startX="-121.2548828125" startY="2.9902420043945312" />
                                  </children>
                               </VBox>
                            </children>
@@ -450,6 +500,7 @@
           <Menu mnemonicParsing="false" text="정보">
             <items>
               <MenuItem mnemonicParsing="false" onAction="#handleUpdateLog" text="업데이트 정보..." />
+                  <MenuItem mnemonicParsing="false" onAction="#handleOpenGithub" text="소스보기..." />
                   <MenuItem mnemonicParsing="false" onAction="#handleAbout" text="About..." />
             </items>
           </Menu>
