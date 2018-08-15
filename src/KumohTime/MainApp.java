@@ -89,6 +89,7 @@ public class MainApp extends Application {
 			});
 
 			loading.close();
+			primaryStage.setWidth(primaryStage.getWidth() + 0.1);
 
 		});
 
@@ -202,7 +203,8 @@ public class MainApp extends Application {
 		new AlertDialog(mainApp,
 				mainApp.getAppData().getAppPropertise().getVersionString() + " 버전 업데이트 ! (2018.08.14)",
 				"" 
-				+ "1. 수강 신청은 잘 하셨나요! 고생하셨어요 :D\n\n"
+				+ "1. 마우스를 올리면 설명이 나오도록 추가하였습니다\n"
+				+ "2. \n"
 				+ "2. 수강신청모드에서 나가는 방법을 수정하였습니다.\n"
 				+ "   * 기존의 방법이 직관적이지 못하다는 의견이 있어서 나가기 버튼을 추가하였습니다\n\n" 
 				+ "3. 기존에 배포되던 Protable 버전에 대한 지원이 중지되었습니다...\n\n"

@@ -29,7 +29,7 @@
         <items>
             <GridPane>
               <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="10.0" prefWidth="901.0" />
+                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="10.0" prefWidth="901.0" />
               </columnConstraints>
               <rowConstraints>
                 <RowConstraints minHeight="10.0" prefHeight="498.0" vgrow="SOMETIMES" />
@@ -37,7 +37,7 @@
                   <RowConstraints maxHeight="215.0" minHeight="10.0" prefHeight="209.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <VBox prefWidth="100.0" spacing="10.0" GridPane.vgrow="ALWAYS">
+                  <VBox alignment="CENTER" prefWidth="100.0" spacing="10.0" GridPane.halignment="CENTER" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
                      <children>
                         <HBox alignment="CENTER" prefHeight="41.0" prefWidth="786.0" spacing="20.0">
                            <children>
@@ -52,6 +52,9 @@
                                        </font>
                                     </Tooltip>
                                  </tooltip>
+                                 <HBox.margin>
+                                    <Insets left="-10.0" />
+                                 </HBox.margin>
                               </JFXToggleButton>
                               <JFXComboBox fx:id="filterQuarter" prefHeight="23.0" prefWidth="75.0" promptText="학기" />
                               <JFXComboBox fx:id="filterGrade" prefHeight="23.0" prefWidth="66.0" promptText="학년" />
@@ -67,7 +70,18 @@
                                     <Font name="Malgun Gothic" size="11.0" />
                                  </font></JFXTextField>
                            </children>
+                           <padding>
+                              <Insets top="-10.0" />
+                           </padding>
                         </HBox>
+                        <Text fill="#909090" strokeType="OUTSIDE" strokeWidth="0.0" text="아래 강의목록은 실제 강의 목록과 다를 수 있습니다,">
+                           <VBox.margin>
+                              <Insets bottom="-10.0" top="-15.0" />
+                           </VBox.margin>
+                           <font>
+                              <Font size="11.0" />
+                           </font>
+                        </Text>
                         <JFXTreeTableView fx:id="table" tableMenuButtonVisible="true" VBox.vgrow="ALWAYS">
                            <columns>
                               <TreeTableColumn fx:id="typeColumn" maxWidth="2000.0" prefWidth="38.0" text="종류" />
@@ -94,6 +108,9 @@
                            </tooltip>
                         </JFXTreeTableView>
                      </children>
+                     <GridPane.margin>
+                        <Insets />
+                     </GridPane.margin>
                   </VBox>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0" GridPane.rowIndex="1">
                      <children>
@@ -182,7 +199,7 @@
                   </BorderPane>
                </children>
                <padding>
-                  <Insets bottom="10.0" left="10.0" top="10.0" />
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </padding>
             </GridPane>
             <BorderPane fx:id="capturePane" SplitPane.resizableWithParent="false">
