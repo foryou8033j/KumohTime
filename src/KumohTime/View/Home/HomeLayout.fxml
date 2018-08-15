@@ -20,7 +20,6 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
@@ -76,9 +75,9 @@
                               <TreeTableColumn fx:id="gradeColumn" maxWidth="2000.0" prefWidth="127.0" text="학년" />
                               <TreeTableColumn fx:id="essentialColumn" maxWidth="2000.0" prefWidth="75.0" text="구분" />
                               <TreeTableColumn fx:id="nameColumn" prefWidth="75.0" text="교과목명" />
-                              <TreeTableColumn fx:id="pointColumn" maxWidth="2000.0" prefWidth="75.0" text="학점" />
+                              <TreeTableColumn fx:id="pointColumn" maxWidth="1000.0" prefWidth="75.0" text="학점" />
                               <TreeTableColumn fx:id="professorColumn" maxWidth="4000.0" prefWidth="75.0" text="담당교수" />
-                              <TreeTableColumn fx:id="codeColumn" prefWidth="75.0" text="코드" />
+                              <TreeTableColumn fx:id="codeColumn" maxWidth="3000.0" prefWidth="75.0" text="코드" />
                               <TreeTableColumn fx:id="timeColumn" prefWidth="75.0" text="강의시간" />
                               <TreeTableColumn fx:id="limitPersonColumn" maxWidth="2000.0" prefWidth="75.0" text="제한인원" visible="false" />
                               <TreeTableColumn fx:id="packageColumn" maxWidth="2000.0" prefWidth="75.0" text="수강&#10;꾸러미" visible="false" />
@@ -376,11 +375,7 @@
                                     </Text>
                                  </children>
                               </VBox>
-                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: yellow;">
-                                 <children>
-                                    <Line endX="-18.849258422851562" endY="-48.302650451660156" startX="-121.2548828125" startY="2.9902420043945312" />
-                                 </children>
-                              </VBox>
+                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: yellow;" />
                            </children>
                         </GridPane>
                      </children>
