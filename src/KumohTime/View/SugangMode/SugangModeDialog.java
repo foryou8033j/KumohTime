@@ -21,7 +21,7 @@ public class SugangModeDialog extends Stage {
 		super();
 		
 		getIcons().add(new Image("icon.jpg"));
-		setTitle(mainApp.getAppData().getAppPropertise().getTitle() + " " + mainApp.getAppData().getAppPropertise().getVersionString() + "v 수강꾸러미모드");
+		setTitle(mainApp.getAppData().getAppPropertise().getTitle() + " " + mainApp.getAppData().getAppPropertise().getVersionString() + "v 수강신청 모드");
 		
 		resizableProperty().setValue(Boolean.FALSE);
 		setAlwaysOnTop(true);

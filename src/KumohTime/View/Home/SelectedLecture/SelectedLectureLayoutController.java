@@ -139,7 +139,7 @@ public class SelectedLectureLayoutController implements Initializable{
     	
     	if(!isUseAble) {
     		colorPicker.setDisable(true);
-    		delete.setText("Ctrl+" + Integer.toString(mainApp.getAppData().getTimeTableData().getSelectedLecture().indexOf(lecture)));
+    		delete.setText("Ctrl+" + Integer.toString(mainApp.getAppData().getTimeTableData().getSelectedLecture().indexOf(lecture)+1));
     		layout.getColumnConstraints().get(0).setPercentWidth(10);
     	}
     	

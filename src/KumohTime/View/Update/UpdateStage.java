@@ -9,7 +9,9 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 /**
  * 업데이트 상황을 보여주는 Stage
@@ -27,6 +29,7 @@ public class UpdateStage extends Stage {
 		try {
 
 			alert.setTitle("KumohTime");
+			alert.initStyle(StageStyle.UNDECORATED);
 			alert.show();
 
 			getIcons().add(new Image("icon.jpg"));
