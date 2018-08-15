@@ -23,6 +23,7 @@ import KumohTime.Model.DataBase.DataBase;
 import KumohTime.Model.TimeTable.Lecture;
 import KumohTime.Model.TimeTable.LectureTime;
 import KumohTime.Model.TimeTable.SaveData.SaveData;
+import KumohTime.Util.Browser;
 import KumohTime.Util.Dialog.AlertDialog;
 import KumohTime.Util.Dialog.BugReportDialog;
 import KumohTime.Util.Dialog.TempLectureAddDialog;
@@ -283,6 +284,12 @@ public class HomeLayoutController implements Initializable {
 			return;
 		}
 	}
+	
+
+    @FXML
+    void handleOpenGithub(ActionEvent event) {
+    	Browser.open("https://github.com/foryou8033j/KumohTime");
+    }
 
 	@FXML
 	void handleBugReport(ActionEvent event) {
@@ -505,6 +512,7 @@ public class HomeLayoutController implements Initializable {
 							FXMLLoader loader = new FXMLLoader(
 									MainApp.class.getResource("View/Home/SelectedLecture/SelectedLectureLayout.fxml"));
 							GridPane pane = loader.load();
+							pane.setPrefWidth(addedList.getWidth()-40);
 							SelectedLectureLayoutController controller = loader.getController();
 							controller.setDefault(mainApp, v, pane, true);
 
@@ -575,6 +583,12 @@ public class HomeLayoutController implements Initializable {
 					e.printStackTrace();
 				}
 
+			}
+		});
+		
+		addedList.widthProperty().addListener((observable, oldValue, newValue) -> {
+			for (GridPane v:selectedLayoutList) {
+				v.setPrefWidth(addedList.getWidth()-40);
 			}
 		});
 

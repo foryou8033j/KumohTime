@@ -1,2 +1,6 @@
 /bin/
 /build/deploy/
+/config/
+/data/
+/kumohtime.db
+/KumohTime.jar

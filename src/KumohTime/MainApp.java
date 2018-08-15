@@ -89,6 +89,7 @@ public class MainApp extends Application {
 			});
 
 			loading.close();
+			primaryStage.setWidth(primaryStage.getWidth() + 0.1);
 
 		});
 
@@ -200,14 +201,17 @@ public class MainApp extends Application {
 		 */
 
 		new AlertDialog(mainApp,
-				mainApp.getAppData().getAppPropertise().getVersionString() + " 버전 업데이트 ! (2018.08.14)",
+				mainApp.getAppData().getAppPropertise().getVersionString() + " 버전 업데이트 ! (2018.08.15)",
 				"" 
-				+ "1. 수강 신청은 잘 하셨나요! 고생하셨어요 :D\n\n"
-				+ "2. 수강신청모드에서 나가는 방법을 수정하였습니다.\n"
-				+ "   * 기존의 방법이 직관적이지 못하다는 의견이 있어서 나가기 버튼을 추가하였습니다\n\n" 
-				+ "3. 기존에 배포되던 Protable 버전에 대한 지원이 중지되었습니다...\n\n"
-				+ "4. KumohTime 의 소스코드를 공개하였습니다.\n"
-				+ "   * 관심있으신분은 kit-share 에서 확인 가능합니다.",
+				+ "1. 마우스를 올리면 설명이 나오도록 추가하였습니다\n\n"
+				+ "2. 레이아웃을 일부 수정하였습니다.\n"
+				+ "   * 강의목록과 선택 한 강의목록도 크기 조정이 가능 하도록 변경 하였습니다.\n\n"
+				+ "3. 수강신청모드에서 나가는 방법을 수정하였습니다.\n"
+				+ "   * 기존의 방법이 직관적이지 못하다는 의견이 있어서 나가기 버튼을 추가하였습니다\n\n"
+				+ "4. 수강신청모드에서 단축키 기능을 추가하였습니다.\n"
+				+ "   * 창을 누르고 단축키를 눌러야 작동합니다\n\n" 
+				+ "5. KumohTime 의 소스코드를 공개하였습니다.\n"
+				+ "   * 관심있으신분은 kit-share 에서 확인 가능합니다.\n",
 				"확인");
 	}
 

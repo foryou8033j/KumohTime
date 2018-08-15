@@ -16,6 +16,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Paint;
 import javafx.scene.text.Text;
@@ -133,7 +134,7 @@ public class SugangModeLayoutController{
 
 		}).start();
 	}
-
+	
 	private SugangModeDialog stage;
 	private JFXToggleButton toggleButton;
 	
@@ -154,6 +155,7 @@ public class SugangModeLayoutController{
 					FXMLLoader loader = new FXMLLoader(
 							MainApp.class.getResource("View/Home/SelectedLecture/SelectedLectureLayout.fxml"));
 					GridPane pane = loader.load();
+					pane.setPrefWidth(list.getWidth()-40);
 
 					SelectedLectureLayoutController controller = loader.getController();
 					controller.setDefault(mainApp, v, pane, false);
@@ -164,9 +166,39 @@ public class SugangModeLayoutController{
 					a.printStackTrace();
 				}
 			}
+			
+			list.widthProperty().addListener((observable, oldValue, newValue) -> {
+				for (GridPane v:selectedLayoutList) {
+					v.setPrefWidth(list.getWidth()-40);
+				}
+			});
+			
+			
+			
+			stage.getScene().setOnKeyPressed(me -> {
+				if(me.isControlDown()) {
+					try {
+						switch(me.getCode()) {
+						case DIGIT1: selectedLayoutControllerList.get(0).handleCodeCopy(null); break;
+						case DIGIT2: selectedLayoutControllerList.get(1).handleCodeCopy(null); break;
+						case DIGIT3: selectedLayoutControllerList.get(2).handleCodeCopy(null); break;
+						case DIGIT4: selectedLayoutControllerList.get(3).handleCodeCopy(null); break;
+						case DIGIT5: selectedLayoutControllerList.get(4).handleCodeCopy(null); break;
+						case DIGIT6: selectedLayoutControllerList.get(5).handleCodeCopy(null); break;
+						case DIGIT7: selectedLayoutControllerList.get(6).handleCodeCopy(null); break;
+						case DIGIT8: selectedLayoutControllerList.get(7).handleCodeCopy(null); break;
+						case DIGIT9: selectedLayoutControllerList.get(8).handleCodeCopy(null); break;
+					}
+					}catch (Exception mee) {
+						//ignore
+					}
+					
+				}
+			});
 		});
 
 		handleTimeTick();
+		
 
 	}
 

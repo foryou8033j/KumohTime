@@ -197,62 +197,122 @@ public class Lecture extends RecursiveTreeObject<Lecture> {
 
 
 
+	/**
+	 * 학사년도
+	 * @return IntegerProperty
+	 */
 	public IntegerProperty getYear() {
 		return year;
 	}
 
+	/**
+	 * 학기
+	 * @return IntegerProperty
+	 */
 	public StringProperty getQuarter() {
 		return quarter;
 	}
 
+	/**
+	 * 고유번호
+	 * @return IntegerProperty
+	 */
 	public IntegerProperty getIndex() {
 		return index;
 	}
 
+	/**
+	 * 구분
+	 * @return IntegerProperty
+	 */
 	public StringProperty getType() {
 		return type;
 	}
 
+	/**
+	 * 학과
+	 * @return IntegerProperty
+	 */
 	public StringProperty getTrace() {
 		return trace;
 	}
 
+	/**
+	 * 학년
+	 * @return IntegerProperty
+	 */
 	public IntegerProperty getGrade() {
 		return grade;
 	}
 
+	/**
+	 * 필수구분
+	 * @return IntegerProperty
+	 */
 	public StringProperty getEssential() {
 		return essential;
 	}
 
+	/**
+	 * 강의명
+	 * @return IntegerProperty
+	 */
 	public StringProperty getName() {
 		return name;
 	}
 
+	/**
+	 * 학점
+	 * @return IntegerProperty
+	 */
 	public IntegerProperty getPoint() {
 		return point;
 	}
 
+	/**
+	 * 수강코드
+	 * @return IntegerProperty
+	 */
 	public StringProperty getCode() {
 		return code;
 	}
 
+	/**
+	 * 교수명
+	 * @return IntegerProperty
+	 */
 	public StringProperty getProfessor() {
 		return professor;
 	}
 
+	/**
+	 * 전공명
+	 * @return IntegerProperty
+	 */
 	public StringProperty getMajor() {
 		return major;
 	}
 
+	/**
+	 * 강의시간
+	 * @return IntegerProperty
+	 */
 	public StringProperty getTime() {
 		return time;
 	}
 
+	/**
+	 * 수강인원
+	 * @return IntegerProperty
+	 */
 	public IntegerProperty getLimitPerson() {
 		return limitPerson;
 	}
 
+	/**
+	 * 수강꾸러미
+	 * @return IntegerProperty
+	 */
 	public StringProperty getLecPackage() {
 		return lecPackage;
 	}
