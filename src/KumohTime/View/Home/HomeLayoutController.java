@@ -512,6 +512,7 @@ public class HomeLayoutController implements Initializable {
 							FXMLLoader loader = new FXMLLoader(
 									MainApp.class.getResource("View/Home/SelectedLecture/SelectedLectureLayout.fxml"));
 							GridPane pane = loader.load();
+							pane.setPrefWidth(addedList.getWidth()-40);
 							SelectedLectureLayoutController controller = loader.getController();
 							controller.setDefault(mainApp, v, pane, true);
 
@@ -582,6 +583,12 @@ public class HomeLayoutController implements Initializable {
 					e.printStackTrace();
 				}
 
+			}
+		});
+		
+		addedList.widthProperty().addListener((observable, oldValue, newValue) -> {
+			for (GridPane v:selectedLayoutList) {
+				v.setPrefWidth(addedList.getWidth()-40);
 			}
 		});
 

@@ -56,6 +56,8 @@ public class SugangModeDialog extends Stage {
 			
 		});
 		
+		
+		
 	}
 
 }

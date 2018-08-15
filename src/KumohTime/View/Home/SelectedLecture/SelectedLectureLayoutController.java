@@ -19,6 +19,7 @@ import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.HPos;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
@@ -58,7 +59,7 @@ public class SelectedLectureLayoutController implements Initializable{
     
 
     @FXML
-    void handleCodeCopy(ActionEvent event) {
+    public void handleCodeCopy(ActionEvent event) {
     	StringSelection stringSelection = new StringSelection(code.getText().replaceAll("-", ""));
     	Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
     	clipboard.setContents(stringSelection, null);
@@ -112,6 +113,8 @@ public class SelectedLectureLayoutController implements Initializable{
     @FXML
     void handleDelete(ActionEvent event) {
     	try {
+    		if(!isUseAble)
+    			return;
     		
 			mainApp.getAppData().getTimeTableData().getSelectedLecture().remove(lecture);
 			mainApp.getAppData().getTimeTableData().enableSimilarLecture(lecture);
@@ -135,8 +138,9 @@ public class SelectedLectureLayoutController implements Initializable{
     	this.layout = layout;
     	
     	if(!isUseAble) {
-    		delete.setVisible(false);
     		colorPicker.setDisable(true);
+    		delete.setText("Ctrl+" + Integer.toString(mainApp.getAppData().getTimeTableData().getSelectedLecture().indexOf(lecture)));
+    		layout.getColumnConstraints().get(0).setPercentWidth(10);
     	}
     	
     	if(lecture.getLectureTime().size()==0)
@@ -157,7 +161,6 @@ public class SelectedLectureLayoutController implements Initializable{
     	//수강꾸러미일경우 배경 색상을 변경한다.
     	if(lecture.getLecPackage().get().equals("N"))
     		name.setFill(Color.rgb(241, 149, 104));
-    	
     	
     }
     

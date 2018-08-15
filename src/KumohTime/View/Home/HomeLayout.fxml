@@ -229,12 +229,15 @@
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </padding>
                <center>
-                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="10.0" BorderPane.alignment="CENTER">
+                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="15.0" BorderPane.alignment="CENTER">
                      <children>
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="시간표">
                            <font>
                               <Font name="Malgun Gothic Bold" size="24.0" />
                            </font>
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
                         </Text>
                         <GridPane fx:id="timeTable" gridLinesVisible="true" onContextMenuRequested="#handleTimeTableContextMenuRequested" onMouseClicked="#handleTimeTableClicked">
                           <columnConstraints>
@@ -433,6 +436,7 @@
                     </columnConstraints>
                     <rowConstraints>
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="5.0" prefHeight="5.0" vgrow="SOMETIMES" />
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
@@ -461,37 +465,37 @@
                               <Font name="Malgun Gothic" size="12.0" />
                            </font>
                         </Text>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="합계" GridPane.columnIndex="6">
+                        <Text fill="#d34f4f" strokeType="OUTSIDE" strokeWidth="0.0" text="합계" GridPane.columnIndex="6">
                            <font>
                               <Font name="Malgun Gothic Bold" size="12.0" />
                            </font>
                         </Text>
-                        <Text fx:id="majorEssential" strokeType="OUTSIDE" strokeWidth="0.0" text="0" GridPane.rowIndex="1">
+                        <Text fx:id="majorEssential" strokeType="OUTSIDE" strokeWidth="0.0" text="0" GridPane.rowIndex="2">
                            <font>
                               <Font name="Malgun Gothic" size="12.0" />
                            </font>
                         </Text>
-                        <Text fx:id="majorSelect" strokeType="OUTSIDE" strokeWidth="0.0" text="0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                        <Text fx:id="majorSelect" strokeType="OUTSIDE" strokeWidth="0.0" text="0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                            <font>
                               <Font name="Malgun Gothic" size="12.0" />
                            </font>
                         </Text>
-                        <Text fx:id="refinementEssential" strokeType="OUTSIDE" strokeWidth="0.0" text="0" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                        <Text fx:id="refinementEssential" strokeType="OUTSIDE" strokeWidth="0.0" text="0" GridPane.columnIndex="2" GridPane.rowIndex="2">
                            <font>
                               <Font name="Malgun Gothic" size="12.0" />
                            </font>
                         </Text>
-                        <Text fx:id="refinementSelect" strokeType="OUTSIDE" strokeWidth="0.0" text="0" GridPane.columnIndex="3" GridPane.rowIndex="1">
+                        <Text fx:id="refinementSelect" strokeType="OUTSIDE" strokeWidth="0.0" text="0" GridPane.columnIndex="3" GridPane.rowIndex="2">
                            <font>
                               <Font name="Malgun Gothic" size="12.0" />
                            </font>
                         </Text>
-                        <Text fx:id="basicEssential" strokeType="OUTSIDE" strokeWidth="0.0" text="0" GridPane.columnIndex="4" GridPane.rowIndex="1">
+                        <Text fx:id="basicEssential" strokeType="OUTSIDE" strokeWidth="0.0" text="0" GridPane.columnIndex="4" GridPane.rowIndex="2">
                            <font>
                               <Font name="Malgun Gothic" size="12.0" />
                            </font>
                         </Text>
-                        <Text fx:id="sumOfLecture" strokeType="OUTSIDE" strokeWidth="0.0" text="0" GridPane.columnIndex="6" GridPane.rowIndex="1">
+                        <Text fx:id="sumOfLecture" fill="#d34f4f" strokeType="OUTSIDE" strokeWidth="0.0" text="0" GridPane.columnIndex="6" GridPane.rowIndex="2">
                            <font>
                               <Font name="Malgun Gothic Bold" size="12.0" />
                            </font>
@@ -501,11 +505,18 @@
                               <Font name="Malgun Gothic" size="12.0" />
                            </font>
                         </Text>
-                        <Text fx:id="etcPoint" strokeType="OUTSIDE" strokeWidth="0.0" text="0" GridPane.columnIndex="5" GridPane.rowIndex="1">
+                        <Text fx:id="etcPoint" strokeType="OUTSIDE" strokeWidth="0.0" text="0" GridPane.columnIndex="5" GridPane.rowIndex="2">
                            <font>
                               <Font name="Malgun Gothic" size="12.0" />
                            </font>
                         </Text>
+                        <Separator prefWidth="200.0" GridPane.rowIndex="1" />
+                        <Separator prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <Separator prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                        <Separator prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                        <Separator prefWidth="200.0" GridPane.columnIndex="4" GridPane.rowIndex="1" />
+                        <Separator prefWidth="200.0" GridPane.columnIndex="5" GridPane.rowIndex="1" />
+                        <Separator prefWidth="200.0" GridPane.columnIndex="6" GridPane.rowIndex="1" />
                      </children>
                      <BorderPane.margin>
                         <Insets top="10.0" />
