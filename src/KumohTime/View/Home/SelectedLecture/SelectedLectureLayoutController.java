@@ -33,6 +33,9 @@ import javafx.scene.text.Text;
 public class SelectedLectureLayoutController implements Initializable{
 
     @FXML
+    private GridPane pane;
+	
+    @FXML
     private Text name;
 
     @FXML
@@ -150,6 +153,12 @@ public class SelectedLectureLayoutController implements Initializable{
 				lecture.setColor(newValue);
 			});
 		}
+    	
+    	//수강꾸러미일경우 배경 색상을 변경한다.
+    	if(lecture.getLecPackage().get().equals("N"))
+    		name.setFill(Color.rgb(241, 149, 104));
+    	
+    	
     }
     
     public Lecture getLecture() {
