@@ -52,7 +52,7 @@ public class SugangModeLayoutController{
 
 	@FXML
 	void handleOpenSugangPage(ActionEvent event) {
-		Browser.open("http://nkaiser.kumoh.ac.kr/kaiser/cre/w_cre_s5200_login.html");
+		Browser.open("http://sugang.kumoh.ac.kr/onestop/sugang/w_sugang_1.html");
 	}
 
 	@FXML
