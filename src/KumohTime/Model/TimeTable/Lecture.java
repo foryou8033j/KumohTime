@@ -123,6 +123,8 @@ public class Lecture extends RecursiveTreeObject<Lecture> {
 		isTemp.set(true);
 		System.out.println(isTemp.get());
 		
+		this.lecPackage = new SimpleStringProperty("Y");
+		
 		stringToTime(time);
 	}
 	

@@ -23,7 +23,7 @@ public class AppProperties {
 	private Properties properties;
 
 	//배포 버전의 버전관리
-	final public float BIND_VERSION = 0.931f;
+	final public float BIND_VERSION = 0.932f;
 
 	//Application Title
 	private String title = "KumohTime";
