@@ -27,7 +27,7 @@
             <Text fx:id="time" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.columnIndex="1" />
             <JFXButton buttonType="RAISED" onAction="#handleOpenSugangPage" prefHeight="40.0" prefWidth="150.0" text="수강신청 페이지 열기" GridPane.columnIndex="2" />
             <JFXButton buttonType="RAISED" onAction="#handleOpenUnivPage" prefHeight="40.0" prefWidth="150.0" text="학교 홈페이지 열기" GridPane.columnIndex="3" />
-            <JFXButton buttonType="RAISED" onAction="#handleOpenKitShare" prefHeight="40.0" prefWidth="150.0" text="kit-share 열기" GridPane.columnIndex="4" />
+            <JFXButton buttonType="RAISED" onAction="#handleOpenKitShare" prefHeight="40.0" prefWidth="150.0" text="금오사이 열기" GridPane.columnIndex="4" />
             <JFXButton buttonType="RAISED" onAction="#handleQuit" prefHeight="40.0" prefWidth="81.0" ripplerFill="#d00000" text="나가기" GridPane.columnIndex="5" />
          </children>
       </GridPane>

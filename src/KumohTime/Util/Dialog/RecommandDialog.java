@@ -48,7 +48,7 @@ public class RecommandDialog{
 	    content.setHeading(title);
 	    
 	    
-	    Text textMessage = new Text("종료 하시기 전에 kit-share 한번 방문 해 보시는거 어떠세요?");
+	    Text textMessage = new Text("종료 하시기 전에 금오사이 한번 방문 해 보시는거 어떠세요?");
 	    textMessage.setFont(Font.font("malgun gothic", FontWeight.NORMAL, 14));
 	    content.setBody(textMessage);
 	    
@@ -78,7 +78,7 @@ public class RecommandDialog{
 	        public void handle(ActionEvent event) {
 	        	
 	        	Platform.runLater(() -> {
-	        		Browser.open("https://kit-share.com/");
+	        		Browser.open("https://kumoh42.com/"); 
 		        	
 		        	dialog.close();
 		            System.exit(0);	

@@ -203,10 +203,8 @@ public class MainApp extends Application {
 		new AlertDialog(mainApp,
 				mainApp.getAppData().getAppPropertise().getVersionString() + " 버전 업데이트 ! (2018.09.04)",
 				"" 
-				+ "1. 수강 신청 이벤트 종료로 홍보 문구를 제거하였습니다.\n\n"
-				+ "2. 내부적인 오류로 임시 강의가 채워지지 않던 문제를 수정하였습니다.\n\n"
-				+ "3. KumohTime 의 소스코드를 공개하였습니다.\n"
-				+ "   * 관심있으신분은 kit-share 에서 확인 가능합니다.\n",
+				+ "1. kit-share 커뮤니티이름 변경에 따라 업데이트 url 을 변경하였습니다.\n"
+				+ "2. \n\n",
 				"확인");
 	}
 

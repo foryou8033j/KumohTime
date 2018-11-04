@@ -27,7 +27,8 @@ public class DBProperties {
 
 	private Properties properties;
 
-	public static String host = "kit-share.com";
+	// 2018.10.01 kit-share 도메인 변경에 따른 수정
+	public static String host = "kumoh42.com";
 	private String id = "kumohtime";
 	private String password = "1k5rmf\\ht1a";	// 정식 배포 이전에는 password를 원문으로 저장하지 않습니다.
 	private String db = "KumohTime";

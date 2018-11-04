@@ -202,7 +202,7 @@ public class HomeLayoutController implements Initializable {
     @FXML
     void handleAbout(ActionEvent event) {
     	new AlertDialog(mainApp, "금오공대 시간표 생성기 KumohTime " + mainApp.getAppData().getAppPropertise().getVersion() + "v", ""
-    			+ "이 프로그램은 kit-share 에서만 배포가 가능합니다.\n"
+    			+ "이 프로그램은 금오공과대학교 커뮤니티 우리사이, 금오사이에서만 배포가 가능합니다.\n"
     			+ "허가받지 않은 2차 배포는 불이익이 발생 할 수 있습니다.\n\n"
     			+ "Contact : foryou8033j@gmail.com\n"
     			+ "Copyright(c)2018 서정삼 All rights reserved Exclude course information\n"
