@@ -58,7 +58,7 @@ public class DBProperties {
 			savePropertise();
 		} else {
 			loadPropertise();
-			host = "kit-share.com";
+			host = "kumoh42.com";
 			savePropertise();
 		}
 
