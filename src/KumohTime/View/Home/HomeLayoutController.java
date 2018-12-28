@@ -293,10 +293,15 @@ public class HomeLayoutController implements Initializable {
 
 	@FXML
 	void handleBugReport(ActionEvent event) {
+		
+		Browser.open("https://kumoh42.com/help");
+		
+		/*
 		if (!DataBase.isOfflineMode)
 			new BugReportDialog(mainApp);
 		else
 			new AlertDialog(mainApp, "알림", "오프라인모드에서는 사용 할 수 없습니다.", "확인");
+		*/
 	}
 
 	@FXML

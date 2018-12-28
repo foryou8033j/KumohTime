@@ -161,37 +161,44 @@ public class Lecture extends RecursiveTreeObject<Lecture> {
 			
 		}else if(time != null) {
 			
-			String t = time.substring(0, time.indexOf("/"));				//강의시간정보
-			String rm = time.substring(time.indexOf("/")+1, time.length());	//강의실정보
-			
-			for(int i=0; i<t.length(); i++) {
+			try {
 				
-				char ch = t.charAt(i);
-				String tm = "";
-				String tmp = t.copyValueOf(t.toCharArray());
+				String t = time.substring(0, time.indexOf("/"));				//강의시간정보
+				String rm = time.substring(time.indexOf("/")+1, time.length());	//강의실정보
 				
-				/*
-				 * 1개 요일 1개의 시간 정보를 저장한다.
-				 * 예 ) 월화목금678 과 같이 저장되어있는경우 요일정보를 분리하여 그 갯수만큼 월678 화678 목678 금 678의 시간 객체를 생성한다.
-				 * 요일정보를 하나 분리
-				 */
-				if(ch=='월' || ch=='화' || ch=='수' || ch=='목' || ch=='금' || ch=='토' || ch=='일')
-					tm += ch;
-				else
-					continue;
+				for(int i=0; i<t.length(); i++) {
+					
+					char ch = t.charAt(i);
+					String tm = "";
+					String tmp = t.copyValueOf(t.toCharArray());
+					
+					/*
+					 * 1개 요일 1개의 시간 정보를 저장한다.
+					 * 예 ) 월화목금678 과 같이 저장되어있는경우 요일정보를 분리하여 그 갯수만큼 월678 화678 목678 금 678의 시간 객체를 생성한다.
+					 * 요일정보를 하나 분리
+					 */
+					if(ch=='월' || ch=='화' || ch=='수' || ch=='목' || ch=='금' || ch=='토' || ch=='일')
+						tm += ch;
+					else
+						continue;
+					
+					// 남아있는 요일정보를 제거
+					tmp = tmp.replaceAll("월", "");
+					tmp = tmp.replaceAll("화", "");
+					tmp = tmp.replaceAll("수", "");
+					tmp = tmp.replaceAll("목", "");
+					tmp = tmp.replaceAll("금", "");
+					tmp = tmp.replaceAll("토", "");
+					tmp = tmp.replaceAll("일", "");
+					
+					tm += tmp;
+					convertedTime.add(new LectureTime(t, rm));
+				}
 				
-				// 남아있는 요일정보를 제거
-				tmp = tmp.replaceAll("월", "");
-				tmp = tmp.replaceAll("화", "");
-				tmp = tmp.replaceAll("수", "");
-				tmp = tmp.replaceAll("목", "");
-				tmp = tmp.replaceAll("금", "");
-				tmp = tmp.replaceAll("토", "");
-				tmp = tmp.replaceAll("일", "");
-				
-				tm += tmp;
-				convertedTime.add(new LectureTime(t, rm));
+			}catch (Exception e) {
+				convertedTime.add(new LectureTime("일", "1"));
 			}
+			
 			
 			
 		}
