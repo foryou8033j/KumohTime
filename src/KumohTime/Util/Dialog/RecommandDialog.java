@@ -47,13 +47,14 @@ public class RecommandDialog{
 		title.setFont(Font.font("malgun gothic", FontWeight.BOLD, 18));
 	    content.setHeading(title);
 	    
-	    /*
-	    Text textMessage = new Text("종료 하시기 전에 kit-share 한번 방문 해 보시는거 어떠세요?");
+	    
+	    Text textMessage = new Text("종료 하시기 전에 금오사이 한번 방문 해 보시는거 어떠세요?");
 	    textMessage.setFont(Font.font("malgun gothic", FontWeight.NORMAL, 14));
 	    content.setBody(textMessage);
-	    */
 	    
-	    /*** 0.93 이벤트 응모 이벤트 패치 반영  ********/
+	    
+	    /*
+	    /*** 0.93 이벤트 응모 이벤트 패치 반영  ********
 	    ImageView imageView = new ImageView(new Image("https://kit-share.com/files/attach/images/467/817/013/f1eed9968927ab413fa285da0d1d7e57.jpg"));
 	    Text context = new Text("종료 하시기 전에 kit-share에서 이벤트 참여하고 상품받아가세요!");
 	    context.setFont(Font.font("malgun gothic", FontWeight.NORMAL, 14));
@@ -63,7 +64,7 @@ public class RecommandDialog{
 	    vb.getChildren().addAll(context, imageView);
 	    vb.setAlignment(Pos.CENTER);
 	    content.setBody(vb);
-	    /******************************/
+	    ******************************/
 	    
 	    dialog = new JFXDialog(mainApp.getRootLayoutController().getRootLayout(), content, JFXDialog.DialogTransition.CENTER);
 	    button = new JFXButton("방문 하기");
@@ -77,7 +78,7 @@ public class RecommandDialog{
 	        public void handle(ActionEvent event) {
 	        	
 	        	Platform.runLater(() -> {
-	        		Browser.open("https://kit-share.com/");
+	        		Browser.open("https://kumoh42.com/"); 
 		        	
 		        	dialog.close();
 		            System.exit(0);	

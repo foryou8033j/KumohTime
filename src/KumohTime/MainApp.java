@@ -77,8 +77,7 @@ public class MainApp extends Application {
 
 		task.setOnSucceeded(event -> {
 
-			primaryStage
-					.setTitle(appData.getAppPropertise().getTitle() + " " + appData.getAppPropertise().getVersion());
+			primaryStage.setTitle(appData.getAppPropertise().getTitle() + " 2019 " + appData.getAppPropertise().getVersion());
 
 			// RootLayout Initialize
 			initRootLayoutLayout();
@@ -201,17 +200,13 @@ public class MainApp extends Application {
 		 */
 
 		new AlertDialog(mainApp,
-				mainApp.getAppData().getAppPropertise().getVersionString() + " 버전 업데이트 ! (2018.08.15)",
+				mainApp.getAppData().getAppPropertise().getVersionString() + " 버전 업데이트 ! (2018.12.28)",
 				"" 
-				+ "1. 마우스를 올리면 설명이 나오도록 추가하였습니다\n\n"
-				+ "2. 레이아웃을 일부 수정하였습니다.\n"
-				+ "   * 강의목록과 선택 한 강의목록도 크기 조정이 가능 하도록 변경 하였습니다.\n\n"
-				+ "3. 수강신청모드에서 나가는 방법을 수정하였습니다.\n"
-				+ "   * 기존의 방법이 직관적이지 못하다는 의견이 있어서 나가기 버튼을 추가하였습니다\n\n"
-				+ "4. 수강신청모드에서 단축키 기능을 추가하였습니다.\n"
-				+ "   * 창을 누르고 단축키를 눌러야 작동합니다\n\n" 
-				+ "5. KumohTime 의 소스코드를 공개하였습니다.\n"
-				+ "   * 관심있으신분은 kit-share 에서 확인 가능합니다.\n",
+				+ "1. kit-share 커뮤니티 이름 변경에 따라 업데이트 서버를 변경하였습니다.\n"
+				+ "2. 2019학년도 시간표로 변경되었습니다.\n"
+				+ "3. 배포 조건이 변경되었습니다. 자세한 내용은 정보->About 을 확인 해 주세요.\n"
+				+ "4. 버그 리포팅시 자체 기능을 통한 버그 신고에서 금오사이에서 신고되도록 변경되었습니다.\n"
+				,
 				"확인");
 	}
 

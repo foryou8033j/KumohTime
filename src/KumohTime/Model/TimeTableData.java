@@ -132,15 +132,20 @@ public class TimeTableData {
 
 		for (Lecture v : listLecture) {
 
-			String currentLectureCode = lecture.getCode().get().substring(0, lecture.getCode().get().indexOf("-"));
-			String targetLectureCode = v.getCode().get().substring(0, v.getCode().get().indexOf("-"));
-
-			if (currentLectureCode.equals(targetLectureCode))
-				v.isSelectAble.set(false);
-
-			for (LectureTime lecTime : lecture.getLectureTime()) {
-				if (lecTime.isConflict(v))
+			try {
+				String currentLectureCode = lecture.getCode().get().substring(0, lecture.getCode().get().indexOf("-"));
+				String targetLectureCode = v.getCode().get().substring(0, v.getCode().get().indexOf("-"));
+				
+				if (currentLectureCode.equals(targetLectureCode))
 					v.isSelectAble.set(false);
+
+				for (LectureTime lecTime : lecture.getLectureTime()) {
+					if (lecTime.isConflict(v))
+						v.isSelectAble.set(false);
+				}
+				
+			}catch (Exception e) {
+				continue;
 			}
 		}
 

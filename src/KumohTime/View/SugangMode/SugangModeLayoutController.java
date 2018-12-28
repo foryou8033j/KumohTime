@@ -47,12 +47,12 @@ public class SugangModeLayoutController{
 
 	@FXML
 	void handleOpenKitShare(ActionEvent event) {
-		Browser.open("https://kit-share.com/");
+		Browser.open("https://kumoh42.com/");
 	}
 
 	@FXML
 	void handleOpenSugangPage(ActionEvent event) {
-		Browser.open("http://nkaiser.kumoh.ac.kr/kaiser/cre/w_cre_s5200_login.html");
+		Browser.open("http://sugang.kumoh.ac.kr/onestop/sugang/w_sugang_1.html");
 	}
 
 	@FXML

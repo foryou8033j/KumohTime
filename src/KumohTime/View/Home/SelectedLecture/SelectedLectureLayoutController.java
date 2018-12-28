@@ -60,7 +60,7 @@ public class SelectedLectureLayoutController implements Initializable{
 
     @FXML
     public void handleCodeCopy(ActionEvent event) {
-    	StringSelection stringSelection = new StringSelection(code.getText().replaceAll("-", ""));
+    	StringSelection stringSelection = new StringSelection(lecture.getCode().get().replaceAll("-", ""));
     	Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
     	clipboard.setContents(stringSelection, null);
     	
@@ -113,8 +113,11 @@ public class SelectedLectureLayoutController implements Initializable{
     @FXML
     void handleDelete(ActionEvent event) {
     	try {
-    		if(!isUseAble)
+    		if(!isUseAble) {
+    			handleCodeCopy(null);
     			return;
+    		}
+    			
     		
 			mainApp.getAppData().getTimeTableData().getSelectedLecture().remove(lecture);
 			mainApp.getAppData().getTimeTableData().enableSimilarLecture(lecture);
