@@ -77,8 +77,7 @@ public class MainApp extends Application {
 
 		task.setOnSucceeded(event -> {
 
-			primaryStage
-					.setTitle(appData.getAppPropertise().getTitle() + " " + appData.getAppPropertise().getVersion());
+			primaryStage.setTitle(appData.getAppPropertise().getTitle() + " 2019 " + appData.getAppPropertise().getVersion());
 
 			// RootLayout Initialize
 			initRootLayoutLayout();
@@ -201,10 +200,13 @@ public class MainApp extends Application {
 		 */
 
 		new AlertDialog(mainApp,
-				mainApp.getAppData().getAppPropertise().getVersionString() + " 버전 업데이트 ! (2018.09.04)",
+				mainApp.getAppData().getAppPropertise().getVersionString() + " 버전 업데이트 ! (2018.12.28)",
 				"" 
-				+ "1. kit-share 커뮤니티이름 변경에 따라 업데이트 url 을 변경하였습니다.\n"
-				+ "2. \n\n",
+				+ "1. kit-share 커뮤니티 이름 변경에 따라 업데이트 서버를 변경하였습니다.\n"
+				+ "2. 2019학년도 시간표로 변경되었습니다.\n"
+				+ "3. 배포 조건이 변경되었습니다. 자세한 내용은 정보->About 을 확인 해 주세요.\n"
+				+ "4. 버그 리포팅시 자체 기능을 통한 버그 신고에서 금오사이에서 신고되도록 변경되었습니다.\n"
+				,
 				"확인");
 	}
 
